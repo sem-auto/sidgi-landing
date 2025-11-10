@@ -12,8 +12,8 @@
   <meta property="og:title" content="SIGDI — Control horario legal y simple">
   <meta property="og:description" content="Fichaje digital con firma, PDF mensual y Google Sheets/Drive.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="img/og-image.jpg">
-  <!-- Favicon / Icons (sube estos archivos a /img) -->
+  <meta property="og:image" content="img/og-image.png">
+  <!-- Favicon / Icons -->
   <link rel="icon" href="img/favicon.ico">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" sizes="180x180">
 
@@ -108,11 +108,6 @@
       .lead{font-size:16px}
       .features{grid-template-columns:1fr}
     }
-
-    /* Google Form embed */
-    .form-embed{border:0; width:100%; height:1200px}
-    @media (max-width:900px){ .form-embed{ height:1400px } }
-    @media (max-width:420px){ .form-embed{ height:1550px } }
   </style>
 </head>
 <body>
@@ -123,7 +118,7 @@
       <div class="logo"><span class="logo-badge" aria-hidden="true"></span> SIGDI</div>
       <div>
         <a href="#precios" class="btn" aria-label="Ir a precios">Precios</a>
-        <a href="#demo" class="btn btn--solid" aria-label="Solicitar una demo">Solicitar demo</a>
+        <a href="#contacto" class="btn btn--solid" aria-label="Contactar">Contactar</a>
       </div>
     </div>
   </nav>
@@ -140,15 +135,15 @@
         </p>
         <p class="lead" style="margin-top:8px"><strong>Usado por:</strong> Puertas Lloris · Alumida · Ferretería Martínez</p>
         <div class="cta">
-          <a class="btn btn--primary" href="#demo" aria-label="Abrir formulario para solicitar demo de SIGDI">Probar demo</a>
-          <a class="btn" href="https://wa.me/34600000000?text=Quiero%20demo%20SIGDI" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp para solicitar demo">WhatsApp</a>
+          <a class="btn btn--primary" href="#contacto" aria-label="Ir a contacto">Solicitar información</a>
+          <a class="btn" href="img/og-image.png" target="_blank" rel="noopener noreferrer">Ver demo rápida</a>
         </div>
       </div>
 
-      <!-- Prueba social visual (sustituye por capturas reales) -->
+      <!-- Prueba social visual -->
       <aside class="hero-card" aria-label="Vista rápida del sistema">
         <strong>Así funciona</strong>
-        <img src="img/demo-fichaje.gif" alt="Demostración del fichaje con firma" loading="lazy" style="border-radius:10px">
+        <img src="img/og-image.png" alt="Demostración visual del sistema" loading="lazy" style="border-radius:10px">
         <ul>
           <li>Fichaje por enlace único</li>
           <li>Firma y guardado en Drive</li>
@@ -194,7 +189,7 @@
             <li>Resumen mensual</li>
             <li>Soporte email</li>
           </ul>
-          <p class="buy"><a class="btn btn--primary" href="#demo" aria-label="Empezar plan Básico">Empezar</a></p>
+          <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Básico">Empezar</a></p>
         </div>
         <div class="plan recommended">
           <span class="badge">Recomendado</span>
@@ -205,7 +200,7 @@
             <li>Firma digital y PDF mensual</li>
             <li>Soporte prioritario</li>
           </ul>
-          <p class="buy"><a class="btn btn--primary" href="#demo" aria-label="Empezar plan Empresa">Empezar</a></p>
+          <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Empresa">Empezar</a></p>
         </div>
         <div class="plan">
           <h3>Premium</h3>
@@ -215,7 +210,7 @@
             <li>Marca blanca y personalización</li>
             <li>Integraciones avanzadas</li>
           </ul>
-          <p class="buy"><a class="btn btn--primary" href="#demo" aria-label="Empezar plan Premium">Empezar</a></p>
+          <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Premium">Empezar</a></p>
         </div>
       </div>
     </div>
@@ -256,28 +251,15 @@
     </div>
   </section>
 
-  <!-- CONTACTO / DEMO: Google Forms embebido -->
-  <section id="demo">
+  <!-- CONTACTO -->
+  <section id="contacto">
     <div class="container">
-      <h2>Solicita una demo</h2>
-      <p class="lead">Rellena el formulario y te activamos un entorno de prueba.</p>
-
-      <div class="hero-card" style="padding:0; overflow:hidden">
-        <iframe
-          class="form-embed"
-          src="https://docs.google.com/forms/d/e/1FAIpQLSeY3MTiW2DeNSLOX2xHcfggJa4W74gYxyRIZ3YOjO4PM55cfQ/viewform?embedded=true"
-          frameborder="0" marginheight="0" marginwidth="0"
-          title="Formulario de solicitud de demo SIGDI">
-          Cargando…
-        </iframe>
-      </div>
-
-      <div class="cta" style="margin-top:14px">
-        <a class="btn btn--primary"
-           href="https://docs.google.com/forms/d/e/1FAIpQLSeY3MTiW2DeNSLOX2xHcfggJa4W74gYxyRIZ3YOjO4PM55cfQ/viewform"
-           target="_blank" rel="noopener noreferrer">Abrir formulario en nueva pestaña</a>
-        <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Demo%20SIGDI">Pedir demo por email</a>
-        <a class="btn" href="https://wa.me/34600000000?text=Quiero%20demo%20SIGDI" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <h2>Contacto</h2>
+      <p class="lead">Pide una reunión o una demo personalizada.</p>
+      <div class="cta">
+        <a class="btn btn--primary" href="https://wa.me/34600000000?text=Quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+        <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI">Solicitar información por email</a>
+        <a class="btn" href="presentacion-sigdi.pdf" target="_blank" rel="noopener noreferrer">Ver presentación PDF</a>
       </div>
     </div>
   </section>
@@ -288,7 +270,7 @@
       <div><strong>¿Listo para cumplir y ahorrar tiempo?</strong> Activa SIGDI en tu empresa.</div>
       <div class="cta">
         <a class="btn" href="#precios" aria-label="Ver precios">Ver precios</a>
-        <a class="btn btn--primary" href="#demo" aria-label="Solicitar demo">Solicitar demo</a>
+        <a class="btn btn--primary" href="#contacto" aria-label="Contactar">Contactar</a>
       </div>
     </div>
   </div>
@@ -307,11 +289,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- (Opcional) Analítica: activa Plausible o GA4 -->
-  <!--
-  <script defer data-domain="sem-auto.github.io" src="https://plausible.io/js/script.js"></script>
-  -->
 
 </body>
 </html>
