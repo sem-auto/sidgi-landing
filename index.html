@@ -13,14 +13,15 @@
   <meta property="og:description" content="Fichaje digital con firma, PDF mensual y Google Sheets/Drive.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="img/og-image.jpg">
-  <!-- Favicon (coloca tus archivos en /img) -->
+  <!-- Favicon / Icons (sube estos archivos a /img) -->
   <link rel="icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png" sizes="180x180">
 
   <style>
     :root{
       --brand:#0a4a87; --brand-700:#083a6a;
       --ink:#1f2937; --muted:#6b7280;
-      --bg:#ffffff; --card:#ffffff; --soft:#f4f6f8;
+      --bg:#ffffff; --card:#ffffff; --soft:#f7f9fc;
       --radius:14px; --shadow:0 10px 25px rgba(0,0,0,.08);
       --border:#e5e7eb; --ring:rgba(10,74,135,.16);
     }
@@ -40,13 +41,13 @@
     .nav a.btn--solid:hover{background:var(--brand-700)}
 
     /* Hero */
-    .hero{padding:72px 0;background:linear-gradient(180deg,#f7f9fc,transparent)}
+    .hero{padding:72px 0;background:linear-gradient(180deg,var(--soft),transparent)}
     .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
     .kicker{color:var(--brand);font-weight:600;letter-spacing:.4px}
     h1{font-size:42px;line-height:1.12;margin:10px 0 10px}
     .lead{color:var(--muted);font-size:18px;max-width:720px}
     .cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid #d1d5db;background:#fff;box-shadow:var(--shadow);transition:.15s}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid #d1d5db;background:#fff;box-shadow:var(--shadow);transition:.15s;cursor:pointer}
     .btn:hover{transform:translateY(-1px)}
     .btn--primary{background:var(--brand);border-color:var(--brand);color:#fff}
     .btn--primary:hover{background:var(--brand-700)}
@@ -95,7 +96,7 @@
 
     /* Responsive */
     @media (max-width:900px){
-      body{padding-bottom:72px} /* para no tapar por la barra sticky */
+      body{padding-bottom:72px} /* evita que la barra sticky tape contenido */
       .hero .grid{grid-template-columns:1fr;gap:22px}
       .features{grid-template-columns:1fr 1fr}
       .pricing{grid-template-columns:1fr}
@@ -107,6 +108,11 @@
       .lead{font-size:16px}
       .features{grid-template-columns:1fr}
     }
+
+    /* Google Form embed */
+    .form-embed{border:0; width:100%; height:1200px}
+    @media (max-width:900px){ .form-embed{ height:1400px } }
+    @media (max-width:420px){ .form-embed{ height:1550px } }
   </style>
 </head>
 <body>
@@ -135,14 +141,13 @@
         <p class="lead" style="margin-top:8px"><strong>Usado por:</strong> Puertas Lloris · Alumida · Ferretería Martínez</p>
         <div class="cta">
           <a class="btn btn--primary" href="#demo" aria-label="Abrir formulario para solicitar demo de SIGDI">Probar demo</a>
-          <a class="btn" href="https://wa.me/34600000000?text=Quiero%20demo%20SIGDI" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp para solicitar demo">Hablar por WhatsApp</a>
+          <a class="btn" href="https://wa.me/34600000000?text=Quiero%20demo%20SIGDI" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp para solicitar demo">WhatsApp</a>
         </div>
       </div>
 
-      <!-- Prueba social visual -->
+      <!-- Prueba social visual (sustituye por capturas reales) -->
       <aside class="hero-card" aria-label="Vista rápida del sistema">
         <strong>Así funciona</strong>
-        <!-- Reemplaza el GIF/imagen por capturas reales -->
         <img src="img/demo-fichaje.gif" alt="Demostración del fichaje con firma" loading="lazy" style="border-radius:10px">
         <ul>
           <li>Fichaje por enlace único</li>
@@ -251,28 +256,28 @@
     </div>
   </section>
 
-  <!-- CONTACTO / DEMO -->
+  <!-- CONTACTO / DEMO: Google Forms embebido -->
   <section id="demo">
     <div class="container">
       <h2>Solicita una demo</h2>
-      <p class="lead">Déjanos tus datos o escríbenos por WhatsApp y te activamos un entorno de prueba.</p>
+      <p class="lead">Rellena el formulario y te activamos un entorno de prueba.</p>
 
-      <!-- Formulario simple (Formspree: reemplaza la URL por la tuya) -->
-      <form action="https://formspree.io/f/xxxxxx" method="POST" class="hero-card" id="demo-form" aria-label="Formulario de solicitud de demo">
-        <label for="empresa">Empresa</label>
-        <input id="empresa" name="empresa" required
-               style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;margin-top:6px">
-
-        <label for="email" style="margin-top:10px;display:block">Email</label>
-        <input id="email" name="email" type="email" required
-               style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;margin-top:6px">
-
-        <button class="btn btn--primary" style="margin-top:12px" aria-label="Enviar solicitud de demo">Quiero una demo</button>
-      </form>
+      <div class="hero-card" style="padding:0; overflow:hidden">
+        <iframe
+          class="form-embed"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeY3MTiW2DeNSLOX2xHcfggJa4W74gYxyRIZ3YOjO4PM55cfQ/viewform?embedded=true"
+          frameborder="0" marginheight="0" marginwidth="0"
+          title="Formulario de solicitud de demo SIGDI">
+          Cargando…
+        </iframe>
+      </div>
 
       <div class="cta" style="margin-top:14px">
-        <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Demo%20SIGDI" aria-label="Pedir demo por email">Pedir demo por email</a>
-        <a class="btn" href="https://wa.me/34600000000?text=Quiero%20demo%20SIGDI" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">Contactar por WhatsApp</a>
+        <a class="btn btn--primary"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSeY3MTiW2DeNSLOX2xHcfggJa4W74gYxyRIZ3YOjO4PM55cfQ/viewform"
+           target="_blank" rel="noopener noreferrer">Abrir formulario en nueva pestaña</a>
+        <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Demo%20SIGDI">Pedir demo por email</a>
+        <a class="btn" href="https://wa.me/34600000000?text=Quiero%20demo%20SIGDI" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
     </div>
   </section>
@@ -303,7 +308,10 @@
     </div>
   </footer>
 
-  <!-- (Opcional) Plausible/GA4: añade tu script aquí -->
+  <!-- (Opcional) Analítica: activa Plausible o GA4 -->
+  <!--
+  <script defer data-domain="sem-auto.github.io" src="https://plausible.io/js/script.js"></script>
+  -->
 
 </body>
 </html>
