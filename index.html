@@ -8,11 +8,14 @@
   <!-- SEO -->
   <meta name="description" content="Fichaje digital con firma, exportes mensuales y resumen por trabajador. Cumple RD-ley 8/2019. Sin instalar nada.">
   <meta name="robots" content="index,follow">
+
   <!-- Open Graph -->
   <meta property="og:title" content="SIGDI — Control horario legal y simple">
   <meta property="og:description" content="Fichaje digital con firma, PDF mensual y Google Sheets/Drive.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="og-image.png">
+  <meta property="og:url" content="https://sem-auto.github.io/sigdi-landing/">
+
   <!-- Favicon / Icons -->
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
@@ -21,7 +24,7 @@
     :root{
       --brand:#0a4a87; --brand-700:#083a6a;
       --ink:#1f2937; --muted:#6b7280;
-      --bg:#ffffff; --card:#ffffff; --soft:#f7f9fc;
+      --bg:#ffffff; --card:#ffffff; --soft:#f3f7fc;
       --radius:14px; --shadow:0 10px 25px rgba(0,0,0,.08);
       --border:#e5e7eb; --ring:rgba(10,74,135,.16);
     }
@@ -34,14 +37,17 @@
     /* Nav */
     .nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
     .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .logo{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--brand)}
-    .logo-badge{width:28px;height:28px;border-radius:8px;background:var(--brand)}
+    .logo{display:flex;gap:12px;align-items:center;font-weight:700;color:var(--brand)}
+    .logo img{height:28px;width:auto;display:block}
     .nav a.btn{padding:10px 16px;border:1px solid var(--brand);border-radius:10px}
     .nav a.btn--solid{background:var(--brand);color:#fff;border-color:var(--brand)}
     .nav a.btn--solid:hover{background:var(--brand-700)}
 
     /* Hero */
-    .hero{padding:72px 0;background:linear-gradient(180deg,var(--soft),transparent)}
+    .hero{
+      padding:72px 0;
+      background:linear-gradient(180deg,var(--soft) 0%, #ffffff 100%);
+    }
     .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
     .kicker{color:var(--brand);font-weight:600;letter-spacing:.4px}
     h1{font-size:42px;line-height:1.12;margin:10px 0 10px}
@@ -52,7 +58,16 @@
     .btn--primary{background:var(--brand);border-color:var(--brand);color:#fff}
     .btn--primary:hover{background:var(--brand-700)}
     .hero-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;border:1px solid var(--border)}
-    .hero-card ul{margin:10px 0 0;padding-left:18px}
+    .hero-card h3{margin:0 0 10px}
+    .steps{counter-reset:step;display:grid;gap:10px}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:10px;border:1px dashed var(--border);border-radius:10px;background:#fff}
+    .step::before{
+      counter-increment:step;
+      content: counter(step);
+      width:28px;height:28px;display:inline-grid;place-items:center;
+      border-radius:50%;background:var(--brand);color:#fff;font-weight:700;
+    }
+    .mini{font-size:13px;color:var(--muted);margin:8px 0 0}
 
     /* Sections */
     section{padding:64px 0}
@@ -115,7 +130,11 @@
   <!-- NAV -->
   <nav class="nav" aria-label="Principal">
     <div class="container wrap">
-      <div class="logo"><span class="logo-badge" aria-hidden="true"></span> SIGDI</div>
+      <div class="logo">
+        <!-- Coloca en la raíz un archivo logo-sigdi.png de ~28–32px alto -->
+        <img src="logo-sigdi.png" alt="SIGDI">
+        <span style="font-weight:700">SIGDI</span>
+      </div>
       <div>
         <a href="#precios" class="btn" aria-label="Ir a precios">Precios</a>
         <a href="#contacto" class="btn btn--solid" aria-label="Contactar">Contactar</a>
@@ -136,19 +155,36 @@
         <p class="lead" style="margin-top:8px"><strong>Usado por:</strong> Puertas Lloris · Alumida · Ferretería Martínez</p>
         <div class="cta">
           <a class="btn btn--primary" href="#contacto" aria-label="Ir a contacto">Solicitar información</a>
-          <a class="btn" href="og-image.png" target="_blank" rel="noopener noreferrer">Ver demo rápida</a>
+          <a class="btn" href="#como-funciona">Ver cómo funciona</a>
         </div>
       </div>
 
-      <!-- Prueba social visual -->
-      <aside class="hero-card" aria-label="Vista rápida del sistema">
-        <strong>Así funciona</strong>
-        <img src="og-image.png" alt="Demostración visual del sistema" loading="lazy" style="border-radius:10px">
-        <ul>
-          <li>Fichaje por enlace único</li>
-          <li>Firma y guardado en Drive</li>
-          <li>Resumen mensual automático</li>
-        </ul>
+      <!-- Cómo funciona (pasos, sin logo grande) -->
+      <aside id="como-funciona" class="hero-card" aria-label="Cómo funciona">
+        <h3>Así funciona</h3>
+        <div class="steps">
+          <div class="step">
+            <div></div>
+            <div>
+              <strong>Fichaje por enlace único</strong>
+              <div class="mini">Cada trabajador recibe un enlace seguro (email/WhatsApp) o usa el kiosco tablet.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div></div>
+            <div>
+              <strong>Firma y evidencias</strong>
+              <div class="mini">Firma digital y, si quieres, foto. Todo queda en Drive ligado al registro.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div></div>
+            <div>
+              <strong>Resumen mensual automático</strong>
+              <div class="mini">Hoja por trabajador + “Resumen Mensual” y PDF para inspección.</div>
+            </div>
+          </div>
+        </div>
       </aside>
     </div>
   </header>
