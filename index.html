@@ -16,7 +16,7 @@
   <meta property="og:image" content="og-image.png">
   <meta property="og:url" content="https://sem-auto.github.io/sigdi-landing/">
 
-  <!-- Favicon / Icons -->
+  <!-- Icons -->
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
 
@@ -24,7 +24,7 @@
     :root{
       --brand:#0a4a87; --brand-700:#083a6a;
       --ink:#1f2937; --muted:#6b7280;
-      --bg:#ffffff; --card:#ffffff; --soft:#f3f7fc;
+      --bg:#ffffff; --card:#ffffff; --soft:#f8fafc;
       --radius:14px; --shadow:0 10px 25px rgba(0,0,0,.08);
       --border:#e5e7eb; --ring:rgba(10,74,135,.16);
     }
@@ -37,9 +37,10 @@
     /* Nav */
     .nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
     .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .logo{display:flex;gap:12px;align-items:center;font-weight:700;color:var(--brand)}
-    .logo img{height:28px;width:auto;display:block}
-    .nav a.btn{padding:10px 16px;border:1px solid var(--brand);border-radius:10px}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo img{height:28px;width:auto}
+    .brand-text{font-weight:700;color:var(--brand)}
+    .nav a.btn{padding:10px 18px;border:1px solid var(--brand);border-radius:50px}
     .nav a.btn--solid{background:var(--brand);color:#fff;border-color:var(--brand)}
     .nav a.btn--solid:hover{background:var(--brand-700)}
 
@@ -53,7 +54,7 @@
     h1{font-size:42px;line-height:1.12;margin:10px 0 10px}
     .lead{color:var(--muted);font-size:18px;max-width:720px}
     .cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid #d1d5db;background:#fff;box-shadow:var(--shadow);transition:.15s;cursor:pointer}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:50px;border:1px solid #d1d5db;background:#fff;box-shadow:var(--shadow);transition:.15s;cursor:pointer}
     .btn:hover{transform:translateY(-1px)}
     .btn--primary{background:var(--brand);border-color:var(--brand);color:#fff}
     .btn--primary:hover{background:var(--brand-700)}
@@ -62,8 +63,7 @@
     .steps{counter-reset:step;display:grid;gap:10px}
     .step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:10px;border:1px dashed var(--border);border-radius:10px;background:#fff}
     .step::before{
-      counter-increment:step;
-      content: counter(step);
+      counter-increment:step;content:counter(step);
       width:28px;height:28px;display:inline-grid;place-items:center;
       border-radius:50%;background:var(--brand);color:#fff;font-weight:700;
     }
@@ -131,9 +131,9 @@
   <nav class="nav" aria-label="Principal">
     <div class="container wrap">
       <div class="logo">
-        <!-- Coloca en la raíz un archivo logo-sigdi.png de ~28–32px alto -->
-        <img src="logo-sigdi.png" alt="SIGDI">
-        <span style="font-weight:700">SIGDI</span>
+        <!-- Sube a la raíz un logo horizontal: logo-sigdi-horizontal.png -->
+        <img src="logo-sigdi-horizontal.png" alt="SIGDI">
+        <span class="brand-text">SIGDI</span>
       </div>
       <div>
         <a href="#precios" class="btn" aria-label="Ir a precios">Precios</a>
@@ -159,7 +159,7 @@
         </div>
       </div>
 
-      <!-- Cómo funciona (pasos, sin logo grande) -->
+      <!-- Cómo funciona -->
       <aside id="como-funciona" class="hero-card" aria-label="Cómo funciona">
         <h3>Así funciona</h3>
         <div class="steps">
@@ -293,7 +293,8 @@
       <h2>Contacto</h2>
       <p class="lead">Pide una reunión o una demo personalizada.</p>
       <div class="cta">
-        <a class="btn btn--primary" href="https://wa.me/34600000000?text=Quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+        <!-- Sustituye 34600000000 por tu número real en formato internacional sin + -->
+        <a class="btn btn--primary" href="https://wa.me/34600000000?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
         <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI">Solicitar información por email</a>
         <a class="btn" href="presentacion-sigdi.pdf" target="_blank" rel="noopener noreferrer">Ver presentación PDF</a>
       </div>
