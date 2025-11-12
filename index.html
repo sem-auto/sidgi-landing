@@ -5,87 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SIGDI — Control horario legal y simple para PYMES</title>
 
-  <!-- SEO básico -->
-  <meta name="description" content="SIGDI: fichaje digital con firma, PDF mensual y resumen por trabajador. Cumple RD-ley 8/2019. Funciona con Google Sheets + Drive, sin instalaciones." />
-  <meta name="robots" content="index,follow" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="SIGDI — Control horario legal y simple" />
-  <meta property="og:description" content="Fichaje por enlace o kiosco, firma digital, PDF mensual. Cumple RD-ley 8/2019." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="img/og-image.png" />
-  <meta property="og:url" content="https://sem-auto.github.io/sigdi-landing/" />
-
-  <!-- Iconos -->
+  <meta name="description" content="SIGDI: fichaje digital con firma, PDF mensual y resumen por trabajador. Cumple RD-ley 8/2019. Funciona con Google Sheets + Drive, sin instalaciones.">
   <link rel="icon" href="img/favicon.ico" />
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png" sizes="180x180" />
 
   <style>
     :root{
-      /* Colores marca */
-      --brand: #0a4a87;
-      --brand-600:#0a3f72;
-      --brand-700:#083a6a;
-      --accent:#0ea5e9;
-      /* UI */
-      --ink:#1f2937;
-      --ink-2:#334155;
-      --muted:#64748b;
-      --bg:#ffffff;
-      --soft:#f7f9fc;
-      --card:#ffffff;
-      --border:#e5e7eb;
-      --ring:rgba(10,74,135,.18);
-      /* Motion + radios + sombras */
-      --radius:16px;
-      --shadow:0 8px 24px rgba(0,0,0,.08);
-      --shadow-lg:0 14px 40px rgba(0,0,0,.12);
-      /* Medidas adaptativas */
+      --brand:#0a4a87; --brand-700:#083a6a; --accent:#0ea5e9;
+      --ink:#1f2937; --muted:#64748b;
+      --bg:#ffffff; --soft:#f7f9fc; --card:#ffffff; --border:#e5e7eb;
+      --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --shadow-lg:0 14px 40px rgba(0,0,0,.12);
       --wrap: min(1120px, calc(100vw - 32px));
-      --ctaH: 68px;       /* alto barra sticky CTA */
-      --waS: 64px;        /* diámetro botón WhatsApp */
-      --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
-
-    /* Dark mode amigable */
     @media (prefers-color-scheme: dark){
       :root{
-        --bg:#0b1220;
-        --soft:#0f172a;
-        --card:#0f172a;
-        --ink:#e5e7eb;
-        --ink-2:#cbd5e1;
-        --muted:#94a3b8;
-        --border:#1e293b;
-        --shadow:0 10px 30px rgba(0,0,0,.5);
-        --shadow-lg:0 16px 44px rgba(0,0,0,.6);
-        --ring:rgba(56,189,248,.24);
+        --bg:#0b1220; --soft:#0f172a; --card:#0f172a;
+        --ink:#e5e7eb; --muted:#94a3b8; --border:#1e293b;
+        --shadow:0 10px 30px rgba(0,0,0,.5); --shadow-lg:0 16px 44px rgba(0,0,0,.6);
       }
     }
 
-    /* Reset + tipografía fluida */
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-      color:var(--ink);
-      background:var(--bg);
-      line-height:1.45;
-      text-rendering:optimizeLegibility;
-      -webkit-font-smoothing:antialiased;
-    }
-    img{max-width:100%;height:auto;border:0;display:block}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
+
+    img{max-width:100%;height:auto;display:block;border:0}
     a{color:var(--brand);text-decoration:none}
     a:hover{color:var(--brand-700)}
-    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
+    :focus-visible{outline:3px solid rgba(10,74,135,.18);outline-offset:2px;border-radius:10px}
 
     .container{width:var(--wrap);margin-inline:auto}
 
     /* NAV */
     .nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border)}
     .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:800;color:var(--brand);letter-spacing:.2px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800;color:var(--brand)}
     .brand svg{width:28px;height:28px}
     .nav-actions{display:flex;gap:10px}
     .chip{padding:10px 16px;border:1px solid var(--border);border-radius:999px;background:var(--card)}
@@ -108,24 +62,22 @@
     .hero-card h3{margin:0 0 10px}
     .hero-steps{display:flex;flex-direction:column;gap:14px}
     .step{border:1px dashed var(--border);border-radius:14px;padding:16px 14px;background:linear-gradient(180deg,rgba(14,165,233,.06),transparent 80%)}
-    .step strong{display:inline-block;margin-bottom:4px;color:var(--ink-2)}
-    .step .num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:999px;background:var(--brand);color:#fff;font-weight:800;margin-right:8px;font-size:13px}
+    .step strong{display:inline-block;margin-bottom:4px}
 
-    /* SECCIONES GENERALES */
+    /* SECCIONES */
     section{padding:64px 0}
     h2{font-size:clamp(22px,4.5vw,30px);margin:0 0 18px;color:var(--brand)}
 
     /* BENEFICIOS */
     .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .feature{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);transition:transform .15s ease, box-shadow .2s}
-    .feature:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+    .feature{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
     .feature h3{margin:0 0 6px;font-size:18px}
     .feature p{margin:0;color:var(--muted)}
 
-    /* PRICING */
+    /* PRECIOS */
     .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .plan{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
-    .plan.recommended{border:2px solid var(--brand);transform:translateY(-3px)}
+    .plan.recommended{border:2px solid var(--brand)}
     .badge{align-self:flex-start;display:inline-block;background:var(--brand);color:#fff;padding:4px 9px;border-radius:999px;font-size:12px;margin-bottom:2px}
     .price{font-size:28px;font-weight:800;margin-top:4px}
     .plan small{color:var(--muted)}
@@ -143,34 +95,17 @@
     .faq summary::-webkit-details-marker{display:none}
 
     /* CONTACTO */
-    .contact .cta{gap:10px}
+    .contact .cta{gap:12px}
     .note{color:var(--muted);margin-top:10px}
 
-    /* BARRA CTA STICKY (inferior) */
-    .cta-bar{position:sticky;bottom:0;z-index:40;background:var(--bg);border-top:1px solid var(--border)}
-    .cta-bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0}
-    .cta-bar .wrap .cta{margin:0}
-
-    /* BOTÓN FLOTANTE WHATSAPP */
+    /* WHATSAPP FAB */
     .wa-fab{
-      position:fixed;right:16px;bottom:calc(var(--safe-bottom) + 12px + var(--ctaH));
-      z-index:60;display:inline-grid;place-items:center;width:var(--waS);height:var(--waS);
-      border-radius:999px;background:#25D366;color:#fff;box-shadow:var(--shadow-lg);
-      transition:transform .18s ease;
+      position:fixed;right:16px;bottom:16px;z-index:60;
+      display:inline-grid;place-items:center;width:60px;height:60px;border-radius:999px;
+      background:#25D366;color:#fff;box-shadow:var(--shadow-lg);transition:transform .18s ease;
     }
     .wa-fab:hover{transform:translateY(-2px)}
-    .wa-fab svg{width:28px;height:28px}
-
-    /* Espacio inferior extra para que nada tape al contenido en móvil */
-    main{padding-bottom:calc(var(--ctaH) + var(--waS) + 40px + var(--safe-bottom));}
-
-    /* ANIMACIONES SUAVES */
-    .reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease, transform .6s ease}
-    .reveal.in{opacity:1;transform:none}
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      .btn,.feature,.plan,.reveal{transition:none}
-    }
+    .wa-fab svg{width:26px;height:26px}
 
     /* RESPONSIVE */
     @media (max-width: 980px){
@@ -183,8 +118,10 @@
       .features{grid-template-columns:1fr}
       .nav .wrap{height:64px}
       .chip{padding:10px 14px}
-      .btn{width:100%;justify-content:center}
-      .contact .cta .btn{width:auto}
+      .cta{flex-direction:column}
+      .cta .btn{width:100%;justify-content:center}
+      .contact .cta .btn{width:100%}
+      .wa-fab{width:56px;height:56px}
     }
   </style>
 </head>
@@ -194,13 +131,8 @@
   <nav class="nav" aria-label="Principal">
     <div class="container wrap">
       <a class="brand" href="#top" aria-label="Ir al inicio">
-        <!-- Logo SVG con degradado marca -->
         <svg viewBox="0 0 40 40" role="img" aria-label="SIGDI logo">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#0a4a87"/><stop offset="100%" stop-color="#0ea5e9"/>
-            </linearGradient>
-          </defs>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a4a87"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient></defs>
           <circle cx="20" cy="20" r="18" fill="none" stroke="url(#g)" stroke-width="4"/>
           <circle cx="20" cy="20" r="3" fill="url(#g)"/>
           <path d="M20 10 v10 l7 5" stroke="url(#g)" stroke-width="3" stroke-linecap="round" fill="none"/>
@@ -219,35 +151,32 @@
     <header class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="kicker reveal">Control horario legal sin fricción</div>
-          <h1 class="reveal">Fichaje digital con firma y <br/>reportes automáticos</h1>
-          <p class="lead reveal">
+          <div class="kicker">Control horario legal sin fricción</div>
+          <h1>Fichaje digital con firma y reportes automáticos</h1>
+          <p class="lead">
             Cumple el RD-ley 8/2019. Fichaje por enlace seguro o kiosco en tablet, firma digital,
             PDF mensual y resumen por trabajador — todo en Google Sheets + Drive, sin instalar nada.
           </p>
-          <p class="lead used-by reveal" style="margin-top:8px">
-            <strong>Usado por:</strong> Puertas Lloris · Alumida · Ferretería Martínez
-          </p>
-          <div class="cta reveal">
-            <a class="btn btn--primary" href="#contacto" aria-label="Solicitar información por contacto">Solicitar demo</a>
-            <a class="btn" href="#como-funciona" aria-label="Ir a cómo funciona">Ver cómo funciona</a>
+          <p class="lead used-by"><strong>Usado por:</strong> Puertas Lloris · Alumida · Ferretería Martínez</p>
+          <div class="cta">
+            <a class="btn btn--primary" href="#contacto">Solicitar demo</a>
+            <a class="btn" href="#como-funciona">Ver cómo funciona</a>
           </div>
         </div>
 
-        <!-- “Así funciona” compacto y claro -->
-        <aside id="como-funciona" class="hero-card reveal" aria-label="Vista rápida del sistema">
+        <aside id="como-funciona" class="hero-card" aria-label="Vista rápida del sistema">
           <h3>Así funciona</h3>
           <div class="hero-steps">
             <div class="step">
-              <strong><span class="num" aria-hidden="true">1</span>Fichaje por enlace único</strong>
+              <strong>1. Fichaje por enlace único</strong>
               <div>Cada trabajador recibe un enlace seguro por&nbsp;<b>email</b> o usa el <b>kiosco tablet</b> de la empresa.</div>
             </div>
             <div class="step">
-              <strong><span class="num" aria-hidden="true">2</span>Firma y evidencias</strong>
+              <strong>2. Firma y evidencias</strong>
               <div>Cada registro incluye firma digital (y opcionalmente foto). Todo se guarda automáticamente en Drive.</div>
             </div>
             <div class="step">
-              <strong><span class="num" aria-hidden="true">3</span>Resumen mensual automático</strong>
+              <strong>3. Resumen mensual automático</strong>
               <div>SIGDI genera hojas por empleado y un PDF resumen listo para inspección.</div>
             </div>
           </div>
@@ -256,7 +185,7 @@
     </header>
 
     <!-- PROBLEMA / SOLUCIÓN -->
-    <section class="reveal">
+    <section>
       <div class="container">
         <h2>El problema</h2>
         <p class="lead">Muchas PYMES siguen con hojas o apps complejas: incumplimientos, sanciones y pérdida de tiempo.</p>
@@ -266,7 +195,7 @@
     </section>
 
     <!-- BENEFICIOS -->
-    <section class="reveal">
+    <section>
       <div class="container">
         <h2>Ventajas clave</h2>
         <div class="features">
@@ -279,39 +208,39 @@
     </section>
 
     <!-- PRECIOS -->
-    <section id="precios" class="reveal">
+    <section id="precios">
       <div class="container">
         <h2>Planes y precios</h2>
         <div class="pricing">
           <!-- Básico -->
-          <article class="plan">
+          <article class="plan" aria-label="Plan Básico">
             <h3>Básico</h3>
-            <div class="price">100 € instalación</div>
-            <small>+ 30 €/mes · Hasta 8 empleados</small>
+            <div class="price">100€ instalación</div>
+            <small>+ 30€/mes · Hasta 8 empleados</small>
             <ul>
-              <li>Enlace de fichaje + kiosco tablet</li>
+              <li>Fichaje por email o kiosco tablet</li>
               <li>Resumen mensual</li>
               <li>Soporte por email</li>
             </ul>
-            <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Básico">Activar ahora</a></p>
+            <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
           </article>
 
           <!-- Premium -->
-          <article class="plan recommended">
+          <article class="plan recommended" aria-label="Plan Premium">
             <span class="badge">Recomendado</span>
             <h3>Premium</h3>
-            <div class="price">40 €/mes</div>
-            <small>Más de 8 empleados</small>
+            <div class="price">100€ instalación</div>
+            <small>+ 40€/mes · 9–50 empleados</small>
             <ul>
-              <li>Buscador por código/nombre para fichaje masivo</li>
+              <li>Kiosco con buscador y código/nombre</li>
               <li>Firma digital + PDF mensual</li>
               <li>Soporte prioritario</li>
             </ul>
-            <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Premium">Activar ahora</a></p>
+            <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
           </article>
 
           <!-- Personalizado -->
-          <article class="plan">
+          <article class="plan" aria-label="Plan Personalizado">
             <h3>Personalizado</h3>
             <div class="price">A medida</div>
             <small>Integraciones y marca blanca</small>
@@ -320,14 +249,15 @@
               <li>Integraciones avanzadas</li>
               <li>Formación y puesta en marcha</li>
             </ul>
-            <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Solicitar plan personalizado">Solicitar propuesta</a></p>
+            <p class="buy"><a class="btn btn--primary" href="#contacto">Solicitar propuesta</a></p>
           </article>
         </div>
+        <p class="lead" style="margin-top:10px;color:var(--muted)">Precios sin IVA. Sin permanencia. Cancelación inmediata.</p>
       </div>
     </section>
 
     <!-- TESTIMONIOS -->
-    <section class="reveal">
+    <section>
       <div class="container">
         <h2>Qué dicen los clientes</h2>
         <div class="testimonials">
@@ -339,7 +269,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="reveal">
+    <section>
       <div class="container faq">
         <h2>Preguntas frecuentes</h2>
         <details>
@@ -366,37 +296,25 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="contact reveal">
+    <section id="contacto" class="contact">
       <div class="container">
         <h2>Contacto</h2>
         <p class="lead">Pide una reunión o una demo personalizada.</p>
         <div class="cta">
-          <a class="btn btn--primary" href="https://wa.me/34663715363?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp para contactar">Contactar por WhatsApp</a>
-          <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI" aria-label="Enviar email para solicitar información">Solicitar información por email</a>
-          <a class="btn" href="presentacion-sigdi.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir la presentación PDF">Ver presentación PDF</a>
+          <a class="btn btn--primary" href="https://wa.me/34663715363?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+          <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI">Solicitar información por email</a>
+          <a class="btn" href="presentacion-sigdi.pdf" target="_blank" rel="noopener noreferrer">Ver presentación PDF</a>
         </div>
         <p class="note">Todas las implantaciones incluyen acompañamiento inicial gratuito.</p>
       </div>
     </section>
   </main>
 
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <!-- WHATSAPP FAB -->
   <a class="wa-fab" href="https://wa.me/34663715363?text=Hola%2C%20me%20gustar%C3%ADa%20probar%20SIGDI" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.1 17.5c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.2c-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1s-1.1-.4-2.1-1.3c-.8-.7-1.3-1.6-1.4-1.8-.2-.3 0-.4.2-.6.2-.2.3-.3.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.1 3 .2.4.4.6c.6 1 1.4 1.8 2.5 2.5 1.2.8 2.1 1 2.8 1.2.6.2 1.1.2 1.5.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.2-1.2s-.2-.1-.5-.2zM15.8 3C9.8 3 5 7.7 5 13.6c0 2.2.6 4.2 1.8 6L5 29l9.6-1.6c1.7 1 3.7 1.5 5.8 1.5 6 0 10.8-4.7 10.8-10.6S21.8 3 15.8 3z"/></svg>
   </a>
 
-  <!-- CTA INFERIOR STICKY -->
-  <div class="cta-bar" role="region" aria-label="Llamada a la acción fija">
-    <div class="container wrap">
-      <div><strong>¿Listo para cumplir y ahorrar tiempo?</strong> Activa SIGDI en tu empresa.</div>
-      <div class="cta">
-        <a class="btn" href="#precios">Ver precios</a>
-        <a class="btn btn--primary" href="#contacto">Contactar</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
   <footer style="padding:46px 0;background:var(--brand);color:#fff;margin-top:40px">
     <div class="container" style="display:flex;flex-direction:column;gap:8px">
       <div>© 2025 SIGDI — Operado por SEM Servicios Generales</div>
@@ -409,49 +327,5 @@
     </div>
   </footer>
 
-  <script>
-    // Revelado al hacer scroll (con fallback a reduced-motion)
-    (function(){
-      const els = document.querySelectorAll('.reveal');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-        els.forEach(e=>e.classList.add('in'));
-        return;
-      }
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(ent=>{
-          if(ent.isIntersecting){ ent.target.classList.add('in'); io.unobserve(ent.target); }
-        });
-      }, {threshold:0.12});
-      els.forEach(e=>io.observe(e));
-    })();
-
-    // Evitar que los anclajes queden ocultos por el sticky nav
-    (function(){
-      const OFFSET = 78;
-      function offsetScroll(e){
-        if(location.hash){
-          const el = document.querySelector(location.hash);
-          if(el){
-            window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - OFFSET, behavior:'instant'});
-          }
-        }
-      }
-      window.addEventListener('hashchange', offsetScroll);
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', function(ev){
-          const id = this.getAttribute('href');
-          if(id.length>1){
-            const target = document.querySelector(id);
-            if(target){
-              ev.preventDefault();
-              const y = target.getBoundingClientRect().top + window.scrollY - OFFSET;
-              window.scrollTo({top:y, behavior:'smooth'});
-              history.pushState(null, '', id);
-            }
-          }
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
