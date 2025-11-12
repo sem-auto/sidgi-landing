@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>SIGDI — Control horario legal y simple para PYMES</title>
 
-  <!-- SEO -->
   <meta name="description" content="Fichaje digital con firma, exportes mensuales y resumen por trabajador. Cumple RD-ley 8/2019. Sin instalar nada.">
   <meta name="robots" content="index,follow">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="SIGDI — Control horario legal y simple">
   <meta property="og:description" content="Fichaje digital con firma, PDF mensual y Google Sheets/Drive.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="img/og-image.png">
 
-  <!-- Icons -->
   <link rel="icon" href="img/favicon.ico">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" sizes="180x180">
 
@@ -38,7 +35,6 @@
     .nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border);backdrop-filter:saturate(1.2) blur(6px)}
     .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
     .logo{display:flex;gap:10px;align-items:center;font-weight:800;color:var(--brand);letter-spacing:.3px}
-    /* pequeño logotipo en SVG inline para evitar imágenes rotas */
     .logo svg{width:24px;height:24px;display:block}
 
     .nav a.btn{padding:10px 16px;border:1px solid var(--brand);border-radius:10px}
@@ -94,7 +90,7 @@
     .faq details+details{margin-top:12px}
     .faq summary{cursor:pointer;font-weight:700}
 
-    /* CTA sticky (mejorado en móvil) */
+    /* CTA sticky */
     .cta-bar{position:sticky;bottom:0;z-index:40;background:#fff;border-top:1px solid var(--border)}
     .cta-bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0}
     .cta-bar .btn{padding:12px 14px;border-radius:999px;box-shadow:none}
@@ -104,42 +100,30 @@
     footer{padding:48px 0;background:#0a4a87;color:#fff;margin-top:40px}
     footer a{color:#fff;text-decoration:underline}
 
-    /* Accesibilidad */
-    :focus{outline:3px solid var(--ring);outline-offset:2px;border-radius:10px}
-
-    /* Responsive */
-    @media (max-width:1024px){
-      .hero .grid{grid-template-columns:1fr;gap:22px}
-    }
+    @media (max-width:1024px){.hero .grid{grid-template-columns:1fr;gap:22px}}
     @media (max-width:720px){
-      /* extra padding para que la barra sticky no tape nada */
       body{padding-bottom:calc(var(--cta-h) + env(safe-area-inset-bottom, 0px))}
       h1{font-size:34px;line-height:1.15}
       .lead{font-size:16px}
       .features{grid-template-columns:1fr 1fr}
       .pricing{grid-template-columns:1fr}
       .testimonials{grid-template-columns:1fr}
-      .cta-bar .wrap{padding:8px 0}
-      .cta-bar .btn{padding:12px 16px}
     }
-    @media (max-width:400px){
-      h1{font-size:28px}
-      .features{grid-template-columns:1fr}
-    }
+    @media (max-width:400px){h1{font-size:28px}.features{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav" aria-label="Principal">
+  <nav class="nav">
     <div class="container wrap">
-      <div class="logo" aria-label="SIGDI">
+      <div class="logo">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#0a4a87" stroke-width="2"/><line x1="12" y1="7" x2="12" y2="12" stroke="#0a4a87" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="12" x2="15" y2="14" stroke="#0a4a87" stroke-width="2" stroke-linecap="round"/></svg>
         SIGDI
       </div>
       <div>
-        <a href="#precios" class="btn" aria-label="Ir a precios">Precios</a>
-        <a href="#contacto" class="btn btn--solid" aria-label="Contactar">Contactar</a>
+        <a href="#precios" class="btn">Precios</a>
+        <a href="#contacto" class="btn btn--solid">Contactar</a>
       </div>
     </div>
   </nav>
@@ -150,27 +134,20 @@
       <div>
         <div class="kicker">Control horario legal sin fricción</div>
         <h1>Fichaje digital con firma y reportes automáticos</h1>
-        <p class="lead">
-          Cumple el RD-ley 8/2019. Fichaje por email o tablet, firma digital, PDF mensual y
-          resumen por trabajador — todo en Google Sheets + Drive, sin instalar nada.
-        </p>
-
-        <div class="chip-row" aria-hidden="true">
+        <p class="lead">Cumple el RD-ley 8/2019. Fichaje por email o tablet, firma digital, PDF mensual y resumen por trabajador — todo en Google Sheets + Drive, sin instalar nada.</p>
+        <div class="chip-row">
           <span class="chip">Sin instalación</span>
           <span class="chip">Cumple RD-Ley 8/2019</span>
           <span class="chip">Conservación 4 años</span>
         </div>
-
         <p class="lead" style="margin:12px 0 0"><strong>Usado por:</strong> Puertas Lloris · Alumida · Ferretería Martínez</p>
-
         <div class="cta">
-          <a class="btn btn--primary" href="#contacto" aria-label="Solicitar demo">Solicitar demo</a>
+          <a class="btn btn--primary" href="#contacto">Solicitar demo</a>
           <a class="btn" href="#como-funciona">Ver cómo funciona</a>
         </div>
       </div>
 
-      <!-- “Así funciona” simplificado, sin WhatsApp -->
-      <aside id="como-funciona" class="hero-card" aria-label="Vista rápida del sistema">
+      <aside id="como-funciona" class="hero-card">
         <h3>Así funciona</h3>
         <div class="step">
           <strong>1. Fichaje por enlace único</strong>
@@ -188,29 +165,6 @@
     </div>
   </header>
 
-  <!-- PROBLEMA / SOLUCIÓN -->
-  <section>
-    <div class="container">
-      <h2>El problema</h2>
-      <p class="lead">Muchas PYMES siguen con hojas o apps complejas: incumplimientos, sanciones y pérdida de tiempo.</p>
-      <h2>La solución</h2>
-      <p><strong>SIGDI</strong> simplifica el fichaje y centraliza todo en tu Google Drive: fichajes, firmas y resúmenes. Simple, rápido y legal.</p>
-    </div>
-  </section>
-
-  <!-- BENEFICIOS -->
-  <section>
-    <div class="container">
-      <h2>Ventajas clave</h2>
-      <div class="features">
-        <div class="feature"><h3>✅ Cumplimiento</h3><p>Registro verificable y conservación 4 años.</p></div>
-        <div class="feature"><h3>⚡ 0 formación</h3><p>Alta y uso en <strong>&lt;10 min</strong>.</p></div>
-        <div class="feature"><h3>✍️ Firma digital</h3><p>Captura y guarda firmas por trabajador.</p></div>
-        <div class="feature"><h3>📦 Exportes</h3><p>PDF mensual + hoja “Resumen Mensual”.</p></div>
-      </div>
-    </div>
-  </section>
-
   <!-- PRECIOS -->
   <section id="precios">
     <div class="container">
@@ -219,37 +173,21 @@
         <div class="plan">
           <h3>Básico</h3>
           <div class="price">29€/mes</div>
-          <ul>
-            <li>Hasta 10 empleados</li>
-            <li>Resumen mensual</li>
-            <li>Soporte email</li>
-          </ul>
-          <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Básico">Activar ahora</a></p>
-          <small>Sin permanencia. Pago mes a mes.</small>
+          <ul><li>Hasta 10 empleados</li><li>Resumen mensual</li><li>Soporte email</li></ul>
+          <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
         </div>
-
         <div class="plan recommended">
           <span class="badge">Recomendado</span>
           <h3>Empresa</h3>
           <div class="price">59€/mes</div>
-          <ul>
-            <li>Hasta 50 empleados</li>
-            <li>Firma digital + PDF mensual</li>
-            <li>Soporte prioritario</li>
-          </ul>
-          <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Empresa">Activar ahora</a></p>
-          <small>Cancelación inmediata. Sin coste extra.</small>
+          <ul><li>Hasta 50 empleados</li><li>Firma digital + PDF mensual</li><li>Soporte prioritario</li></ul>
+          <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
         </div>
-
         <div class="plan">
           <h3>Premium</h3>
           <div class="price">99€/mes</div>
-          <ul>
-            <li>Ilimitado</li>
-            <li>Marca blanca y personalización</li>
-            <li>Integraciones avanzadas</li>
-          </ul>
-          <p class="buy"><a class="btn btn--primary" href="#contacto" aria-label="Empezar plan Premium">Activar ahora</a></p>
+          <ul><li>Ilimitado</li><li>Marca blanca y personalización</li><li>Integraciones avanzadas</li></ul>
+          <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
         </div>
       </div>
     </div>
@@ -267,59 +205,29 @@
     </div>
   </section>
 
-  <!-- FAQ (respuestas más claras) -->
-  <section>
-    <div class="container faq">
-      <h2>Preguntas frecuentes</h2>
-
-      <details>
-        <summary>¿Necesito instalar algo?</summary>
-        <p>No. El fichaje funciona desde el correo (enlace único) o desde un kiosco en tablet con navegador. No hay apps que instalar.</p>
-      </details>
-
-      <details>
-        <summary>¿Cumple con el RGPD?</summary>
-        <p>Sí. Los datos se almacenan en tu Google Drive (UE) bajo tus permisos. Cada empresa tiene acceso aislado y se puede auditar quién accede.</p>
-      </details>
-
-      <details>
-        <summary>¿Qué pasa si se cae Internet?</summary>
-        <p>Si falla el Wi-Fi de la empresa, los empleados pueden fichar con el enlace desde su móvil con datos. El kiosco en tablet reintenta el envío automáticamente cuando vuelve la conexión.</p>
-      </details>
-
-      <details>
-        <summary>¿Puedo firmar más tarde?</summary>
-        <p>Sí. Puedes fichar y firmar después; la firma queda asociada a la jornada correcta y se guarda en Drive.</p>
-      </details>
-
-      <details>
-        <summary>¿Puedo probar SIGDI antes de contratar?</summary>
-        <p>Claro. Pide una demo y te habilitamos un entorno de prueba con datos reales durante unos días.</p>
-      </details>
-    </div>
-  </section>
-
   <!-- CONTACTO -->
   <section id="contacto">
     <div class="container">
       <h2>Contacto</h2>
       <p class="lead">Solicita una demo o una reunión sin compromiso.</p>
       <div class="cta">
-        <a class="btn btn--primary" href="https://wa.me/34600000000?text=Quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+        <a class="btn btn--primary" href="https://wa.me/34663715363?text=Quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
         <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI">Solicitar información por email</a>
-        <a class="btn" href="presentacion-sigdi.pdf" target="_blank" rel="noopener noreferrer">Ver presentación PDF</a>
+
+        <!-- Botón inteligente -->
+        <a class="btn" id="btn-presentacion" target="_blank" rel="noopener noreferrer">Ver presentación SIGDI</a>
       </div>
       <p style="color:#64748b;margin-top:10px">Todas las implantaciones incluyen acompañamiento inicial gratuito.</p>
     </div>
   </section>
 
   <!-- CTA STICKY -->
-  <div class="cta-bar" role="region" aria-label="Llamada a la acción fija">
+  <div class="cta-bar">
     <div class="container wrap" style="min-height:var(--cta-h)">
       <div><strong>¿Listo para cumplir y ahorrar tiempo?</strong> Activa SIGDI en tu empresa.</div>
       <div class="cta" style="margin:0">
-        <a class="btn" href="#precios" aria-label="Ver precios">Ver precios</a>
-        <a class="btn btn--primary" href="#contacto" aria-label="Contactar">Contactar</a>
+        <a class="btn" href="#precios">Ver precios</a>
+        <a class="btn btn--primary" href="#contacto">Contactar</a>
       </div>
     </div>
   </div>
@@ -329,9 +237,7 @@
     <div class="container">
       <div>© 2025 SIGDI — Operado por SEM Servicios Generales</div>
       <div style="margin-top:8px">
-        <a href="#" aria-label="Abrir aviso legal">Aviso legal</a> ·
-        <a href="#" aria-label="Abrir política de privacidad">Política de privacidad</a> ·
-        <a href="#" aria-label="Abrir términos y condiciones">Términos</a>
+        <a href="#">Aviso legal</a> · <a href="#">Política de privacidad</a> · <a href="#">Términos</a>
       </div>
       <div style="margin-top:8px;color:#cfe3ff">
         Contacto: <a href="mailto:semserviciosgenerales1@gmail.com" style="color:#fff">semserviciosgenerales1@gmail.com</a>
@@ -340,12 +246,22 @@
   </footer>
 
   <script>
-    // Ocultar la barra sticky cuando el footer esté a la vista (mejor UX en móvil)
+    // Botón que abre PDF o imagen según dispositivo
+    (function() {
+      const btn = document.getElementById("btn-presentacion");
+      const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const urlMobile = "img/presentacion-sigdi-mobile.png";
+      const urlPDF = "presentacion-sigdi.pdf";
+      btn.href = isMobile ? urlMobile : urlPDF;
+      btn.textContent = isMobile ? "Ver versión móvil" : "Ver presentación PDF";
+    })();
+
+    // Oculta la barra sticky al llegar al footer
     const ctaBar = document.querySelector('.cta-bar');
     const footer = document.querySelector('footer');
-    const io = new IntersectionObserver(([e])=>{
+    const io = new IntersectionObserver(([e]) => {
       ctaBar.style.display = e.isIntersecting ? 'none' : 'block';
-    }, {rootMargin:'0px', threshold:0.01});
+    }, {threshold: 0.01});
     io.observe(footer);
   </script>
 </body>
