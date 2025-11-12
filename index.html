@@ -74,15 +74,63 @@
     .feature h3{margin:0 0 6px;font-size:18px}
     .feature p{margin:0;color:var(--muted)}
 
-    /* PRECIOS */
-    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .plan{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
-    .plan.recommended{border:2px solid var(--brand)}
-    .badge{align-self:flex-start;display:inline-block;background:var(--brand);color:#fff;padding:4px 9px;border-radius:999px;font-size:12px;margin-bottom:2px}
-    .price{font-size:28px;font-weight:800;margin-top:4px}
-    .plan small{color:var(--muted)}
-    .plan ul{margin:4px 0 0;padding-left:18px}
-    .plan .buy{margin-top:auto}
+<!-- PRECIOS -->
+<section id="precios">
+  <div class="container">
+    <h2>Planes y precios</h2>
+    <div class="pricing">
+      <!-- Básico -->
+      <article class="plan" aria-label="Plan Básico">
+        <h3>Básico</h3>
+        <div class="price">30 €/mes</div>
+        <small>+ 100 € instalación · Hasta 8 empleados</small>
+        <ul>
+          <li>Fichaje por email o kiosco tablet</li>
+          <li>Resumen mensual automático</li>
+          <li>Soporte por email</li>
+        </ul>
+        <p class="buy">
+          <a class="btn btn--primary" href="#contacto">Activar ahora</a>
+        </p>
+      </article>
+
+      <!-- Premium -->
+      <article class="plan recommended" aria-label="Plan Premium">
+        <span class="badge">Recomendado</span>
+        <h3>Premium</h3>
+        <div class="price">40 €/mes</div>
+        <small>+ 100 € instalación · 9–50 empleados</small>
+        <ul>
+          <li>Kiosco con buscador por código o nombre</li>
+          <li>Firma digital + PDF mensual</li>
+          <li>Soporte prioritario</li>
+        </ul>
+        <p class="buy">
+          <a class="btn btn--primary" href="#contacto">Activar ahora</a>
+        </p>
+      </article>
+
+      <!-- Personalizado -->
+      <article class="plan" aria-label="Plan Personalizado">
+        <h3>Personalizado</h3>
+        <div class="price">A medida</div>
+        <small>Integraciones y marca blanca</small>
+        <ul>
+          <li>Marca blanca y personalización</li>
+          <li>Integraciones avanzadas</li>
+          <li>Formación y puesta en marcha</li>
+        </ul>
+        <p class="buy">
+          <a class="btn btn--primary" href="#contacto">Solicitar propuesta</a>
+        </p>
+      </article>
+    </div>
+    <p class="lead" style="margin-top:10px;color:var(--muted)">
+      Precios sin IVA · Sin permanencia · Cancelación inmediata
+    </p>
+  </div>
+</section>
+
 
     /* TESTIMONIOS */
     .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
