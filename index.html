@@ -10,7 +10,7 @@
 
   <style>
     :root{
-      --brand:#0a4a87; --brand-700:#083a6a; --accent:#0ea5e9;
+      --brand:#0a4a87; --brand-700:#083a6a;
       --ink:#1f2937; --muted:#64748b;
       --bg:#ffffff; --soft:#f7f9fc; --card:#ffffff; --border:#e5e7eb;
       --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --shadow-lg:0 14px 40px rgba(0,0,0,.12);
@@ -74,63 +74,15 @@
     .feature h3{margin:0 0 6px;font-size:18px}
     .feature p{margin:0;color:var(--muted)}
 
-<!-- PRECIOS -->
-<section id="precios">
-  <div class="container">
-    <h2>Planes y precios</h2>
-    <div class="pricing">
-      <!-- Básico -->
-      <article class="plan" aria-label="Plan Básico">
-        <h3>Básico</h3>
-        <div class="price">30 €/mes</div>
-        <small>+ 100 € instalación · Hasta 8 empleados</small>
-        <ul>
-          <li>Fichaje por email o kiosco tablet</li>
-          <li>Resumen mensual automático</li>
-          <li>Soporte por email</li>
-        </ul>
-        <p class="buy">
-          <a class="btn btn--primary" href="#contacto">Activar ahora</a>
-        </p>
-      </article>
-
-      <!-- Premium -->
-      <article class="plan recommended" aria-label="Plan Premium">
-        <span class="badge">Recomendado</span>
-        <h3>Premium</h3>
-        <div class="price">40 €/mes</div>
-        <small>+ 100 € instalación · 9–50 empleados</small>
-        <ul>
-          <li>Kiosco con buscador por código o nombre</li>
-          <li>Firma digital + PDF mensual</li>
-          <li>Soporte prioritario</li>
-        </ul>
-        <p class="buy">
-          <a class="btn btn--primary" href="#contacto">Activar ahora</a>
-        </p>
-      </article>
-
-      <!-- Personalizado -->
-      <article class="plan" aria-label="Plan Personalizado">
-        <h3>Personalizado</h3>
-        <div class="price">A medida</div>
-        <small>Integraciones y marca blanca</small>
-        <ul>
-          <li>Marca blanca y personalización</li>
-          <li>Integraciones avanzadas</li>
-          <li>Formación y puesta en marcha</li>
-        </ul>
-        <p class="buy">
-          <a class="btn btn--primary" href="#contacto">Solicitar propuesta</a>
-        </p>
-      </article>
-    </div>
-    <p class="lead" style="margin-top:10px;color:var(--muted)">
-      Precios sin IVA · Sin permanencia · Cancelación inmediata
-    </p>
-  </div>
-</section>
-
+    /* PRECIOS */
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .plan{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+    .plan.recommended{border:2px solid var(--brand)}
+    .badge{align-self:flex-start;display:inline-block;background:var(--brand);color:#fff;padding:4px 9px;border-radius:999px;font-size:12px;margin-bottom:2px}
+    .price{font-size:36px;font-weight:800;color:var(--brand)}
+    .plan small{color:var(--muted)}
+    .plan ul{margin:4px 0 0;padding-left:18px}
+    .plan .buy{margin-top:auto}
 
     /* TESTIMONIOS */
     .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -143,7 +95,7 @@
     .faq summary::-webkit-details-marker{display:none}
 
     /* CONTACTO */
-    .contact .cta{gap:12px}
+    .contact .cta{gap:12px;flex-wrap:wrap}
     .note{color:var(--muted);margin-top:10px}
 
     /* WHATSAPP FAB */
@@ -232,16 +184,6 @@
       </div>
     </header>
 
-    <!-- PROBLEMA / SOLUCIÓN -->
-    <section>
-      <div class="container">
-        <h2>El problema</h2>
-        <p class="lead">Muchas PYMES siguen con hojas o apps complejas: incumplimientos, sanciones y pérdida de tiempo.</p>
-        <h2>La solución</h2>
-        <p><strong>SIGDI</strong> simplifica el fichaje y centraliza todo en tu Google Drive. Sin instalaciones, sin formación pesada, listo en minutos.</p>
-      </div>
-    </section>
-
     <!-- BENEFICIOS -->
     <section>
       <div class="container">
@@ -260,34 +202,31 @@
       <div class="container">
         <h2>Planes y precios</h2>
         <div class="pricing">
-          <!-- Básico -->
           <article class="plan" aria-label="Plan Básico">
             <h3>Básico</h3>
-            <div class="price">100€ instalación</div>
-            <small>+ 30€/mes · Hasta 8 empleados</small>
+            <div class="price">30 €/mes</div>
+            <small>+ 100 € instalación · Hasta 8 empleados</small>
             <ul>
               <li>Fichaje por email o kiosco tablet</li>
-              <li>Resumen mensual</li>
+              <li>Resumen mensual automático</li>
               <li>Soporte por email</li>
             </ul>
             <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
           </article>
 
-          <!-- Premium -->
           <article class="plan recommended" aria-label="Plan Premium">
             <span class="badge">Recomendado</span>
             <h3>Premium</h3>
-            <div class="price">100€ instalación</div>
-            <small>+ 40€/mes · 9–50 empleados</small>
+            <div class="price">40 €/mes</div>
+            <small>+ 100 € instalación · 9–50 empleados</small>
             <ul>
-              <li>Kiosco con buscador y código/nombre</li>
+              <li>Kiosco con buscador por código o nombre</li>
               <li>Firma digital + PDF mensual</li>
               <li>Soporte prioritario</li>
             </ul>
             <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
           </article>
 
-          <!-- Personalizado -->
           <article class="plan" aria-label="Plan Personalizado">
             <h3>Personalizado</h3>
             <div class="price">A medida</div>
@@ -300,7 +239,7 @@
             <p class="buy"><a class="btn btn--primary" href="#contacto">Solicitar propuesta</a></p>
           </article>
         </div>
-        <p class="lead" style="margin-top:10px;color:var(--muted)">Precios sin IVA. Sin permanencia. Cancelación inmediata.</p>
+        <p class="lead" style="margin-top:10px;color:var(--muted)">Precios sin IVA · Sin permanencia · Cancelación inmediata</p>
       </div>
     </section>
 
@@ -320,26 +259,11 @@
     <section>
       <div class="container faq">
         <h2>Preguntas frecuentes</h2>
-        <details>
-          <summary>¿Necesito instalar algo?</summary>
-          <p>No. SIGDI funciona desde navegador y correo. Sólo necesitas tu cuenta de Google para Sheets/Drive.</p>
-        </details>
-        <details>
-          <summary>¿Cumple RGPD?</summary>
-          <p>Sí. Datos en la UE, acceso por empresa, exportes y auditoría. Puedes descargar y conservar tus registros.</p>
-        </details>
-        <details>
-          <summary>¿Qué pasa si se cae Internet?</summary>
-          <p>Si un trabajador no puede fichar, puede hacerlo al restablecer conexión. El kiosco reintenta envíos y puedes registrar incidencias puntuales.</p>
-        </details>
-        <details>
-          <summary>¿Puedo firmar más tarde?</summary>
-          <p>Sí. La firma posterior se vincula a la jornada correspondiente y queda guardada en Drive.</p>
-        </details>
-        <details>
-          <summary>¿Puedo probar SIGDI antes de contratar?</summary>
-          <p>Solicita una demo guiada y te activamos un entorno de prueba con datos de ejemplo.</p>
-        </details>
+        <details><summary>¿Necesito instalar algo?</summary><p>No. SIGDI funciona desde navegador y correo. Sólo necesitas tu cuenta de Google para Sheets/Drive.</p></details>
+        <details><summary>¿Cumple RGPD?</summary><p>Sí. Datos en la UE, acceso por empresa, exportes y auditoría. Puedes descargar y conservar tus registros.</p></details>
+        <details><summary>¿Qué pasa si se cae Internet?</summary><p>Si un trabajador no puede fichar, puede hacerlo al restablecer conexión. El kiosco reintenta envíos y puedes registrar incidencias puntuales.</p></details>
+        <details><summary>¿Puedo firmar más tarde?</summary><p>Sí. La firma posterior se vincula a la jornada correspondiente y queda guardada en Drive.</p></details>
+        <details><summary>¿Puedo probar SIGDI antes de contratar?</summary><p>Solicita una demo guiada y te activamos un entorno de prueba con datos de ejemplo.</p></details>
       </div>
     </section>
 
