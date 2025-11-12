@@ -12,28 +12,18 @@
     :root{
       --brand:#0a4a87; --brand-700:#083a6a;
       --ink:#1f2937; --muted:#64748b;
-      --bg:#ffffff; --soft:#f7f9fc; --card:#ffffff; --border:#e5e7eb;
+      --bg:#ffffff; --soft:#f8fafc; --card:#ffffff; --border:#e5e7eb;
       --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --shadow-lg:0 14px 40px rgba(0,0,0,.12);
       --wrap: min(1120px, calc(100vw - 32px));
     }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b1220; --soft:#0f172a; --card:#0f172a;
-        --ink:#e5e7eb; --muted:#94a3b8; --border:#1e293b;
-        --shadow:0 10px 30px rgba(0,0,0,.5); --shadow-lg:0 16px 44px rgba(0,0,0,.6);
-      }
-    }
 
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0;scroll-behavior:smooth}
     body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
 
-    img{max-width:100%;height:auto;display:block;border:0}
     a{color:var(--brand);text-decoration:none}
     a:hover{color:var(--brand-700)}
-    :focus-visible{outline:3px solid rgba(10,74,135,.18);outline-offset:2px;border-radius:10px}
-
+    img{max-width:100%;height:auto;display:block;border:0}
     .container{width:var(--wrap);margin-inline:auto}
 
     /* NAV */
@@ -46,37 +36,36 @@
     .chip--cta{border-color:var(--brand);background:var(--brand);color:#fff}
     .chip--cta:hover{background:var(--brand-700)}
 
-    /* HERO */
-    .hero{padding:72px 0;background:linear-gradient(180deg,var(--soft),transparent 40%)}
-    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:40px;align-items:center}
+    /* HERO (fondo como antes) */
+    .hero{padding:80px 0;background:var(--soft)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
     .kicker{color:var(--brand);font-weight:700;letter-spacing:.3px}
-    h1{font-size:clamp(28px, 6vw, 44px);line-height:1.12;margin:10px 0 12px}
+    h1{font-size:clamp(30px, 6vw, 46px);line-height:1.12;margin:10px 0 12px}
     .lead{color:var(--muted);font-size:clamp(16px, 2.6vw, 18px);max-width:720px}
-    .used-by{margin-top:12px}
-    .cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow);cursor:pointer;transition:transform .15s ease, box-shadow .2s}
+    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow);cursor:pointer;transition:transform .15s ease}
     .btn:hover{transform:translateY(-1px)}
     .btn--primary{background:var(--brand);border-color:var(--brand);color:#fff}
     .btn--primary:hover{background:var(--brand-700)}
-    .hero-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;border:1px solid var(--border)}
+    .hero-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;border:1px solid var(--border)}
     .hero-card h3{margin:0 0 10px}
     .hero-steps{display:flex;flex-direction:column;gap:14px}
-    .step{border:1px dashed var(--border);border-radius:14px;padding:16px 14px;background:linear-gradient(180deg,rgba(14,165,233,.06),transparent 80%)}
-    .step strong{display:inline-block;margin-bottom:4px}
+    .step{border:1px dashed var(--border);border-radius:14px;padding:16px 14px;background:linear-gradient(180deg,rgba(10,74,135,.04),transparent 80%)}
+    .step strong{display:inline-block;margin-bottom:4px;color:var(--brand)}
 
     /* SECCIONES */
-    section{padding:64px 0}
+    section{padding:72px 0}
     h2{font-size:clamp(22px,4.5vw,30px);margin:0 0 18px;color:var(--brand)}
 
     /* BENEFICIOS */
     .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .feature{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .feature{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
     .feature h3{margin:0 0 6px;font-size:18px}
     .feature p{margin:0;color:var(--muted)}
 
     /* PRECIOS */
     .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .plan{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+    .plan{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
     .plan.recommended{border:2px solid var(--brand)}
     .badge{align-self:flex-start;display:inline-block;background:var(--brand);color:#fff;padding:4px 9px;border-radius:999px;font-size:12px;margin-bottom:2px}
     .price{font-size:36px;font-weight:800;color:var(--brand)}
@@ -91,7 +80,7 @@
     /* FAQ */
     .faq details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
     .faq details+details{margin-top:12px}
-    .faq summary{cursor:pointer;font-weight:700;list-style:none}
+    .faq summary{cursor:pointer;font-weight:700;list-style:none;color:var(--brand)}
     .faq summary::-webkit-details-marker{display:none}
 
     /* CONTACTO */
@@ -116,11 +105,8 @@
     }
     @media (max-width: 520px){
       .features{grid-template-columns:1fr}
-      .nav .wrap{height:64px}
-      .chip{padding:10px 14px}
       .cta{flex-direction:column}
       .cta .btn{width:100%;justify-content:center}
-      .contact .cta .btn{width:100%}
       .wa-fab{width:56px;height:56px}
     }
   </style>
@@ -130,16 +116,14 @@
   <!-- NAV -->
   <nav class="nav" aria-label="Principal">
     <div class="container wrap">
-      <a class="brand" href="#top" aria-label="Ir al inicio">
-        <svg viewBox="0 0 40 40" role="img" aria-label="SIGDI logo">
+      <a class="brand" href="#top">
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
           <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a4a87"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient></defs>
-          <circle cx="20" cy="20" r="18" fill="none" stroke="url(#g)" stroke-width="4"/>
-          <circle cx="20" cy="20" r="3" fill="url(#g)"/>
-          <path d="M20 10 v10 l7 5" stroke="url(#g)" stroke-width="3" stroke-linecap="round" fill="none"/>
-        </svg>
+        <circle cx="20" cy="20" r="18" fill="none" stroke="url(#g)" stroke-width="4"/>
+        <circle cx="20" cy="20" r="3" fill="url(#g)"/></svg>
         SIGDI
       </a>
-      <div class="nav-actions" role="navigation">
+      <div class="nav-actions">
         <a class="chip" href="#precios">Precios</a>
         <a class="chip chip--cta" href="#contacto">Contactar</a>
       </div>
@@ -157,7 +141,6 @@
             Cumple el RD-ley 8/2019. Fichaje por enlace seguro o kiosco en tablet, firma digital,
             PDF mensual y resumen por trabajador — todo en Google Sheets + Drive, sin instalar nada.
           </p>
-          <p class="lead used-by"><strong>Usado por:</strong> Puertas Lloris · Alumida · Ferretería Martínez</p>
           <div class="cta">
             <a class="btn btn--primary" href="#contacto">Solicitar demo</a>
             <a class="btn" href="#como-funciona">Ver cómo funciona</a>
@@ -169,15 +152,15 @@
           <div class="hero-steps">
             <div class="step">
               <strong>1. Fichaje por enlace único</strong>
-              <div>Cada trabajador recibe un enlace seguro por&nbsp;<b>email</b> o usa el <b>kiosco tablet</b> de la empresa.</div>
+              <div>El trabajador accede desde su email o el kiosco tablet de la empresa.</div>
             </div>
             <div class="step">
               <strong>2. Firma y evidencias</strong>
-              <div>Cada registro incluye firma digital (y opcionalmente foto). Todo se guarda automáticamente en Drive.</div>
+              <div>Cada registro se firma digitalmente (opcional foto) y se guarda automáticamente en Drive.</div>
             </div>
             <div class="step">
-              <strong>3. Resumen mensual automático</strong>
-              <div>SIGDI genera hojas por empleado y un PDF resumen listo para inspección.</div>
+              <strong>3. Resumen mensual</strong>
+              <div>Genera PDF y hojas por empleado de forma automática, listo para inspección.</div>
             </div>
           </div>
         </aside>
@@ -190,8 +173,8 @@
         <h2>Ventajas clave</h2>
         <div class="features">
           <div class="feature"><h3>✅ Cumplimiento</h3><p>Registro verificable y conservación 4 años.</p></div>
-          <div class="feature"><h3>⏱️ 0 formación</h3><p>Alta y uso en <strong>&lt;10 min</strong>.</p></div>
-          <div class="feature"><h3>✍️ Firma digital</h3><p>Captura y guarda firmas por trabajador.</p></div>
+          <div class="feature"><h3>⏱️ Sin formación</h3><p>Configuración y uso en menos de 10 minutos.</p></div>
+          <div class="feature"><h3>✍️ Firma digital</h3><p>Captura de firmas y evidencias por trabajador.</p></div>
           <div class="feature"><h3>📦 Exportes</h3><p>PDF mensual + hoja “Resumen Mensual”.</p></div>
         </div>
       </div>
@@ -243,27 +226,40 @@
       </div>
     </section>
 
-    <!-- TESTIMONIOS -->
-    <section>
-      <div class="container">
-        <h2>Qué dicen los clientes</h2>
-        <div class="testimonials">
-          <div class="quote">“Implantación en 1 día y fin del papel.”<br><small>Puertas Lloris</small></div>
-          <div class="quote">“Inspector satisfecho: registros claros.”<br><small>Alumida</small></div>
-          <div class="quote">“Resumen mensual automático y sin errores.”<br><small>Ferretería Martínez</small></div>
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ -->
     <section>
       <div class="container faq">
         <h2>Preguntas frecuentes</h2>
-        <details><summary>¿Necesito instalar algo?</summary><p>No. SIGDI funciona desde navegador y correo. Sólo necesitas tu cuenta de Google para Sheets/Drive.</p></details>
-        <details><summary>¿Cumple RGPD?</summary><p>Sí. Datos en la UE, acceso por empresa, exportes y auditoría. Puedes descargar y conservar tus registros.</p></details>
-        <details><summary>¿Qué pasa si se cae Internet?</summary><p>Si un trabajador no puede fichar, puede hacerlo al restablecer conexión. El kiosco reintenta envíos y puedes registrar incidencias puntuales.</p></details>
-        <details><summary>¿Puedo firmar más tarde?</summary><p>Sí. La firma posterior se vincula a la jornada correspondiente y queda guardada en Drive.</p></details>
-        <details><summary>¿Puedo probar SIGDI antes de contratar?</summary><p>Solicita una demo guiada y te activamos un entorno de prueba con datos de ejemplo.</p></details>
+
+        <details>
+          <summary>¿Necesito instalar algo?</summary>
+          <p>No. Funciona en cualquier navegador. Solo necesitas acceso a Google Drive y Sheets.</p>
+        </details>
+
+        <details>
+          <summary>¿Cumple con el RGPD?</summary>
+          <p>Sí. Datos en la UE, acceso limitado por empresa y exportación completa en cualquier momento.</p>
+        </details>
+
+        <details>
+          <summary>¿Qué pasa si se cae Internet?</summary>
+          <p>El kiosco reintenta el envío y puedes registrar el fichaje cuando vuelva la conexión. También se admiten incidencias puntuales.</p>
+        </details>
+
+        <details>
+          <summary>¿Qué necesito para empezar?</summary>
+          <p>Una cuenta de Google, los correos de los empleados y 15 minutos. Configuramos todo por ti.</p>
+        </details>
+
+        <details>
+          <summary>¿Qué ocurre si cambia un trabajador?</summary>
+          <p>Añades o eliminas empleados en segundos desde la hoja de control. No requiere soporte técnico.</p>
+        </details>
+
+        <details>
+          <summary>¿Puedo probarlo antes de contratar?</summary>
+          <p>Sí. Activamos una demo guiada con datos de ejemplo para que veas el flujo real.</p>
+        </details>
       </div>
     </section>
 
@@ -271,20 +267,22 @@
     <section id="contacto" class="contact">
       <div class="container">
         <h2>Contacto</h2>
-        <p class="lead">Pide una reunión o una demo personalizada.</p>
+        <p class="lead">Solicita una demo o pide una llamada personalizada.</p>
         <div class="cta">
           <a class="btn btn--primary" href="https://wa.me/34663715363?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
-          <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI">Solicitar información por email</a>
+          <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI">Contactar por email</a>
           <a class="btn" href="presentacion-sigdi.pdf" target="_blank" rel="noopener noreferrer">Ver presentación PDF</a>
         </div>
-        <p class="note">Todas las implantaciones incluyen acompañamiento inicial gratuito.</p>
+        <p class="note">Implantación rápida y acompañamiento inicial incluido.</p>
       </div>
     </section>
   </main>
 
   <!-- WHATSAPP FAB -->
   <a class="wa-fab" href="https://wa.me/34663715363?text=Hola%2C%20me%20gustar%C3%ADa%20probar%20SIGDI" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.1 17.5c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.2c-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1s-1.1-.4-2.1-1.3c-.8-.7-1.3-1.6-1.4-1.8-.2-.3 0-.4.2-.6.2-.2.3-.3.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.1 3 .2.4.4.6c.6 1 1.4 1.8 2.5 2.5 1.2.8 2.1 1 2.8 1.2.6.2 1.1.2 1.5.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.2-1.2s-.2-.1-.5-.2zM15.8 3C9.8 3 5 7.7 5 13.6c0 2.2.6 4.2 1.8 6L5 29l9.6-1.6c1.7 1 3.7 1.5 5.8 1.5 6 0 10.8-4.7 10.8-10.6S21.8 3 15.8 3z"/></svg>
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M19.11 17.49c-.29-.12-1.72-.83-1.99-.93-.27-.1-.47-.14-.66.14-.19.28-.76.93-.93 1.12-.17.19-.34.21-.62.09-.29-.12-1.23-.45-2.34-1.43- .86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.58.14-.14.34-.37.49-.56.16-.19.21-.32.32-.53.1-.21.05-.39-.03-.56-.09-.16-.66-1.59-.9-2.18-.24-.58-.48-.5-.66-.51l-.56-.01c-.19 0-.5.07-.76.36-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.02 3.07 4.92 4.31 2.9 1.23 2.9.82 3.42.79.52-.03 1.68-.68 1.92-1.33.24-.65.24-1.2.17-1.31-.07-.1-.26-.17-.55-.29zM15.82 3C9.82 3 5 7.77 5 13.64c0 2.18.64 4.22 1.86 5.93L5 29l9.6-1.58c1.7.96 3.67 1.5 5.82 1.5 6.01 0 10.9-4.71 10.9-10.58C31.31 7.71 26.43 3 20.42 3h-4.6z"/>
+    </svg>
   </a>
 
   <footer style="padding:46px 0;background:var(--brand);color:#fff;margin-top:40px">
