@@ -5,221 +5,640 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SIGDI — Control horario legal y simple para PYMES</title>
 
-  <meta name="description" content="SIGDI: fichaje digital con firma, PDF mensual y resumen por trabajador. Cumple RD-ley 8/2019. Funciona con Google Sheets + Drive, sin instalaciones.">
-  <link rel="icon" href="img/favicon.ico" />
+  <!-- SEO básico -->
+  <meta name="description" content="Fichaje digital con firma, PDF mensual y resumen por trabajador. Cumple RD-ley 8/2019. Funciona con Google Sheets y Drive, sin instalaciones.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SIGDI — Fichaje digital con firma para PYMES">
+  <meta property="og:description" content="Control horario legal, firma digital y reportes automáticos para pequeñas y medianas empresas.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="og-image.png">
+
+  <!-- Iconos -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
 
   <style>
     :root{
-      --brand:#0a4a87; --brand-700:#083a6a;
-      --ink:#1f2937; --muted:#64748b;
-      --bg:#ffffff; --soft:#f8fafc; --card:#ffffff; --border:#e5e7eb;
-      --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.08); --shadow-lg:0 14px 40px rgba(0,0,0,.12);
-      --wrap: min(1120px, calc(100vw - 32px));
+      --brand:#0a4a87;
+      --brand-soft:#e9f2ff;
+      --brand-700:#083566;
+      --bg:#f5f7fb;
+      --fg:#111827;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --radius:16px;
+      --shadow:0 18px 45px rgba(15,23,42,.08);
     }
 
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;scroll-behavior:smooth}
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
-
-    a{color:var(--brand);text-decoration:none}
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:var(--fg);background:#ffffff;scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:var(--brand)}
     a:hover{color:var(--brand-700)}
-    img{max-width:100%;height:auto;display:block;border:0}
-    .container{width:var(--wrap);margin-inline:auto}
+
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
     /* NAV */
-    .nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--border)}
-    .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:800;color:var(--brand)}
-    .brand img{height:32px;width:auto;display:block}
-    .nav-actions{display:flex;gap:10px}
-    .chip{padding:10px 16px;border:1px solid var(--border);border-radius:999px;background:var(--card)}
-    .chip--cta{border-color:var(--brand);background:var(--brand);color:#fff}
-    .chip--cta:hover{background:var(--brand-700)}
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:40;
+      background:#ffffff;
+      border-bottom:1px solid rgba(229,231,235,.9);
+      backdrop-filter:blur(12px);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:64px;
+    }
+    .logo-wrap{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:600;
+      font-size:18px;
+      color:var(--brand-700);
+    }
+    .logo-mark{
+      height:28px;
+      width:auto;
+      border-radius:8px;
+    }
+    .nav-actions{
+      display:flex;
+      gap:10px;
+    }
+    .pill-nav{
+      padding:8px 18px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#ffffff;
+      font-size:14px;
+    }
+    .pill-nav--primary{
+      background:var(--brand);
+      color:#ffffff;
+      border-color:var(--brand);
+    }
+    .pill-nav--primary:hover{background:var(--brand-700)}
 
-    /* HERO (fondo como antes) */
-    .hero{padding:80px 0;background:var(--soft)}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-    .kicker{color:var(--brand);font-weight:700;letter-spacing:.3px}
-    h1{font-size:clamp(30px, 6vw, 46px);line-height:1.12;margin:10px 0 12px}
-    .lead{color:var(--muted);font-size:clamp(16px, 2.6vw, 18px);max-width:720px}
-    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow);cursor:pointer;transition:transform .15s ease}
-    .btn:hover{transform:translateY(-1px)}
-    .btn--primary{background:var(--brand);border-color:var(--brand);color:#fff}
-    .btn--primary:hover{background:var(--brand-700)}
-    .hero-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;border:1px solid var(--border)}
-    .hero-card h3{margin:0 0 10px}
-    .hero-steps{display:flex;flex-direction:column;gap:14px}
-    .step{border:1px dashed var(--border);border-radius:14px;padding:16px 14px;background:linear-gradient(180deg,rgba(10,74,135,.04),transparent 80%)}
-    .step strong{display:inline-block;margin-bottom:4px;color:var(--brand)}
+    /* HERO */
+    .hero{
+      background:linear-gradient(180deg,var(--bg) 0,#ffffff 55%);
+      padding:70px 0 56px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      gap:40px;
+      align-items:flex-start;
+    }
+    .kicker{
+      color:var(--brand);
+      font-weight:600;
+      letter-spacing:.04em;
+      text-transform:none;
+      font-size:14px;
+      margin-bottom:6px;
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:40px;
+      line-height:1.1;
+      letter-spacing:-0.03em;
+    }
+    .lead{
+      font-size:17px;
+      line-height:1.6;
+      color:var(--muted);
+      max-width:620px;
+    }
+    .hero-meta{
+      margin-top:10px;
+      font-size:14px;
+      color:#4b5563;
+    }
+    .hero-meta span{
+      display:inline-block;
+      margin-right:10px;
+    }
+    .hero-meta span::before{
+      content:"•";
+      margin-right:6px;
+      color:#9ca3af;
+    }
+    .hero-meta span:first-child::before{content:"";margin:0}
 
-    /* SECCIONES */
-    section{padding:72px 0}
-    h2{font-size:clamp(22px,4.5vw,30px);margin:0 0 18px;color:var(--brand)}
+    .hero-cta{
+      margin-top:22px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:13px 22px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#ffffff;
+      color:#111827;
+      font-weight:500;
+      font-size:15px;
+      box-shadow:0 10px 25px rgba(15,23,42,.08);
+      cursor:pointer;
+      transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 16px 30px rgba(15,23,42,.12);
+    }
+    .btn-primary{
+      background:var(--brand);
+      border-color:var(--brand);
+      color:#ffffff;
+    }
+    .btn-primary:hover{background:var(--brand-700)}
+    .btn-ghost{
+      background:#ffffff;
+      border-color:#d1d5db;
+      box-shadow:none;
+    }
 
-    /* BENEFICIOS */
-    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .feature{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
-    .feature h3{margin:0 0 6px;font-size:18px}
-    .feature p{margin:0;color:var(--muted)}
+    /* HERO – card “Así funciona” */
+    .how-card{
+      background:var(--card);
+      border-radius:20px;
+      border:1px solid rgba(209,213,219,.9);
+      box-shadow:var(--shadow);
+      padding:18px 20px;
+    }
+    .how-title{
+      font-weight:600;
+      margin-bottom:12px;
+    }
+    .how-step{
+      border-radius:14px;
+      border:1px dashed #d1d5db;
+      padding:12px 14px;
+      font-size:14px;
+      margin-top:10px;
+      background:#f9fafb;
+    }
+    .how-step strong{
+      display:block;
+      margin-bottom:4px;
+      color:#111827;
+    }
+
+    /* SECCIONES GENERALES */
+    section{
+      padding:56px 0;
+    }
+    h2{
+      margin:0 0 18px;
+      font-size:28px;
+      letter-spacing:-0.02em;
+      color:#111827;
+    }
+
+    /* VENTAJAS */
+    .features{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:18px;
+      margin-top:8px;
+    }
+    .feature{
+      background:#ffffff;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:0 12px 30px rgba(15,23,42,.04);
+      padding:16px 16px 18px;
+      font-size:14px;
+    }
+    .feature-title{
+      font-weight:600;
+      margin-bottom:4px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .feature-emoji{
+      font-size:18px;
+    }
 
     /* PRECIOS */
-    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .plan{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
-    .plan.recommended{border:2px solid var(--brand)}
-    .badge{align-self:flex-start;display:inline-block;background:var(--brand);color:#fff;padding:4px 9px;border-radius:999px;font-size:12px;margin-bottom:2px}
-    .price{font-size:36px;font-weight:800;color:var(--brand)}
-    .plan small{color:var(--muted)}
-    .plan ul{margin:4px 0 0;padding-left:18px}
-    .plan .buy{margin-top:auto}
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+      margin-top:10px;
+    }
+    .plan{
+      background:#ffffff;
+      border-radius:22px;
+      border:1px solid var(--border);
+      box-shadow:0 18px 35px rgba(15,23,42,.06);
+      padding:22px 20px 20px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .plan-recommended{
+      border:2px solid var(--brand);
+      position:relative;
+    }
+    .plan-badge{
+      position:absolute;
+      top:14px;
+      right:18px;
+      background:var(--brand);
+      color:#ffffff;
+      border-radius:999px;
+      padding:4px 10px;
+      font-size:11px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .plan-name{
+      font-weight:600;
+      font-size:18px;
+      margin-bottom:2px;
+    }
+    .plan-sub{
+      font-size:13px;
+      color:#6b7280;
+    }
+    .plan-price-row{
+      margin-top:4px;
+    }
+    .plan-month{
+      font-size:30px;
+      font-weight:700;
+    }
+    .plan-month span{
+      font-size:18px;
+      font-weight:500;
+    }
+    .plan-setup{
+      font-size:13px;
+      color:#4b5563;
+    }
+    .plan-list{
+      margin:6px 0 0;
+      padding-left:18px;
+      font-size:14px;
+      color:#4b5563;
+    }
+    .plan-cta{
+      margin-top:14px;
+    }
+    .plan-note{
+      margin-top:6px;
+      font-size:12px;
+      color:#9ca3af;
+    }
 
     /* TESTIMONIOS */
-    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .quote{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);font-style:italic}
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+      margin-top:10px;
+    }
+    .quote{
+      background:#ffffff;
+      border-radius:18px;
+      border:1px solid var(--border);
+      padding:16px 16px 14px;
+      font-size:14px;
+      box-shadow:0 12px 28px rgba(15,23,42,.04);
+      font-style:italic;
+    }
+    .quote small{
+      display:block;
+      margin-top:6px;
+      font-style:normal;
+      color:#6b7280;
+    }
 
     /* FAQ */
-    .faq details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
-    .faq details+details{margin-top:12px}
-    .faq summary{cursor:pointer;font-weight:700;list-style:none;color:var(--brand)}
+    .faq-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+    .faq details{
+      background:#ffffff;
+      border-radius:16px;
+      border:1px solid var(--border);
+      padding:12px 14px;
+      box-shadow:0 10px 22px rgba(15,23,42,.04);
+    }
+    .faq summary{
+      list-style:none;
+      cursor:pointer;
+      font-weight:600;
+      font-size:15px;
+    }
     .faq summary::-webkit-details-marker{display:none}
+    .faq p{
+      margin:8px 0 0;
+      font-size:14px;
+      color:#4b5563;
+    }
 
     /* CONTACTO */
-    .contact .cta{gap:12px;flex-wrap:wrap}
-    .note{color:var(--muted);margin-top:10px}
-
-    /* WHATSAPP FAB */
-    .wa-fab{
-      position:fixed;right:16px;bottom:16px;z-index:60;
-      display:inline-grid;place-items:center;width:60px;height:60px;border-radius:999px;
-      background:#25D366;color:#fff;box-shadow:var(--shadow-lg);transition:transform .18s ease;
+    .contact-lead{
+      font-size:16px;
+      color:#4b5563;
+      margin-bottom:16px;
     }
-    .wa-fab:hover{transform:translateY(-2px)}
-    .wa-fab svg{width:26px;height:26px}
+    .contact-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    /* FOOTER */
+    footer{
+      margin-top:40px;
+      padding:26px 0 32px;
+      background:#0b1630;
+      color:#e5e7eb;
+      font-size:13px;
+    }
+    footer a{color:#e5e7eb;text-decoration:underline}
 
     /* RESPONSIVE */
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr;gap:24px}
-      .features{grid-template-columns:1fr 1fr}
-      .pricing{grid-template-columns:1fr}
+    @media (max-width:960px){
+      .hero-grid{
+        grid-template-columns:1fr;
+        gap:28px;
+      }
+      .how-card{
+        max-width:520px;
+        margin:0 auto;
+      }
+      .features{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .pricing-grid{grid-template-columns:1fr}
       .testimonials{grid-template-columns:1fr}
     }
-    @media (max-width: 520px){
+    @media (max-width:640px){
+      .nav-inner{
+        height:58px;
+      }
+      .logo-wrap span{font-size:16px}
+      .hero{padding:52px 0 40px}
+      h1{font-size:30px}
+      .lead{font-size:15px}
+      .hero-cta{
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .btn,.btn-primary,.btn-ghost{
+        width:100%;
+        box-shadow:0 10px 25px rgba(15,23,42,.06);
+      }
+      section{padding:42px 0}
       .features{grid-template-columns:1fr}
-      .cta{flex-direction:column}
-      .cta .btn{width:100%;justify-content:center}
-      .wa-fab{width:56px;height:56px}
+      .contact-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav" aria-label="Principal">
-    <div class="container wrap">
-      <a class="brand" href="#top">
-        <img src="img/apple-touch-icon.png" alt="SIGDI">
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo-wrap">
+        <img src="apple-touch-icon.png" alt="Logo de SIGDI" class="logo-mark">
         <span>SIGDI</span>
       </a>
-      <div class="nav-actions">
-        <a class="chip" href="#precios">Precios</a>
-        <a class="chip chip--cta" href="#contacto">Contactar</a>
-      </div>
+      <nav class="nav-actions" aria-label="Navegación principal">
+        <a href="#precios" class="pill-nav">Precios</a>
+        <a href="#contacto" class="pill-nav pill-nav--primary">Contactar</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <main id="top">
+  <main>
+
     <!-- HERO -->
-    <header class="hero">
+    <section class="hero">
       <div class="container hero-grid">
         <div>
           <div class="kicker">Control horario legal sin fricción</div>
           <h1>Fichaje digital con firma y reportes automáticos</h1>
           <p class="lead">
-            Cumple el RD-ley 8/2019. Fichaje por enlace seguro o kiosco en tablet, firma digital,
-            PDF mensual y resumen por trabajador — todo en Google Sheets + Drive, sin instalar nada.
+            Cumple el RD-ley 8/2019. Fichaje por enlace seguro o kiosco en tablet,
+            firma digital, PDF mensual y resumen por trabajador — todo en Google
+            Sheets + Drive, sin instalar nada.
           </p>
-          <div class="cta">
-            <a class="btn btn--primary" href="#contacto">Solicitar demo</a>
-            <a class="btn" href="#como-funciona">Ver cómo funciona</a>
+
+          <div class="hero-meta">
+            <span>Sin instalación</span>
+            <span>Cumple RD-Ley 8/2019</span>
+            <span>Conservación mínima 4 años</span>
+          </div>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#contacto">Solicitar demo</a>
+            <a class="btn btn-ghost" href="#como-funciona">Ver cómo funciona</a>
           </div>
         </div>
 
-        <aside id="como-funciona" class="hero-card" aria-label="Vista rápida del sistema">
-          <h3>Así funciona</h3>
-          <div class="hero-steps">
-            <div class="step">
-              <strong>1. Fichaje por enlace único</strong>
-              <div>El trabajador accede desde su email o el kiosco tablet de la empresa.</div>
-            </div>
-            <div class="step">
-              <strong>2. Firma y evidencias</strong>
-              <div>Cada registro se firma digitalmente (opcional foto) y se guarda automáticamente en Drive.</div>
-            </div>
-            <div class="step">
-              <strong>3. Resumen mensual</strong>
-              <div>Genera PDF y hojas por empleado de forma automática, listo para inspección.</div>
-            </div>
+        <!-- ASÍ FUNCIONA -->
+        <aside class="how-card" id="como-funciona" aria-label="Cómo funciona SIGDI">
+          <div class="how-title">Así funciona</div>
+
+          <div class="how-step">
+            <strong>1. Fichaje por enlace único</strong>
+            El trabajador ficha desde su enlace en el correo o en el kiosco tablet de la empresa.
+          </div>
+
+          <div class="how-step">
+            <strong>2. Firma y evidencias</strong>
+            Cada registro incluye firma digital y, si se desea, foto. Todo se guarda automáticamente en Drive.
+          </div>
+
+          <div class="how-step">
+            <strong>3. Resumen mensual automático</strong>
+            SIGDI genera hojas por empleado y un PDF resumen listo para inspección.
           </div>
         </aside>
       </div>
-    </header>
+    </section>
 
-    <!-- BENEFICIOS -->
+    <!-- PROBLEMA / SOLUCIÓN -->
+    <section>
+      <div class="container">
+        <h2>El problema</h2>
+        <p class="lead">
+          Muchas PYMES siguen usando hojas o apps complicadas: errores, incumplimientos
+          y pérdida de tiempo en cuadrar las horas de cada trabajador.
+        </p>
+
+        <h2 style="margin-top:26px;">La solución</h2>
+        <p class="lead">
+          <strong>SIGDI</strong> centraliza fichajes, firmas y resúmenes en tu propio
+          Google Drive. Simple, rápido y legal: tú controlas los datos y nosotros
+          automatizamos el trabajo pesado.
+        </p>
+      </div>
+    </section>
+
+    <!-- VENTAJAS CLAVE -->
     <section>
       <div class="container">
         <h2>Ventajas clave</h2>
         <div class="features">
-          <div class="feature"><h3>✅ Cumplimiento</h3><p>Registro verificable y conservación 4 años.</p></div>
-          <div class="feature"><h3>⏱️ Sin formación</h3><p>Configuración y uso en menos de 10 minutos.</p></div>
-          <div class="feature"><h3>✍️ Firma digital</h3><p>Captura de firmas y evidencias por trabajador.</p></div>
-          <div class="feature"><h3>📦 Exportes</h3><p>PDF mensual + hoja “Resumen Mensual”.</p></div>
+          <article class="feature">
+            <div class="feature-title">
+              <span class="feature-emoji">✅</span>
+              <span>Cumple RD-Ley</span>
+            </div>
+            <p>Registro verificable, conservación mínima de 4 años y exportes legales en PDF.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-title">
+              <span class="feature-emoji">⚙️</span>
+              <span>Sin instalación</span>
+            </div>
+            <p>Funciona desde el correo o cualquier navegador. Solo necesitas una cuenta de Google.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-title">
+              <span class="feature-emoji">✍️</span>
+              <span>Firma digital</span>
+            </div>
+            <p>Captura la firma del trabajador y, si quieres, también su foto en el momento del fichaje.</p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-title">
+              <span class="feature-emoji">📦</span>
+              <span>Reportes automáticos</span>
+            </div>
+            <p>PDF mensual por centro y hoja “Resumen mensual” para ver todo de un vistazo.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- PRECIOS -->
+    <!-- PLANES Y PRECIOS -->
     <section id="precios">
       <div class="container">
         <h2>Planes y precios</h2>
-        <div class="pricing">
-          <article class="plan" aria-label="Plan Básico">
-            <h3>Básico</h3>
-            <div class="price">30 €/mes</div>
-            <small>+ 100 € instalación · Hasta 8 empleados</small>
-            <ul>
-              <li>Fichaje por email o kiosco tablet</li>
-              <li>Resumen mensual automático</li>
+        <p class="lead" style="margin-bottom:18px;">
+          Todos los planes incluyen implantación guiada, soporte por email y exportes mensuales
+          listos para inspección.
+        </p>
+
+        <div class="pricing-grid">
+          <!-- BÁSICO -->
+          <article class="plan">
+            <div class="plan-name">Básico</div>
+            <div class="plan-sub">Hasta 8 trabajadores</div>
+
+            <div class="plan-price-row">
+              <div class="plan-month">30€<span>/mes</span></div>
+              <div class="plan-setup">+ 100€ de configuración inicial</div>
+            </div>
+
+            <ul class="plan-list">
+              <li>Fichaje por enlace o kiosco</li>
+              <li>PDF mensual y hoja resumen</li>
               <li>Soporte por email</li>
             </ul>
-            <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
+
+            <div class="plan-cta">
+              <a href="#contacto" class="btn btn-primary" style="width:100%;max-width:220px;">Quiero este plan</a>
+            </div>
+            <div class="plan-note">Sin permanencia: pago mes a mes.</div>
           </article>
 
-          <article class="plan recommended" aria-label="Plan Premium">
-            <span class="badge">Recomendado</span>
-            <h3>Premium</h3>
-            <div class="price">40 €/mes</div>
-            <small>+ 100 € instalación · 9–50 empleados</small>
-            <ul>
-              <li>Kiosco con buscador por código o nombre</li>
-              <li>Firma digital + PDF mensual</li>
+          <!-- PREMIUM -->
+          <article class="plan plan-recommended">
+            <div class="plan-badge">Más elegido</div>
+
+            <div class="plan-name">Premium</div>
+            <div class="plan-sub">Hasta 50 trabajadores</div>
+
+            <div class="plan-price-row">
+              <div class="plan-month">40€<span>/mes</span></div>
+              <div class="plan-setup">+ 150€ de configuración inicial</div>
+            </div>
+
+            <ul class="plan-list">
+              <li>Kiosco avanzado con buscador por nombre o código</li>
+              <li>Firma digital y evidencias por trabajador</li>
               <li>Soporte prioritario</li>
             </ul>
-            <p class="buy"><a class="btn btn--primary" href="#contacto">Activar ahora</a></p>
+
+            <div class="plan-cta">
+              <a href="#contacto" class="btn btn-primary" style="width:100%;max-width:220px;">Quiero este plan</a>
+            </div>
+            <div class="plan-note">Pensado para PYMES con varios turnos o centros.</div>
           </article>
 
-          <article class="plan" aria-label="Plan Personalizado">
-            <h3>Personalizado</h3>
-            <div class="price">A medida</div>
-            <small>Integraciones y marca blanca</small>
-            <ul>
-              <li>Marca blanca y personalización</li>
-              <li>Integraciones avanzadas</li>
-              <li>Formación y puesta en marcha</li>
+          <!-- PERSONALIZADO -->
+          <article class="plan">
+            <div class="plan-name">Personalizado</div>
+            <div class="plan-sub">+50 trabajadores o varios centros</div>
+
+            <p style="font-size:14px;color:#4b5563;margin:4px 0 6px;">
+              Adaptamos SIGDI a tu caso: multiempresa, varios centros, integraciones
+              con otros sistemas o requisitos específicos de auditoría.
+            </p>
+
+            <ul class="plan-list">
+              <li>Implantación a medida</li>
+              <li>Formación a responsables</li>
+              <li>Acuerdos de soporte personalizados</li>
             </ul>
-            <p class="buy"><a class="btn btn--primary" href="#contacto">Solicitar propuesta</a></p>
+
+            <div class="plan-cta">
+              <a href="#contacto" class="btn btn-primary" style="width:100%;max-width:220px;">Pedir presupuesto</a>
+            </div>
+            <div class="plan-note">Te preparamos una propuesta cerrada sin compromiso.</div>
           </article>
         </div>
-        <p class="lead" style="margin-top:10px;color:var(--muted)">Precios sin IVA · Sin permanencia · Cancelación inmediata</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section>
+      <div class="container">
+        <h2>Qué dicen los clientes</h2>
+        <div class="testimonials">
+          <div class="quote">
+            “Implantación en 1 día y fin del papel.”
+            <small>Gerencia de pyme industrial</small>
+          </div>
+          <div class="quote">
+            “Cuando vino la inspección, teníamos todos los registros claros y en PDF.”
+            <small>Responsable de recursos humanos</small>
+          </div>
+          <div class="quote">
+            “Cada mes recibo el resumen y no tengo que tocar hojas de cálculo.”
+            <small>Administración en pequeña empresa</small>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -228,69 +647,75 @@
       <div class="container faq">
         <h2>Preguntas frecuentes</h2>
 
-        <details>
-          <summary>¿Necesito instalar algo?</summary>
-          <p>No. Funciona en cualquier navegador. Solo necesitas acceso a Google Drive y Sheets.</p>
-        </details>
+        <div class="faq-list">
+          <details>
+            <summary>¿Necesito instalar algo?</summary>
+            <p>No. Los trabajadores fichan desde un enlace en su correo o en el kiosco en tablet. Tú solo necesitas una cuenta de Google para Drive y Sheets.</p>
+          </details>
 
-        <details>
-          <summary>¿Cumple con el RGPD?</summary>
-          <p>Sí. Datos en la UE, acceso limitado por empresa y exportación completa en cualquier momento.</p>
-        </details>
+          <details>
+            <summary>¿Cumple con el RGPD y la normativa de registro horario?</summary>
+            <p>Sí. Los datos se guardan en tu propio Google Drive, con acceso restringido por empresa y conservación mínima de 4 años para poder acreditar los fichajes.</p>
+          </details>
 
-        <details>
-          <summary>¿Qué pasa si se cae Internet?</summary>
-          <p>Si la tablet no tiene conexión, los trabajadores pueden fichar desde el <strong>email diario</strong>, que envía el registro directamente. No se pierde ningún fichaje.</p>
-        </details>
+          <details>
+            <summary>¿Qué pasa si se cae Internet?</summary>
+            <p>Si el trabajador ficha desde el correo y en ese momento no hay conexión, el envío queda pendiente y se registra en cuanto el móvil vuelve a tener cobertura.</p>
+          </details>
 
-        <details>
-          <summary>¿Qué necesito para empezar?</summary>
-          <p>Una cuenta de Google, los correos de los empleados y 15 minutos. Configuramos todo por ti.</p>
-        </details>
+          <details>
+            <summary>¿Puedo firmar más tarde?</summary>
+            <p>Sí. La firma se puede recoger al final de la jornada o de la semana y queda vinculada a los fichajes ya realizados.</p>
+          </details>
 
-        <details>
-          <summary>¿Qué ocurre si cambia un trabajador?</summary>
-          <p>Añades o eliminas empleados en segundos desde la hoja de control. No requiere soporte técnico.</p>
-        </details>
-
-        <details>
-          <summary>¿Puedo probarlo antes de contratar?</summary>
-          <p>Sí. Activamos una demo guiada con datos de ejemplo para que veas el flujo real.</p>
-        </details>
+          <details>
+            <summary>¿Puedo probar SIGDI antes de contratar?</summary>
+            <p>Sí. Podemos hacer una demo guiada y, si lo prefieres, una prueba en tu empresa con un número reducido de trabajadores.</p>
+          </details>
+        </div>
       </div>
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="contact">
+    <section id="contacto">
       <div class="container">
         <h2>Contacto</h2>
-        <p class="lead">Solicita una demo o pide una llamada personalizada.</p>
-        <div class="cta">
-          <a class="btn btn--primary" href="https://wa.me/34663715363?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20SIGDI" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
-          <a class="btn" href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI">Contactar por email</a>
-          <a class="btn" href="presentacion-sigdi.pdf" target="_blank" rel="noopener noreferrer">Ver presentación PDF</a>
+        <p class="contact-lead">
+          Solicita una demo o una reunión sin compromiso. Te enseñamos cómo funcionaría SIGDI en tu empresa.
+        </p>
+
+        <div class="contact-actions">
+          <a class="btn btn-primary"
+             href="https://wa.me/34663715363?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20SIGDI">
+            Contactar por WhatsApp
+          </a>
+
+          <a class="btn btn-ghost"
+             href="mailto:semserviciosgenerales1@gmail.com?subject=Info%20SIGDI&body=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20SIGDI.">
+            Solicitar información por email
+          </a>
+
+          <a class="btn btn-ghost"
+             href="presentacion-sigdi.pdf"
+             target="_blank"
+             rel="noopener noreferrer">
+            Ver presentación PDF
+          </a>
         </div>
-        <p class="note">Implantación rápida y acompañamiento inicial incluido.</p>
       </div>
     </section>
+
   </main>
 
-  <!-- WHATSAPP FAB -->
-  <a class="wa-fab" href="https://wa.me/34663715363?text=Hola%2C%20me%20gustar%C3%ADa%20probar%20SIGDI" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d="M19.11 17.49c-.29-.12-1.72-.83-1.99-.93-.27-.1-.47-.14-.66.14-.19.28-.76.93-.93 1.12-.17.19-.34.21-.62.09-.29-.12-1.23-.45-2.34-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.58.14-.14.34-.37.49-.56.16-.19.21-.32.32-.53.1-.21.05-.39-.03-.56-.09-.16-.66-1.59-.9-2.18-.24-.58-.48-.5-.66-.51l-.56-.01c-.19 0-.5.07-.76.36-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.02 3.07 4.92 4.31 2.9 1.23 2.9.82 3.42.79.52-.03 1.68-.68 1.92-1.33.24-.65.24-1.2.17-1.31-.07-.1-.26-.17-.55-.29zM15.82 3C9.82 3 5 7.77 5 13.64c0 2.18.64 4.22 1.86 5.93L5 29l9.6-1.58c1.7.96 3.67 1.5 5.82 1.5 6.01 0 10.9-4.71 10.9-10.58C31.31 7.71 26.43 3 20.42 3h-4.6z"/>
-    </svg>
-  </a>
-
-  <footer style="padding:46px 0;background:var(--brand);color:#fff;margin-top:40px">
-    <div class="container" style="display:flex;flex-direction:column;gap:8px">
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
       <div>© 2025 SIGDI — Operado por Salema Global Group S.L.</div>
-      <div>
-        <a href="#" style="color:#fff;text-decoration:underline">Aviso legal</a> ·
-        <a href="#" style="color:#fff;text-decoration:underline">Política de privacidad</a> ·
-        <a href="#" style="color:#fff;text-decoration:underline">Términos</a>
+      <div style="margin-top:6px;">
+        <a href="#">Aviso legal</a> ·
+        <a href="#">Política de privacidad</a> ·
+        <a href="#">Términos de uso</a>
       </div>
-      <div>Contacto: <a href="mailto:semserviciosgenerales1@gmail.com" style="color:#fff;text-decoration:underline">semserviciosgenerales1@gmail.com</a></div>
     </div>
   </footer>
 
