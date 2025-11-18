@@ -23,7 +23,6 @@
     :root{
       --brand:#0a4a87;
       --brand-soft:#0b5fb0;
-      --brand-light:#e5f0ff;
       --ink:#111827;
       --ink-soft:#4b5563;
       --bg:#f5f7fb;
@@ -72,13 +71,37 @@
       align-items:center;
       gap:10px;
     }
+    /* LOGO RELOJ */
     .logo-badge{
-      width:28px;
-      height:28px;
-      border-radius:10px;
-      background:linear-gradient(135deg,#0a4a87,#1aa6e8);
-      box-shadow:0 6px 16px rgba(15,23,42,.35);
+      width:30px;
+      height:30px;
+      border-radius:999px;
+      background:radial-gradient(circle at 30% 20%,#ffffff 0,#e5f0ff 35%,#0a4a87 100%);
+      position:relative;
+      box-shadow:0 6px 18px rgba(15,23,42,.35);
     }
+    .logo-badge::before{
+      content:"";
+      position:absolute;
+      inset:6px;
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.85);
+      box-shadow:inset 0 0 0 1px rgba(15,23,42,.08);
+    }
+    .logo-badge::after{
+      content:"";
+      position:absolute;
+      left:50%;top:50%;
+      width:10px;height:2px;
+      background:#0a4a87;
+      border-radius:999px;
+      transform-origin:left center;
+      transform:translate(-50%,-50%) rotate(40deg);
+      box-shadow:
+        -3px 0 0 0 #0a4a87,
+        0 0 0 2px #ffffff;
+    }
+
     .logo-text{
       font-weight:700;
       letter-spacing:.04em;
@@ -230,7 +253,7 @@
       gap:6px;
     }
 
-    /* PRECIOS */
+    /* PLANES */
     .plans-grid{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -240,9 +263,9 @@
     .plan{
       background:var(--card);
       border-radius:20px;
-      padding:18px 18px 20px;
+      padding:20px 20px 18px;
       border:1px solid var(--border);
-      box-shadow:0 18px 36px rgba(15,23,42,.07);
+      box-shadow:0 18px 36px rgba(15,23,42,.08);
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -264,21 +287,32 @@
       text-transform:uppercase;
       letter-spacing:.08em;
     }
+    .plan-header{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
     .plan-name{
       font-weight:600;
       font-size:16px;
     }
-    .plan-price-row{
+    .plan-tagline{
+      font-size:13px;
+      color:#6b7280;
+    }
+    .plan-price-block{
       display:flex;
       align-items:baseline;
-      gap:10px;
+      gap:12px;
+      margin-top:4px;
     }
-    .plan-month{
-      font-size:28px;
+    .plan-price-main{
+      font-size:30px;
       font-weight:700;
       color:var(--brand);
+      letter-spacing:-.03em;
     }
-    .plan-month span{
+    .plan-price-main span{
       font-size:18px;
       font-weight:600;
     }
@@ -299,6 +333,15 @@
     .plan ul li{margin-bottom:4px;}
     .plan-cta{
       margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      font-size:12px;
+      color:#6b7280;
+    }
+    .plan-cta .pill-btn{
+      align-self:flex-start;
+      padding:10px 20px;
     }
 
     /* TESTIMONIOS */
@@ -537,10 +580,13 @@
       <div class="plans-grid">
         <!-- BÁSICO -->
         <article class="plan">
-          <div class="plan-name">Básico</div>
-          <div class="plan-price-row">
-            <div class="plan-month"><span>30€</span>/mes</div>
-            <div class="plan-setup">+ 90€ de alta</div>
+          <header class="plan-header">
+            <div class="plan-name">Básico</div>
+            <div class="plan-tagline">Para empresas pequeñas que empiezan a digitalizar el fichaje.</div>
+          </header>
+          <div class="plan-price-block">
+            <div class="plan-price-main"><span>30€</span>/mes</div>
+            <div class="plan-setup">Instalación única 90€</div>
           </div>
           <div class="plan-note">Hasta 8 trabajadores. Fichaje por email o kiosco.</div>
           <ul>
@@ -550,19 +596,23 @@
           </ul>
           <div class="plan-cta">
             <a href="#contacto" class="pill-btn primary">Activar ahora</a>
+            <span>Sin permanencia. Pago mes a mes.</span>
           </div>
         </article>
 
         <!-- PREMIUM -->
         <article class="plan recommended">
           <div class="plan-badge">Más contratado</div>
-          <div class="plan-name">Premium</div>
-          <div class="plan-price-row">
-            <div class="plan-month"><span>40€</span>/mes</div>
-            <div class="plan-setup">+ 120€ de alta</div>
+          <header class="plan-header">
+            <div class="plan-name">Premium</div>
+            <div class="plan-tagline">Para empresas que crecen y necesitan más capacidad.</div>
+          </header>
+          <div class="plan-price-block">
+            <div class="plan-price-main"><span>40€</span>/mes</div>
+            <div class="plan-setup">Instalación única 120€</div>
           </div>
           <div class="plan-note">
-            Para empresas que crecen y necesitan más capacidad.
+            Incluye kiosco con buscador por nombre o código para fichajes rápidos.
           </div>
           <ul>
             <li>Más de 8 trabajadores</li>
@@ -572,18 +622,21 @@
           </ul>
           <div class="plan-cta">
             <a href="#contacto" class="pill-btn primary">Hablar sobre este plan</a>
+            <span>Sin permanencia. Podemos ajustar el sistema a tu forma de trabajar.</span>
           </div>
         </article>
 
         <!-- PERSONALIZADO -->
         <article class="plan">
-          <div class="plan-name">Personalizado</div>
-          <div class="plan-price-row">
-            <div class="plan-month"><span>A medida</span></div>
+          <header class="plan-header">
+            <div class="plan-name">Personalizado</div>
+            <div class="plan-tagline">Para grupos de empresas o necesidades especiales.</div>
+          </header>
+          <div class="plan-price-block">
+            <div class="plan-price-main"><span>A medida</span></div>
           </div>
           <div class="plan-note">
-            Para grupos de empresas, centros con varios turnos o integraciones
-            avanzadas.
+            Pensado para centros con varios turnos, varios centros o integraciones avanzadas.
           </div>
           <ul>
             <li>Adaptación a tu flujo de trabajo</li>
@@ -592,6 +645,7 @@
           </ul>
           <div class="plan-cta">
             <a href="#contacto" class="pill-btn">Pedir presupuesto</a>
+            <span>Cuéntanos tu caso y te preparamos una propuesta cerrada.</span>
           </div>
         </article>
       </div>
