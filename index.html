@@ -5,50 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SIDGI — Control horario legal y simple para PYMES</title>
 
-  <!-- SEO -->
   <meta name="description" content="Fichaje digital con firma, PDF mensual y resumen por trabajador. Cumple RD-ley 8/2019. Funciona con Google Sheets y Drive, sin instalar nada.">
   <meta name="robots" content="index,follow">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="SIDGI — Fichaje digital con firma y reportes automáticos">
   <meta property="og:description" content="Fichaje por enlace seguro o kiosco en tablet, firma digital, PDF mensual y resumen por trabajador. Sin apps, sin tarjetas.">
   <meta property="og:type" content="website">
 
   <style>
     :root {
-      --bg: #0b1220;
-      --bg-soft: #111827;
-      --primary: #4f46e5;
-      --primary-soft: rgba(79, 70, 229, 0.1);
-      --text-main: #f9fafb;
-      --text-soft: #9ca3af;
-      --accent: #22c55e;
-      --border-soft: #1f2937;
-      --danger: #ef4444;
+      --bg-page: #edf2f7;
+      --bg-section: #f7fafc;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --primary-soft: rgba(37,99,235,0.1);
+      --text-main: #111827;
+      --text-soft: #4b5563;
+      --border-soft: #e2e8f0;
+      --accent: #16a34a;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
+      background: var(--bg-page);
       color: var(--text-main);
       line-height: 1.5;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
     .container {
       width: 100%;
@@ -61,40 +49,39 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.6));
-      border-bottom: 1px solid rgba(31,41,55,0.8);
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+      box-shadow: 0 1px 4px rgba(15,23,42,0.04);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 0;
+      padding: 10px 0;
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+
+    .logo img {
+      height: 32px;
+      width: auto;
+    }
+
+    .logo-text-main {
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    .logo-mark {
-      width: 30px;
-      height: 30px;
-      border-radius: 10px;
-      background: radial-gradient(circle at 30% 0, #a5b4fc 0, #4f46e5 45%, #22c55e 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 800;
-      color: white;
-      box-shadow: 0 0 30px rgba(79,70,229,0.8);
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-soft);
     }
 
     .nav-links {
@@ -104,9 +91,7 @@
       color: var(--text-soft);
     }
 
-    .nav-links a:hover {
-      color: var(--text-main);
-    }
+    .nav-links a:hover { color: var(--text-main); }
 
     .nav-cta {
       display: flex;
@@ -127,88 +112,87 @@
       gap: 8px;
       background: transparent;
       color: var(--text-main);
+      box-sizing: border-box;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #4f46e5, #6366f1);
-      box-shadow: 0 15px 40px rgba(79,70,229,0.35);
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 8px 22px rgba(37,99,235,0.3);
     }
 
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-    }
+    .btn-primary:hover { filter: brightness(1.05); }
 
     .btn-outline {
       border-color: var(--border-soft);
-      background: rgba(15,23,42,0.7);
+      background: #ffffff;
+      color: var(--text-soft);
     }
 
     .btn-outline:hover {
       border-color: var(--primary);
-      background: rgba(15,23,42,0.95);
+      color: var(--primary);
     }
 
-    main {
-      padding-bottom: 64px;
-    }
+    main { padding-bottom: 48px; }
 
-    /* Hero */
+    /* HERO */
+
     .hero {
-      padding: 40px 0 32px;
+      padding: 32px 0 28px;
+      background: #f9fafb;
+      border-bottom: 1px solid var(--border-soft);
     }
 
     .hero-inner {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 36px;
+      gap: 32px;
       align-items: center;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      background: rgba(34,197,94,0.08);
-      border: 1px solid rgba(34,197,94,0.4);
-      color: #bbf7d0;
-      margin-bottom: 16px;
+      background: rgba(22,163,74,0.06);
+      border: 1px solid rgba(22,163,74,0.45);
+      color: #166534;
+      margin-bottom: 12px;
     }
 
     .badge-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34,197,94,0.8);
+      background: var(--accent);
     }
 
     .hero-title {
-      font-size: clamp(2.3rem, 3.2vw, 2.9rem);
+      font-size: clamp(2.1rem, 3vw, 2.7rem);
       line-height: 1.1;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
     }
 
-    .hero-title span {
-      color: #a5b4fc;
-    }
+    .hero-title span { color: var(--primary); }
 
     .hero-subtitle {
       color: var(--text-soft);
       font-size: 15px;
       max-width: 520px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .hero-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 20px;
+      margin: 0 0 18px;
       display: grid;
       gap: 6px;
       font-size: 14px;
@@ -225,20 +209,20 @@
       width: 16px;
       height: 16px;
       border-radius: 999px;
-      background: rgba(34,197,94,0.15);
-      border: 1px solid rgba(34,197,94,0.7);
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(22,163,74,0.7);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 11px;
-      color: #bbf7d0;
+      color: #166534;
     }
 
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .hero-note {
@@ -246,52 +230,31 @@
       color: var(--text-soft);
     }
 
-    .hero-note span {
-      color: #fde68a;
-    }
+    .hero-note span { font-weight: 600; }
 
     .hero-card {
-      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
-      border-radius: 20px;
-      border: 1px solid rgba(75,85,99,0.8);
-      padding: 18px 18px 16px;
-      box-shadow:
-        0 22px 60px rgba(15,23,42,0.9),
-        0 0 0 1px rgba(15,23,42,0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 10% 0, rgba(129,140,248,0.32) 0, transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(56,189,248,0.35) 0, transparent 55%);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .hero-card-inner {
-      position: relative;
-      z-index: 1;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      padding: 14px 14px 12px;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.08);
     }
 
     .hero-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      font-size: 12px;
     }
 
     .pill {
       font-size: 11px;
       padding: 4px 9px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(75,85,99,0.9);
-      color: var(--text-soft);
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      color: #3730a3;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -301,20 +264,16 @@
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: #22c55e;
+      background: var(--primary);
     }
 
-    /* NUEVO: frame con capturas reales */
-    .hero-screenshot-wrapper {
-      margin-top: 6px;
-    }
+    .hero-screenshot-wrapper { margin-top: 4px; }
 
     .hero-device-frame {
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,0.65);
-      background: radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(2,6,23,0.98));
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
       padding: 8px;
-      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
     }
 
     .hero-device-grid {
@@ -325,87 +284,84 @@
 
     .hero-shot {
       margin: 0;
-      background: rgba(15,23,42,0.98);
-      border-radius: 10px;
-      border: 1px solid rgba(30,64,175,0.75);
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      min-height: 0;
     }
 
     .hero-shot img {
       width: 100%;
-      height: 160px;
+      height: 150px;
       object-fit: cover;
-      background: #020617;
+      background: #e5e7eb;
     }
 
     .hero-shot figcaption {
-      padding: 6px 8px;
+      padding: 5px 7px;
       font-size: 11px;
       color: var(--text-soft);
     }
 
     .hero-mini {
-      margin-top: 10px;
+      margin-top: 8px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
+      font-size: 11px;
     }
 
     .mini-card {
-      border-radius: 10px;
-      padding: 8px 9px;
-      background: rgba(15,23,42,0.92);
-      border: 1px solid rgba(55,65,81,0.9);
-      font-size: 11px;
+      border-radius: 8px;
+      padding: 7px 8px;
+      background: #f3f4f6;
+      border: 1px solid var(--border-soft);
       color: var(--text-soft);
     }
 
     .mini-card strong {
       display: block;
       font-size: 11px;
-      color: var(--text-main);
       margin-bottom: 2px;
+      color: var(--text-main);
     }
 
-    /* Sections */
-    section {
-      padding: 40px 0;
-    }
+    /* SECCIONES GENERALES */
 
-    section:nth-of-type(odd) {
-      background: radial-gradient(circle at top, rgba(15,23,42,0.7) 0, rgba(2,6,23,0.7) 60%, rgba(15,23,42,0.9) 100%);
-    }
+    section { padding: 32px 0; }
+
+    section:nth-of-type(odd) { background: var(--bg-section); }
 
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .section-title {
-      font-size: 22px;
+      font-size: 20px;
       margin: 0 0 4px;
     }
 
     .section-kicker {
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-soft);
     }
 
     .section-description {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-soft);
       max-width: 520px;
     }
 
-    /* Cómo funciona */
+    /* CÓMO FUNCIONA */
+
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -414,32 +370,27 @@
     }
 
     .step {
-      border-radius: 14px;
-      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(17,24,39,0.98));
+      border-radius: 12px;
+      background: #ffffff;
       border: 1px solid var(--border-soft);
       padding: 12px 11px 11px;
-      position: relative;
-      overflow: hidden;
     }
 
     .step-number {
       width: 22px;
       height: 22px;
       border-radius: 999px;
-      background: rgba(79,70,229,0.18);
-      border: 1px solid rgba(129,140,248,0.9);
+      background: var(--primary-soft);
+      border: 1px solid rgba(37,99,235,0.4);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 12px;
-      color: #c7d2fe;
+      color: var(--primary);
       margin-bottom: 6px;
     }
 
-    .step-icon {
-      font-size: 22px;
-      margin-bottom: 4px;
-    }
+    .step-icon { font-size: 20px; margin-bottom: 4px; }
 
     .step h3 {
       margin: 0 0 4px;
@@ -455,8 +406,8 @@
     .step-preview {
       margin-top: 6px;
       border-radius: 8px;
-      border: 1px dashed rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.98);
+      border: 1px dashed var(--border-soft);
+      background: #f9fafb;
       overflow: hidden;
     }
 
@@ -466,7 +417,8 @@
       object-fit: cover;
     }
 
-    /* Ventajas */
+    /* VENTAJAS */
+
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -475,19 +427,18 @@
     }
 
     .feature {
-      border-radius: 14px;
-      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(17,24,39,0.98));
+      border-radius: 12px;
+      background: #ffffff;
       border: 1px solid var(--border-soft);
       padding: 12px;
-      position: relative;
     }
 
     .feature-icon {
       width: 22px;
       height: 22px;
       border-radius: 999px;
-      background: rgba(79,70,229,0.16);
-      border: 1px solid rgba(129,140,248,0.9);
+      background: var(--primary-soft);
+      border: 1px solid rgba(37,99,235,0.4);
       font-size: 12px;
       display: flex;
       align-items: center;
@@ -501,7 +452,7 @@
     }
 
     .feature p {
-      margin: 0 0 8px;
+      margin: 0 0 6px;
       color: var(--text-soft);
       font-size: 12px;
     }
@@ -517,12 +468,13 @@
       font-size: 10px;
       padding: 3px 7px;
       border-radius: 999px;
-      border: 1px solid rgba(55,65,81,0.9);
+      border: 1px solid var(--border-soft);
       color: var(--text-soft);
-      background: rgba(15,23,42,0.9);
+      background: #f9fafb;
     }
 
-    /* Precios */
+    /* PRECIOS */
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -531,23 +483,19 @@
     }
 
     .pricing-card {
-      border-radius: 16px;
-      background: radial-gradient(circle at top, rgba(79,70,229,0.32) 0, rgba(15,23,42,0.98) 55%);
-      border: 1px solid rgba(129,140,248,0.7);
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
       padding: 14px 14px 13px;
       display: flex;
       flex-direction: column;
       position: relative;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.04);
     }
 
-    .pricing-card.secondary {
-      background: linear-gradient(to bottom, rgba(15,23,42,0.97), rgba(17,24,39,0.98));
-      border-color: var(--border-soft);
-    }
+    .pricing-card.secondary { box-shadow: none; }
 
-    .pricing-header {
-      margin-bottom: 6px;
-    }
+    .pricing-header { margin-bottom: 6px; }
 
     .pricing-name {
       font-size: 13px;
@@ -557,7 +505,7 @@
 
     .pricing-range {
       font-size: 11px;
-      color: #a5b4fc;
+      color: var(--text-soft);
       text-transform: uppercase;
       letter-spacing: 0.14em;
     }
@@ -569,18 +517,12 @@
       margin-bottom: 4px;
     }
 
-    .pricing-price strong {
-      font-size: 24px;
-    }
-
-    .pricing-price span {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
+    .pricing-price strong { font-size: 24px; }
+    .pricing-price span { font-size: 12px; color: var(--text-soft); }
 
     .pricing-hint {
       font-size: 11px;
-      color: #bbf7d0;
+      color: #166534;
       margin-bottom: 6px;
     }
 
@@ -602,7 +544,7 @@
 
     .pricing-dot {
       font-size: 12px;
-      color: #a5b4fc;
+      color: var(--primary);
       line-height: 1.4;
     }
 
@@ -625,12 +567,13 @@
       font-size: 10px;
       padding: 3px 7px;
       border-radius: 999px;
-      background: rgba(34,197,94,0.18);
-      border: 1px solid rgba(34,197,94,0.7);
-      color: #bbf7d0;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      color: #166534;
     }
 
     /* FAQ */
+
     .faq-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -639,9 +582,9 @@
     }
 
     .faq-item {
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid var(--border-soft);
-      background: linear-gradient(to bottom, rgba(15,23,42,0.97), rgba(17,24,39,0.98));
+      background: #ffffff;
       padding: 11px 12px 10px;
     }
 
@@ -656,7 +599,8 @@
       color: var(--text-soft);
     }
 
-    /* Testimonios */
+    /* TESTIMONIOS */
+
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -665,10 +609,11 @@
     }
 
     .testimonial {
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid var(--border-soft);
-      background: linear-gradient(to bottom, rgba(15,23,42,0.97), rgba(17,24,39,0.98));
+      background: #ffffff;
       padding: 11px 12px 10px;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.03);
     }
 
     .testimonial-logo {
@@ -680,7 +625,6 @@
       height: 100%;
       width: auto;
       object-fit: contain;
-      filter: brightness(1.1);
     }
 
     .testimonial p {
@@ -691,7 +635,7 @@
 
     .testimonial-footer {
       font-size: 11px;
-      color: #e5e7eb;
+      color: var(--text-main);
     }
 
     .testimonial-footer span {
@@ -700,17 +644,19 @@
       color: var(--text-soft);
     }
 
-    /* CTA final */
+    /* CTA FINAL */
+
     .cta-final {
-      border-radius: 18px;
-      border: 1px solid rgba(79,70,229,0.7);
-      padding: 18px 16px 16px;
-      background: radial-gradient(circle at top, rgba(79,70,229,0.4) 0, rgba(15,23,42,0.98) 55%);
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      padding: 16px 16px 14px;
+      background: #ffffff;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 14px;
       align-items: center;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
     }
 
     .cta-final h2 {
@@ -724,13 +670,14 @@
       color: var(--text-soft);
     }
 
-    /* Footer */
+    /* FOOTER */
+
     footer {
-      border-top: 1px solid rgba(31,41,55,0.9);
-      padding: 16px 0 20px;
+      border-top: 1px solid var(--border-soft);
+      padding: 14px 0 16px;
       font-size: 11px;
       color: var(--text-soft);
-      background: #020617;
+      background: #f7fafc;
     }
 
     .footer-inner {
@@ -753,53 +700,28 @@
       text-underline-offset: 3px;
     }
 
-    /* Responsive */
+    /* RESPONSIVE */
+
     @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .hero {
-        padding-top: 28px;
-      }
-      .hero-card {
-        order: -1;
-      }
-      .hero-device-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .steps-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .features-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .pricing-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .testimonials-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .faq-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .hero-inner { grid-template-columns: minmax(0, 1fr); }
+      .hero-card { order: -1; }
+      .hero-device-grid { grid-template-columns: minmax(0, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .faq-grid { grid-template-columns: minmax(0, 1fr); }
     }
 
     @media (max-width: 720px) {
-      .nav-links {
-        display: none;
-      }
-      .hero-card {
-        margin-top: 6px;
-      }
+      .nav-links { display: none; }
       .steps-grid,
       .features-grid,
       .pricing-grid,
       .testimonials-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      .cta-final {
-        align-items: flex-start;
-      }
+      .cta-final { align-items: flex-start; }
     }
   </style>
 </head>
@@ -808,12 +730,11 @@
   <div class="container">
     <nav class="nav">
       <div class="logo">
-        <div class="logo-mark">S</div>
+        <!-- Pon aquí tu logo real -->
+        <img src="img/logo-sidgi.png" alt="SIDGI">
         <div>
-          <div>SIDGI</div>
-          <div style="font-size:11px; color:var(--text-soft); text-transform:none;">
-            Control horario simple para PYMES
-          </div>
+          <div class="logo-text-main">SIDGI</div>
+          <div class="logo-text-sub">Control horario simple para PYMES</div>
         </div>
       </div>
       <div class="nav-links">
@@ -852,7 +773,6 @@
           <li><span class="check">✓</span> Resumen mensual y por trabajador sin tocar hojas de cálculo.</li>
         </ul>
         <div class="hero-ctas">
-          <!-- Sustituye #demo por tu URL real de demo -->
           <a href="#demo" class="btn btn-primary">Probar demo limitada</a>
           <a href="#precios" class="btn btn-outline">Ver precios por número de trabajadores</a>
         </div>
@@ -862,44 +782,42 @@
       </div>
 
       <aside class="hero-card" aria-label="Vista real del sistema SIDGI">
-        <div class="hero-card-inner">
-          <div class="hero-card-header">
-            <span class="pill">
-              <span class="pill-dot"></span> Así fichan y así ves los datos
-            </span>
-            <span style="font-size:11px; color:var(--text-soft);">
-              Demo Empresa · 2 trabajadores
-            </span>
-          </div>
+        <div class="hero-card-header">
+          <span class="pill">
+            <span class="pill-dot"></span> Así fichan y así ves los datos
+          </span>
+          <span style="font-size:11px; color:var(--text-soft);">
+            Demo Empresa · 2 trabajadores
+          </span>
+        </div>
 
-          <div class="hero-screenshot-wrapper">
-            <div class="hero-device-frame">
-              <div class="hero-device-grid">
-                <figure class="hero-shot">
-                  <img src="img/fichaje-tablet.png" alt="Pantalla de fichaje en tablet con botones de entrada y salida">
-                  <figcaption>
-                    Tablet fija en el taller con botones de Entrada/Salida y firma digital.
-                  </figcaption>
-                </figure>
-                <figure class="hero-shot">
-                  <img src="img/hoja-fichajes.png" alt="Hoja de Google con resumen de fichajes y horas trabajadas">
-                  <figcaption>
-                    Hoja de Google con resumen de fichajes, horas, pausas y firmas por trabajador.
-                  </figcaption>
-                </figure>
-              </div>
+        <div class="hero-screenshot-wrapper">
+          <div class="hero-device-frame">
+            <div class="hero-device-grid">
+              <figure class="hero-shot">
+                <img src="img/fichaje-tablet.png" alt="Pantalla de fichaje en tablet con botones de entrada y salida">
+                <figcaption>
+                  Tablet fija en el taller con botones de Entrada/Salida y firma digital.
+                </figcaption>
+              </figure>
+              <figure class="hero-shot">
+                <img src="img/hoja-fichajes.png" alt="Hoja de Google con resumen de fichajes y horas trabajadas">
+                <figcaption>
+                  Hoja de Google con resumen de fichajes, horas, pausas y firmas por trabajador.
+                </figcaption>
+              </figure>
             </div>
           </div>
+        </div>
 
-          <div class="hero-mini">
-            <div class="mini-card">
-              <strong>Todo queda en tu Drive</strong>
-              Fichajes y firmas se guardan en tu cuenta de Google, no en un sistema cerrado.
-            </div>
-            <div class="mini-card">
-              <strong>Listo para Inspección</strong>
-              PDF mensual por trabajador y resumen de horas sin tocar fórmulas.
-            </div>
+        <div class="hero-mini">
+          <div class="mini-card">
+            <strong>Todo queda en tu Drive</strong>
+            Fichajes y firmas se guardan en tu cuenta de Google, no en un sistema cerrado.
+          </div>
+          <div class="mini-card">
+            <strong>Listo para Inspección</strong>
+            PDF mensual por trabajador y resumen de horas sin tocar fórmulas.
           </div>
         </div>
       </aside>
@@ -915,8 +833,7 @@
           <h2 class="section-title">De formulario a fichaje legal en 4 pasos.</h2>
         </div>
         <p class="section-description">
-          SIDGI no es otra app más. Es un sistema completo montado sobre Google Sheets y Drive, 
-          con un flujo claro: alta del cliente, generación de hoja y web de fichaje, fichajes diarios y reportes automáticos.
+          SIDGI se monta sobre Google Sheets y Drive con un flujo claro: alta del cliente, generación de hoja y web de fichaje, fichajes diarios y reportes automáticos.
         </p>
       </div>
 
@@ -972,7 +889,7 @@
           <h2 class="section-title">Todo el control horario, sin complicar a nadie.</h2>
         </div>
         <p class="section-description">
-          SIDGI está pensado para talleres, almacenes y PYMES que quieren cumplir la ley sin meter otro software más en su día a día.
+          Pensado para talleres, almacenes y PYMES que quieren cumplir la ley sin meter otro software más en su día a día.
         </p>
       </div>
 
@@ -1056,8 +973,7 @@
           <h2 class="section-title">Elige el plan según el número de trabajadores.</h2>
         </div>
         <p class="section-description">
-          Solo pagas por el tramo de trabajadores de tu empresa. Todos los planes incluyen la misma funcionalidad 
-          de fichaje digital, informes, y soporte básico.
+          Solo pagas por el tramo de trabajadores de tu empresa. Todos los planes incluyen la misma funcionalidad de fichaje digital, informes y soporte básico.
         </p>
       </div>
 
@@ -1075,22 +991,10 @@
             Ideal para pequeños talleres o comercios con plantilla reducida.
           </div>
           <ul class="pricing-list">
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Hasta 5 trabajadores con fichaje digital (email + tablet).</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Hoja de Google de control horario preconfigurada.</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>PDF mensual de fichajes listo para descargar.</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Soporte por email en horario laboral.</span>
-            </li>
+            <li><span class="pricing-dot">•</span><span>Hasta 5 trabajadores con fichaje digital (email + tablet).</span></li>
+            <li><span class="pricing-dot">•</span><span>Hoja de Google de control horario preconfigurada.</span></li>
+            <li><span class="pricing-dot">•</span><span>PDF mensual de fichajes listo para descargar.</span></li>
+            <li><span class="pricing-dot">•</span><span>Soporte por email en horario laboral.</span></li>
           </ul>
           <div class="pricing-footer">
             <a href="#contacto" class="btn btn-outline" style="width:100%; justify-content:center;">
@@ -1103,7 +1007,7 @@
         </article>
 
         <!-- Plan 6–10 -->
-        <article class="pricing-card" style="transform:translateY(-4px); box-shadow:0 16px 40px rgba(79,70,229,0.4);">
+        <article class="pricing-card" style="box-shadow:0 10px 28px rgba(37,99,235,0.25); border-color:rgba(37,99,235,0.7);">
           <div class="pricing-badge">Más contratado</div>
           <div class="pricing-header">
             <div class="pricing-name">Plan Estándar</div>
@@ -1116,22 +1020,10 @@
             Pensado para PYMES industriales con un taller o almacén principal.
           </div>
           <ul class="pricing-list">
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Hasta 10 trabajadores con fichaje digital y firma opcional.</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Resumen mensual por trabajador y totales por centro.</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Histórico de 4 años almacenado en tu Google Drive.</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Ajuste de pausas y horario según normativa de la empresa.</span>
-            </li>
+            <li><span class="pricing-dot">•</span><span>Hasta 10 trabajadores con fichaje digital y firma opcional.</span></li>
+            <li><span class="pricing-dot">•</span><span>Resumen mensual por trabajador y totales por centro.</span></li>
+            <li><span class="pricing-dot">•</span><span>Histórico de 4 años almacenado en tu Google Drive.</span></li>
+            <li><span class="pricing-dot">•</span><span>Ajuste de pausas y horario según normativa de la empresa.</span></li>
           </ul>
           <div class="pricing-footer">
             <a href="#contacto" class="btn btn-primary" style="width:100%; justify-content:center;">
@@ -1156,22 +1048,10 @@
             Para empresas con varios equipos o más carga de fichajes diarios.
           </div>
           <ul class="pricing-list">
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Hasta 50 trabajadores usando el mismo sistema de fichaje.</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Informes mensuales avanzados (por trabajador y centro).</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Apoyo en la preparación de informes para Inspección.</span>
-            </li>
-            <li>
-              <span class="pricing-dot">•</span>
-              <span>Posibilidad de reglas específicas por categoría o turno.</span>
-            </li>
+            <li><span class="pricing-dot">•</span><span>Hasta 50 trabajadores usando el mismo sistema de fichaje.</span></li>
+            <li><span class="pricing-dot">•</span><span>Informes mensuales avanzados (por trabajador y centro).</span></li>
+            <li><span class="pricing-dot">•</span><span>Apoyo en la preparación de informes para Inspección.</span></li>
+            <li><span class="pricing-dot">•</span><span>Posibilidad de reglas específicas por categoría o turno.</span></li>
           </ul>
           <div class="pricing-footer">
             <a href="#contacto" class="btn btn-outline" style="width:100%; justify-content:center;">
@@ -1204,8 +1084,7 @@
           <h3>¿La firma digital es válida?</h3>
           <p>
             La firma se realiza en la tablet sobre cada fichaje y se guarda como imagen asociada al registro. 
-            Para Inspección, lo importante es que exista trazabilidad y un registro fiable y no manipulable. 
-            SIDGI facilita ese histórico con firmas ligadas a cada día.
+            Para Inspección lo importante es la trazabilidad y un registro fiable. SIDGI facilita ese histórico con firmas ligadas a cada día.
           </p>
         </div>
         <div class="faq-item">
@@ -1328,11 +1207,8 @@
 
 <footer>
   <div class="container footer-inner">
-    <div>
-      © <span id="year"></span> SIDGI · Control horario para PYMES.
-    </div>
+    <div>© <span id="year"></span> SIDGI · Control horario para PYMES.</div>
     <div class="footer-links">
-      <!-- Sustituye #privacidad por la URL real de tu política cuando la tengas -->
       <a href="#privacidad">Política de privacidad</a>
       <a href="#cookies">Política de cookies</a>
       <a href="mailto:sidgilanding@gmail.com">Contacto</a>
@@ -1341,7 +1217,6 @@
 </footer>
 
 <script>
-  // Año dinámico en el footer
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
