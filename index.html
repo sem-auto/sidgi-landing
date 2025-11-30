@@ -32,7 +32,8 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg-page);
       color: var(--text-main);
-      line-height: 1.5;
+      line-height: 1.6;
+      font-size: 16px; /* MÁS GRANDE */
     }
 
     a { color: inherit; text-decoration: none; }
@@ -42,7 +43,7 @@
       width: 100%;
       max-width: 1120px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 18px;
     }
 
     header {
@@ -58,7 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 0;
+      padding: 12px 0;
     }
 
     .logo {
@@ -68,7 +69,7 @@
     }
 
     .logo img {
-      height: 32px;
+      height: 34px;
       width: auto;
     }
 
@@ -76,18 +77,18 @@
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-size: 13px;
+      font-size: 14px;
     }
 
     .logo-text-sub {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-soft);
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
-      font-size: 14px;
+      gap: 24px;
+      font-size: 15px;
       color: var(--text-soft);
     }
 
@@ -101,8 +102,8 @@
 
     .btn {
       border-radius: 999px;
-      padding: 8px 18px;
-      font-size: 14px;
+      padding: 10px 20px;
+      font-size: 15px;
       font-weight: 500;
       border: 1px solid transparent;
       cursor: pointer;
@@ -119,7 +120,7 @@
       background: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
-      box-shadow: 0 8px 22px rgba(37,99,235,0.3);
+      box-shadow: 0 10px 26px rgba(37,99,235,0.3);
     }
 
     .btn-primary:hover { filter: brightness(1.05); }
@@ -135,20 +136,20 @@
       color: var(--primary);
     }
 
-    main { padding-bottom: 48px; }
+    main { padding-bottom: 64px; }
 
     /* HERO */
 
     .hero {
-      padding: 32px 0 28px;
+      padding: 56px 0 40px; /* MÁS ALTO */
       background: #f9fafb;
       border-bottom: 1px solid var(--border-soft);
     }
 
     .hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 40px;
       align-items: center;
     }
 
@@ -156,46 +157,46 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 999px;
-      font-size: 11px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       background: rgba(22,163,74,0.06);
       border: 1px solid rgba(22,163,74,0.45);
       color: #166534;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .badge-dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
       background: var(--accent);
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 3vw, 2.7rem);
-      line-height: 1.1;
-      margin: 0 0 10px;
+      font-size: clamp(2.4rem, 3.4vw, 3.1rem); /* MÁS GRANDE */
+      line-height: 1.12;
+      margin: 0 0 14px;
     }
 
     .hero-title span { color: var(--primary); }
 
     .hero-subtitle {
       color: var(--text-soft);
-      font-size: 15px;
-      max-width: 520px;
-      margin-bottom: 16px;
+      font-size: 16px;
+      max-width: 560px;
+      margin-bottom: 20px;
     }
 
     .hero-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 18px;
+      margin: 0 0 22px;
       display: grid;
-      gap: 6px;
-      font-size: 14px;
+      gap: 8px;
+      font-size: 15px;
       color: var(--text-soft);
     }
 
@@ -206,27 +207,27 @@
     }
 
     .hero-list .check {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 999px;
       background: rgba(22,163,74,0.08);
       border: 1px solid rgba(22,163,74,0.7);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 12px;
       color: #166534;
     }
 
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     .hero-note {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-soft);
     }
 
@@ -234,23 +235,23 @@
 
     .hero-card {
       background: var(--card);
-      border-radius: 16px;
+      border-radius: 20px;
       border: 1px solid var(--border-soft);
-      padding: 14px 14px 12px;
-      box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+      padding: 18px 18px 16px;
+      box-shadow: 0 14px 32px rgba(15,23,42,0.08);
     }
 
     .hero-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
-      font-size: 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
     }
 
     .pill {
-      font-size: 11px;
-      padding: 4px 9px;
+      font-size: 12px;
+      padding: 4px 10px;
       border-radius: 999px;
       background: #eef2ff;
       border: 1px solid #c7d2fe;
@@ -270,22 +271,22 @@
     .hero-screenshot-wrapper { margin-top: 4px; }
 
     .hero-device-frame {
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--border-soft);
       background: #ffffff;
-      padding: 8px;
+      padding: 10px;
     }
 
     .hero-device-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px;
+      gap: 8px;
     }
 
     .hero-shot {
       margin: 0;
       background: #f9fafb;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid var(--border-soft);
       overflow: hidden;
       display: flex;
@@ -294,28 +295,28 @@
 
     .hero-shot img {
       width: 100%;
-      height: 150px;
+      height: 160px;
       object-fit: cover;
       background: #e5e7eb;
     }
 
     .hero-shot figcaption {
-      padding: 5px 7px;
-      font-size: 11px;
+      padding: 6px 8px;
+      font-size: 12px;
       color: var(--text-soft);
     }
 
     .hero-mini {
-      margin-top: 8px;
+      margin-top: 10px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      font-size: 11px;
+      gap: 10px;
+      font-size: 13px;
     }
 
     .mini-card {
-      border-radius: 8px;
-      padding: 7px 8px;
+      border-radius: 10px;
+      padding: 8px 9px;
       background: #f3f4f6;
       border: 1px solid var(--border-soft);
       color: var(--text-soft);
@@ -323,14 +324,54 @@
 
     .mini-card strong {
       display: block;
-      font-size: 11px;
-      margin-bottom: 2px;
+      font-size: 13px;
+      margin-bottom: 3px;
       color: var(--text-main);
+    }
+
+    /* BLOQUE RESUMEN SIMPLE */
+
+    .quick-summary {
+      margin-top: 26px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+    }
+
+    .quick-summary-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .quick-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      font-size: 14px;
+      color: #0f172a;
+    }
+
+    .quick-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .quick-icon {
+      font-size: 18px;
+      margin-top: 2px;
+    }
+
+    .quick-item strong {
+      display: block;
+      margin-bottom: 2px;
     }
 
     /* SECCIONES GENERALES */
 
-    section { padding: 32px 0; }
+    section { padding: 56px 0; } /* MÁS LARGO */
 
     section:nth-of-type(odd) { background: var(--bg-section); }
 
@@ -338,26 +379,26 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 20px;
+      gap: 20px;
+      margin-bottom: 26px;
     }
 
     .section-title {
-      font-size: 20px;
+      font-size: 22px;
       margin: 0 0 4px;
     }
 
     .section-kicker {
-      font-size: 11px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-soft);
     }
 
     .section-description {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--text-soft);
-      max-width: 520px;
+      max-width: 540px;
     }
 
     /* CÓMO FUNCIONA */
@@ -365,47 +406,47 @@
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      font-size: 13px;
+      gap: 18px;
+      font-size: 14px;
     }
 
     .step {
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ffffff;
       border: 1px solid var(--border-soft);
-      padding: 12px 11px 11px;
+      padding: 14px 13px 13px;
     }
 
     .step-number {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 999px;
       background: var(--primary-soft);
       border: 1px solid rgba(37,99,235,0.4);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--primary);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .step-icon { font-size: 20px; margin-bottom: 4px; }
+    .step-icon { font-size: 22px; margin-bottom: 5px; }
 
     .step h3 {
-      margin: 0 0 4px;
-      font-size: 13px;
+      margin: 0 0 6px;
+      font-size: 15px;
     }
 
     .step p {
       margin: 0;
       color: var(--text-soft);
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .step-preview {
-      margin-top: 6px;
-      border-radius: 8px;
+      margin-top: 8px;
+      border-radius: 10px;
       border: 1px dashed var(--border-soft);
       background: #f9fafb;
       overflow: hidden;
@@ -413,7 +454,7 @@
 
     .step-preview img {
       width: 100%;
-      height: 90px;
+      height: 100px;
       object-fit: cover;
     }
 
@@ -422,51 +463,51 @@
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      font-size: 13px;
+      gap: 18px;
+      font-size: 14px;
     }
 
     .feature {
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ffffff;
       border: 1px solid var(--border-soft);
-      padding: 12px;
+      padding: 14px 13px 12px;
     }
 
     .feature-icon {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 999px;
       background: var(--primary-soft);
       border: 1px solid rgba(37,99,235,0.4);
-      font-size: 12px;
+      font-size: 13px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .feature h3 {
-      margin: 0 0 4px;
-      font-size: 13px;
+      margin: 0 0 6px;
+      font-size: 15px;
     }
 
     .feature p {
-      margin: 0 0 6px;
+      margin: 0 0 8px;
       color: var(--text-soft);
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .feature-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 6px;
       margin-top: 4px;
     }
 
     .feature-tag {
-      font-size: 10px;
-      padding: 3px 7px;
+      font-size: 11px;
+      padding: 4px 8px;
       border-radius: 999px;
       border: 1px solid var(--border-soft);
       color: var(--text-soft);
@@ -478,15 +519,15 @@
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+      gap: 18px;
       align-items: stretch;
     }
 
     .pricing-card {
-      border-radius: 14px;
+      border-radius: 16px;
       background: #ffffff;
       border: 1px solid var(--border-soft);
-      padding: 14px 14px 13px;
+      padding: 16px 16px 14px;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -495,16 +536,16 @@
 
     .pricing-card.secondary { box-shadow: none; }
 
-    .pricing-header { margin-bottom: 6px; }
+    .pricing-header { margin-bottom: 8px; }
 
     .pricing-name {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
-      margin: 0 0 2px;
+      margin: 0 0 3px;
     }
 
     .pricing-range {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-soft);
       text-transform: uppercase;
       letter-spacing: 0.14em;
@@ -514,36 +555,36 @@
       display: flex;
       align-items: baseline;
       gap: 4px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    .pricing-price strong { font-size: 24px; }
-    .pricing-price span { font-size: 12px; color: var(--text-soft); }
+    .pricing-price strong { font-size: 26px; }
+    .pricing-price span { font-size: 14px; color: var(--text-soft); }
 
     .pricing-hint {
-      font-size: 11px;
+      font-size: 13px;
       color: #166534;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .pricing-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 10px;
-      font-size: 12px;
+      margin: 0 0 12px;
+      font-size: 14px;
       color: var(--text-soft);
       display: grid;
-      gap: 4px;
+      gap: 5px;
     }
 
     .pricing-list li {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       align-items: flex-start;
     }
 
     .pricing-dot {
-      font-size: 12px;
+      font-size: 14px;
       color: var(--primary);
       line-height: 1.4;
     }
@@ -552,20 +593,20 @@
       margin-top: auto;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
     }
 
     .pricing-note {
-      font-size: 10px;
+      font-size: 11px;
       color: var(--text-soft);
     }
 
     .pricing-badge {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 10px;
-      padding: 3px 7px;
+      top: 12px;
+      right: 12px;
+      font-size: 11px;
+      padding: 4px 8px;
       border-radius: 999px;
       background: #dcfce7;
       border: 1px solid #86efac;
@@ -577,25 +618,25 @@
     .faq-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      font-size: 13px;
+      gap: 18px;
+      font-size: 14px;
     }
 
     .faq-item {
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--border-soft);
       background: #ffffff;
-      padding: 11px 12px 10px;
+      padding: 13px 14px 12px;
     }
 
     .faq-item h3 {
-      margin: 0 0 4px;
-      font-size: 13px;
+      margin: 0 0 6px;
+      font-size: 15px;
     }
 
     .faq-item p {
       margin: 0;
-      font-size: 12px;
+      font-size: 14px;
       color: var(--text-soft);
     }
 
@@ -604,21 +645,21 @@
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      font-size: 13px;
+      gap: 18px;
+      font-size: 14px;
     }
 
     .testimonial {
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--border-soft);
       background: #ffffff;
-      padding: 11px 12px 10px;
+      padding: 13px 14px 12px;
       box-shadow: 0 4px 12px rgba(15,23,42,0.03);
     }
 
     .testimonial-logo {
-      margin-bottom: 6px;
-      height: 26px;
+      margin-bottom: 8px;
+      height: 28px;
     }
 
     .testimonial-logo img {
@@ -629,44 +670,44 @@
 
     .testimonial p {
       margin: 0 0 8px;
-      font-size: 12px;
+      font-size: 14px;
       color: var(--text-soft);
     }
 
     .testimonial-footer {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-main);
     }
 
     .testimonial-footer span {
       display: block;
-      font-size: 10px;
+      font-size: 11px;
       color: var(--text-soft);
     }
 
     /* CTA FINAL */
 
     .cta-final {
-      border-radius: 14px;
+      border-radius: 16px;
       border: 1px solid var(--border-soft);
-      padding: 16px 16px 14px;
+      padding: 18px 18px 16px;
       background: #ffffff;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 14px;
+      gap: 16px;
       align-items: center;
       box-shadow: 0 6px 18px rgba(15,23,42,0.06);
     }
 
     .cta-final h2 {
-      margin: 0 0 4px;
-      font-size: 18px;
+      margin: 0 0 6px;
+      font-size: 20px;
     }
 
     .cta-final p {
       margin: 0;
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-soft);
     }
 
@@ -674,8 +715,8 @@
 
     footer {
       border-top: 1px solid var(--border-soft);
-      padding: 14px 0 16px;
-      font-size: 11px;
+      padding: 16px 0 18px;
+      font-size: 12px;
       color: var(--text-soft);
       background: #f7fafc;
     }
@@ -690,7 +731,7 @@
 
     .footer-links {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
@@ -711,6 +752,7 @@
       .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .faq-grid { grid-template-columns: minmax(0, 1fr); }
+      .quick-summary-grid { grid-template-columns: minmax(0, 1fr); }
     }
 
     @media (max-width: 720px) {
@@ -721,6 +763,7 @@
       .testimonials-grid {
         grid-template-columns: minmax(0, 1fr);
       }
+      .hero { padding-top: 40px; }
       .cta-final { align-items: flex-start; }
     }
   </style>
@@ -730,7 +773,7 @@
   <div class="container">
     <nav class="nav">
       <div class="logo">
-        <!-- Pon aquí tu logo real -->
+        <!-- Tu logo real -->
         <img src="img/logo-sidgi.png" alt="SIDGI">
         <div>
           <div class="logo-text-main">SIDGI</div>
@@ -779,6 +822,34 @@
         <div class="hero-note">
           Sin instalaciones raras, solo <span>Google Sheets + Drive</span>. Acceso desde cualquier ordenador o móvil.
         </div>
+
+        <!-- Resumen ultra simple -->
+        <div class="quick-summary">
+          <div class="quick-summary-title">SIDGI en 15 segundos:</div>
+          <div class="quick-summary-grid">
+            <div class="quick-item">
+              <div class="quick-icon">👷‍♂️</div>
+              <div>
+                <strong>Tus trabajadores pulsan un botón</strong>
+                Fichan entrada y salida desde una tablet fija o desde un enlace que les llega por email.
+              </div>
+            </div>
+            <div class="quick-item">
+              <div class="quick-icon">📄</div>
+              <div>
+                <strong>Todo se guarda en tu Google</strong>
+                Cada fichaje se registra en una hoja de cálculo en tu cuenta de Google, con hora y firma.
+              </div>
+            </div>
+            <div class="quick-item">
+              <div class="quick-icon">📑</div>
+              <div>
+                <strong>Tienes un PDF legal cada mes</strong>
+                El sistema calcula horas y genera informes listos para enseñarlos a Inspección de Trabajo.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <aside class="hero-card" aria-label="Vista real del sistema SIDGI">
@@ -786,7 +857,7 @@
           <span class="pill">
             <span class="pill-dot"></span> Así fichan y así ves los datos
           </span>
-          <span style="font-size:11px; color:var(--text-soft);">
+          <span style="font-size:13px; color:var(--text-soft);">
             Demo Empresa · 2 trabajadores
           </span>
         </div>
@@ -1007,7 +1078,7 @@
         </article>
 
         <!-- Plan 6–10 -->
-        <article class="pricing-card" style="box-shadow:0 10px 28px rgba(37,99,235,0.25); border-color:rgba(37,99,235,0.7);">
+        <article class="pricing-card" style="box-shadow:0 12px 30px rgba(37,99,235,0.25); border-color:rgba(37,99,235,0.7);">
           <div class="pricing-badge">Más contratado</div>
           <div class="pricing-header">
             <div class="pricing-name">Plan Estándar</div>
@@ -1191,12 +1262,12 @@
             con los pasos exactos para activar SIDGI en tu caso.
           </p>
         </div>
-        <div style="display:flex; flex-direction:column; gap:6px; min-width:220px;">
+        <div style="display:flex; flex-direction:column; gap:8px; min-width:240px;">
           <a href="mailto:sidgilanding@gmail.com?subject=Quiero%20implantar%20SIDGI%20en%20mi%20empresa"
              class="btn btn-primary" style="justify-content:center;">
             Escribir ahora a sidgilanding@gmail.com
           </a>
-          <div style="font-size:11px; color:var(--text-soft);">
+          <div style="font-size:12px; color:var(--text-soft);">
             Indica también el sector de tu empresa (taller, almacén, comercio, oficina, etc.).
           </div>
         </div>
