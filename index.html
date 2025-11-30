@@ -33,7 +33,7 @@
       background: var(--bg-page);
       color: var(--text-main);
       line-height: 1.6;
-      font-size: 16px; /* MÁS GRANDE */
+      font-size: 16px;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -136,12 +136,12 @@
       color: var(--primary);
     }
 
-    main { padding-bottom: 64px; }
+    main { padding-bottom: 96px; }
 
     /* HERO */
 
     .hero {
-      padding: 56px 0 40px; /* MÁS ALTO */
+      padding: 56px 0 40px;
       background: #f9fafb;
       border-bottom: 1px solid var(--border-soft);
     }
@@ -176,7 +176,7 @@
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 3.4vw, 3.1rem); /* MÁS GRANDE */
+      font-size: clamp(2.4rem, 3.4vw, 3.1rem);
       line-height: 1.12;
       margin: 0 0 14px;
     }
@@ -371,7 +371,7 @@
 
     /* SECCIONES GENERALES */
 
-    section { padding: 56px 0; } /* MÁS LARGO */
+    section { padding: 56px 0; }
 
     section:nth-of-type(odd) { background: var(--bg-section); }
 
@@ -741,11 +741,33 @@
       text-underline-offset: 3px;
     }
 
+    /* STICKY CTA */
+
+    .sticky-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(249,250,251,0.96);
+      border-top: 1px solid var(--border-soft);
+      padding: 8px 0 10px;
+      z-index: 30;
+    }
+
+    .sticky-cta-inner {
+      display: flex;
+      justify-content: center;
+    }
+
+    .sticky-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
     /* RESPONSIVE */
 
     @media (max-width: 960px) {
       .hero-inner { grid-template-columns: minmax(0, 1fr); }
-      .hero-card { order: -1; }
       .hero-device-grid { grid-template-columns: minmax(0, 1fr); }
       .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -773,7 +795,6 @@
   <div class="container">
     <nav class="nav">
       <div class="logo">
-        <!-- Tu logo real -->
         <img src="img/logo-sidgi.png" alt="SIDGI">
         <div>
           <div class="logo-text-main">SIDGI</div>
@@ -804,7 +825,7 @@
           Fichaje legal sin apps ni tarjetas
         </div>
         <h1 class="hero-title">
-          Control horario legal, <span>montado en 24h</span> y sin cambiar nada en tu empresa.
+          Control horario legal <span>en 24h</span>, sin apps ni tarjetas.
         </h1>
         <p class="hero-subtitle">
           SIDGI guarda todos los fichajes con firma digital en Google Sheets y genera PDFs listos para Inspección de Trabajo. 
@@ -816,14 +837,13 @@
           <li><span class="check">✓</span> Resumen mensual y por trabajador sin tocar hojas de cálculo.</li>
         </ul>
         <div class="hero-ctas">
-          <a href="#demo" class="btn btn-primary">Probar demo limitada</a>
-          <a href="#precios" class="btn btn-outline">Ver precios por número de trabajadores</a>
+          <a href="#contacto" class="btn btn-primary">Solicitar instalación</a>
+          <a href="#demo" class="btn btn-outline">Probar demo limitada</a>
         </div>
         <div class="hero-note">
           Sin instalaciones raras, solo <span>Google Sheets + Drive</span>. Acceso desde cualquier ordenador o móvil.
         </div>
 
-        <!-- Resumen ultra simple -->
         <div class="quick-summary">
           <div class="quick-summary-title">SIDGI en 15 segundos:</div>
           <div class="quick-summary-grid">
@@ -862,7 +882,7 @@
           </span>
         </div>
 
-        <div class="hero-screenshot-wrapper">
+        <div class="hero-screenshot-wrapper" id="demo">
           <div class="hero-device-frame">
             <div class="hero-device-grid">
               <figure class="hero-shot">
@@ -1049,7 +1069,6 @@
       </div>
 
       <div class="pricing-grid">
-        <!-- Plan 1–5 -->
         <article class="pricing-card secondary">
           <div class="pricing-header">
             <div class="pricing-name">Plan Básico</div>
@@ -1077,7 +1096,6 @@
           </div>
         </article>
 
-        <!-- Plan 6–10 -->
         <article class="pricing-card" style="box-shadow:0 12px 30px rgba(37,99,235,0.25); border-color:rgba(37,99,235,0.7);">
           <div class="pricing-badge">Más contratado</div>
           <div class="pricing-header">
@@ -1106,7 +1124,6 @@
           </div>
         </article>
 
-        <!-- Plan 11–50 -->
         <article class="pricing-card secondary">
           <div class="pricing-header">
             <div class="pricing-name">Plan Avanzado</div>
@@ -1275,6 +1292,12 @@
     </div>
   </section>
 </main>
+
+<div class="sticky-cta">
+  <div class="container sticky-cta-inner">
+    <a href="#contacto" class="btn btn-primary sticky-btn">Solicitar instalación</a>
+  </div>
+</div>
 
 <footer>
   <div class="container footer-inner">
