@@ -304,58 +304,45 @@
       background: #22c55e;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 12px;
-      font-size: 12px;
-    }
-
-    .card-box {
-      background: rgba(15,23,42,0.92);
-      border-radius: 12px;
-      padding: 10px 10px 9px;
-      border: 1px solid rgba(55,65,81,0.9);
-    }
-
-    .card-box h3 {
-      margin: 0 0 4px;
-      font-size: 12px;
-    }
-
-    .card-box p {
-      margin: 0;
-      color: var(--text-soft);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .tag {
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(75,85,99,0.8);
-      background: rgba(15,23,42,0.9);
-      color: var(--text-soft);
-    }
-
-    .hero-metric {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
+    /* NUEVO: frame con capturas reales */
+    .hero-screenshot-wrapper {
       margin-top: 6px;
     }
 
-    .hero-metric strong {
-      font-size: 18px;
+    .hero-device-frame {
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.65);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.9), rgba(2,6,23,0.98));
+      padding: 8px;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
     }
 
-    .hero-metric span {
+    .hero-device-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .hero-shot {
+      margin: 0;
+      background: rgba(15,23,42,0.98);
+      border-radius: 10px;
+      border: 1px solid rgba(30,64,175,0.75);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .hero-shot img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: #020617;
+    }
+
+    .hero-shot figcaption {
+      padding: 6px 8px;
       font-size: 11px;
       color: var(--text-soft);
     }
@@ -385,7 +372,7 @@
 
     /* Sections */
     section {
-      padding: 32px 0;
+      padding: 40px 0;
     }
 
     section:nth-of-type(odd) {
@@ -397,11 +384,11 @@
       justify-content: space-between;
       align-items: flex-end;
       gap: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .section-title {
-      font-size: 20px;
+      font-size: 22px;
       margin: 0 0 4px;
     }
 
@@ -413,7 +400,7 @@
     }
 
     .section-description {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-soft);
       max-width: 520px;
     }
@@ -449,6 +436,11 @@
       margin-bottom: 6px;
     }
 
+    .step-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
     .step h3 {
       margin: 0 0 4px;
       font-size: 13px;
@@ -458,6 +450,20 @@
       margin: 0;
       color: var(--text-soft);
       font-size: 12px;
+    }
+
+    .step-preview {
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px dashed rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.98);
+      overflow: hidden;
+    }
+
+    .step-preview img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
     }
 
     /* Ventajas */
@@ -665,6 +671,18 @@
       padding: 11px 12px 10px;
     }
 
+    .testimonial-logo {
+      margin-bottom: 6px;
+      height: 26px;
+    }
+
+    .testimonial-logo img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(1.1);
+    }
+
     .testimonial p {
       margin: 0 0 8px;
       font-size: 12px;
@@ -745,6 +763,9 @@
       }
       .hero-card {
         order: -1;
+      }
+      .hero-device-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
       .steps-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -840,53 +861,44 @@
         </div>
       </div>
 
-      <aside class="hero-card" aria-label="Vista previa del sistema SIDGI">
+      <aside class="hero-card" aria-label="Vista real del sistema SIDGI">
         <div class="hero-card-inner">
           <div class="hero-card-header">
             <span class="pill">
-              <span class="pill-dot"></span> Resumen diario automático
+              <span class="pill-dot"></span> Así fichan y así ves los datos
             </span>
             <span style="font-size:11px; color:var(--text-soft);">
-              Hoy · Taller Puertas
+              Demo Empresa · 2 trabajadores
             </span>
           </div>
-          <div class="hero-grid">
-            <div class="card-box">
-              <h3>Estado del día</h3>
-              <p>
-                7 trabajadores han fichado entrada.<br>
-                6 han fichado salida correctamente.<br>
-                1 fichaje pendiente de salida.
-              </p>
-              <div class="tag-row">
-                <div class="tag">PDF diario generado</div>
-                <div class="tag">Firma digital en tablet</div>
-              </div>
-              <div class="hero-metric">
-                <strong>112 h</strong><span>registradas hoy</span>
-              </div>
-            </div>
-            <div class="card-box">
-              <h3>Control legal</h3>
-              <p>
-                • Histórico 4 años en Drive<br>
-                • Exportable a PDF por mes y trabajador<br>
-                • Preparado para Inspección
-              </p>
-              <div class="tag-row">
-                <div class="tag">RD-ley 8/2019</div>
-                <div class="tag">Sin cuotas por ficha</div>
+
+          <div class="hero-screenshot-wrapper">
+            <div class="hero-device-frame">
+              <div class="hero-device-grid">
+                <figure class="hero-shot">
+                  <img src="img/fichaje-tablet.png" alt="Pantalla de fichaje en tablet con botones de entrada y salida">
+                  <figcaption>
+                    Tablet fija en el taller con botones de Entrada/Salida y firma digital.
+                  </figcaption>
+                </figure>
+                <figure class="hero-shot">
+                  <img src="img/hoja-fichajes.png" alt="Hoja de Google con resumen de fichajes y horas trabajadas">
+                  <figcaption>
+                    Hoja de Google con resumen de fichajes, horas, pausas y firmas por trabajador.
+                  </figcaption>
+                </figure>
               </div>
             </div>
           </div>
+
           <div class="hero-mini">
             <div class="mini-card">
-              <strong>Entrada por enlace</strong>
-              Los trabajadores fichan desde el email diario o un botón en la tablet del taller.
+              <strong>Todo queda en tu Drive</strong>
+              Fichajes y firmas se guardan en tu cuenta de Google, no en un sistema cerrado.
             </div>
             <div class="mini-card">
-              <strong>Resumen por trabajador</strong>
-              SIDGI calcula horas, pausas y totales sin tocar fórmulas en la hoja.
+              <strong>Listo para Inspección</strong>
+              PDF mensual por trabajador y resumen de horas sin tocar fórmulas.
             </div>
           </div>
         </div>
@@ -911,6 +923,7 @@
       <div class="steps-grid">
         <div class="step">
           <div class="step-number">1</div>
+          <div class="step-icon">📄</div>
           <h3>Rellenas un formulario</h3>
           <p>
             Indicas nombre de la empresa, CIF y lista de trabajadores. SIDGI genera tu hoja de fichajes y la carpeta en Drive con todo preparado.
@@ -918,6 +931,7 @@
         </div>
         <div class="step">
           <div class="step-number">2</div>
+          <div class="step-icon">☁️</div>
           <h3>Recibes hoja + web de fichaje</h3>
           <p>
             Te llega una hoja de Google con el control horario y una página tipo “kiosco” para la tablet del taller, lista para usar.
@@ -925,17 +939,25 @@
         </div>
         <div class="step">
           <div class="step-number">3</div>
+          <div class="step-icon">🖐️</div>
           <h3>Los trabajadores fichan</h3>
           <p>
             Pueden fichar desde el email diario (botones de entrada/salida) o pulsando en la tablet. Opcionalmente firman en pantalla.
           </p>
+          <div class="step-preview">
+            <img src="img/fichaje-tablet.png" alt="Vista del fichaje en tablet con firma">
+          </div>
         </div>
         <div class="step">
           <div class="step-number">4</div>
+          <div class="step-icon">📊</div>
           <h3>Informes listos para Inspección</h3>
           <p>
             SIDGI calcula horas, descuenta pausas según tus reglas y genera PDFs mensuales por centro y trabajador.
           </p>
+          <div class="step-preview">
+            <img src="img/hoja-fichajes.png" alt="Vista de resumen de fichajes en hoja de Google">
+          </div>
         </div>
       </div>
     </div>
@@ -1081,7 +1103,7 @@
         </article>
 
         <!-- Plan 6–10 -->
-        <article class="pricing-card">
+        <article class="pricing-card" style="transform:translateY(-4px); box-shadow:0 16px 40px rgba(79,70,229,0.4);">
           <div class="pricing-badge">Más contratado</div>
           <div class="pricing-header">
             <div class="pricing-name">Plan Estándar</div>
@@ -1240,6 +1262,9 @@
 
       <div class="testimonials-grid">
         <article class="testimonial">
+          <div class="testimonial-logo">
+            <img src="img/logo-lloris-pons.png" alt="Puertas Lloris S.L.">
+          </div>
           <p>
             “Antes teníamos un Excel manual con fichas en papel. Ahora todos fichan en la tablet al entrar al taller 
             y yo tengo el PDF mensual listo en dos clics.”
@@ -1250,13 +1275,16 @@
           </div>
         </article>
         <article class="testimonial">
+          <div class="testimonial-logo">
+            <img src="img/logo-alumida.png" alt="Alumida S.L.">
+          </div>
           <p>
             “Nos preocupaba la Inspección porque no teníamos un sistema claro. 
             Con SIDGI sabemos que cada fichaje queda guardado y podemos enseñar el histórico cuando haga falta.”
           </p>
           <div class="testimonial-footer">
             Alumida S.L.
-            <span>Aluminio y cerramientos</span>
+            <span>Carpintería metálica y cerramientos</span>
           </div>
         </article>
         <article class="testimonial">
