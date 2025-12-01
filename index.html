@@ -3,1315 +3,1397 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SIDGI — Control horario legal y simple para PYMES</title>
 
-  <meta name="description" content="Fichaje digital con firma, PDF mensual y resumen por trabajador. Cumple RD-ley 8/2019. Funciona con Google Sheets y Drive, sin instalar nada.">
+  <title>SIDGI — Control horario legal en 24h. Sin apps. Sin tarjetas.</title>
+  <meta name="description" content="Fichaje en tablet o enlace. Datos en Google Drive. Horas, pausas y totales calculados automáticamente. Control horario legal para PYMES." />
   <meta name="robots" content="index,follow">
 
-  <meta property="og:title" content="SIDGI — Fichaje digital con firma y reportes automáticos">
-  <meta property="og:description" content="Fichaje por enlace seguro o kiosco en tablet, firma digital, PDF mensual y resumen por trabajador. Sin apps, sin tarjetas.">
-  <meta property="og:type" content="website">
+  <!-- OPEN GRAPH -->
+  <meta property="og:title" content="SIDGI — Control horario legal y simple para PYMES" />
+  <meta property="og:description" content="Fichaje con un toque. Resumen mensual automático. Datos siempre en tu Google Drive." />
+  <meta property="og:type" content="website" />
+
+  <!-- TIPOGRAFÍA -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg-page: #edf2f7;
-      --bg-section: #f7fafc;
-      --card: #ffffff;
-      --primary: #2563eb;
-      --primary-soft: rgba(37,99,235,0.1);
-      --text-main: #111827;
-      --text-soft: #4b5563;
-      --border-soft: #e2e8f0;
-      --accent: #16a34a;
+    /* ------------------------------ */
+    /* RESET + BASE                   */
+    /* ------------------------------ */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg-page);
-      color: var(--text-main);
-      line-height: 1.6;
-      font-size: 16px;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f7f9fc;
+      color: #111827;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 18px;
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 12px;
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border-soft);
-      box-shadow: 0 1px 4px rgba(15,23,42,0.04);
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
+    ul { list-style: none; }
+
+    /* ------------------------------ */
+    /* PALETA SIDGI PREMIUM           */
+    /* ------------------------------ */
+
+    :root {
+      --primary: #2563eb;             /* Azul SIDGI mejorado */
+      --primary-soft: #e0ecff;
+      --primary-dark: #1e4fc9;
+
+      --accent-green: #16a34a;
+      --accent-soft: #dcfce7;
+
+      --text-main: #111827;
+      --text-soft: #6b7280;
+
+      --card: #ffffff;
+      --card-soft: #f3f4f6;
+
+      --border: #e5e7eb;
+
+      --radius: 16px;
+      --radius-sm: 10px;
+
+      --shadow-soft: 0 8px 24px rgba(0,0,0,0.06);
+      --shadow-mid: 0 12px 34px rgba(0,0,0,0.09);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo img {
-      height: 34px;
-      width: auto;
-    }
-
-    .logo-text-main {
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-size: 14px;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      font-size: 15px;
-      color: var(--text-soft);
-    }
-
-    .nav-links a:hover { color: var(--text-main); }
-
-    .nav-cta {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+    /* ------------------------------ */
+    /* BOTONES                        */
+    /* ------------------------------ */
 
     .btn {
+      display: inline-block;
+      padding: 14px 22px;
       border-radius: 999px;
-      padding: 10px 20px;
-      font-size: 15px;
-      font-weight: 500;
-      border: 1px solid transparent;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--text-main);
-      box-sizing: border-box;
+      transition: 0.2s ease;
+      border: none;
     }
 
     .btn-primary {
       background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-      box-shadow: 0 10px 26px rgba(37,99,235,0.3);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(37,99,235,0.35);
     }
 
-    .btn-primary:hover { filter: brightness(1.05); }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
 
     .btn-outline {
-      border-color: var(--border-soft);
-      background: #ffffff;
-      color: var(--text-soft);
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text-main);
     }
 
     .btn-outline:hover {
       border-color: var(--primary);
       color: var(--primary);
+      transform: translateY(-1px);
     }
 
-    main { padding-bottom: 96px; }
+    /* ------------------------------ */
+    /* CONTENEDORES                   */
+    /* ------------------------------ */
 
-    /* HERO */
-
-    .hero {
-      padding: 56px 0 40px;
-      background: #f9fafb;
-      border-bottom: 1px solid var(--border-soft);
+    .section {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      background: rgba(22,163,74,0.06);
-      border: 1px solid rgba(22,163,74,0.45);
-      color: #166534;
+    .title {
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
       margin-bottom: 14px;
     }
 
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .hero-title {
-      font-size: clamp(2.4rem, 3.4vw, 3.1rem);
-      line-height: 1.12;
-      margin: 0 0 14px;
-    }
-
-    .hero-title span { color: var(--primary); }
-
-    .hero-subtitle {
+    .subtitle {
+      font-size: 17px;
       color: var(--text-soft);
-      font-size: 16px;
-      max-width: 560px;
-      margin-bottom: 20px;
+      text-align: center;
+      margin-bottom: 38px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .hero-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 22px;
-      display: grid;
-      gap: 8px;
-      font-size: 15px;
-      color: var(--text-soft);
-    }
-
-    .hero-list li {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-list .check {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: rgba(22,163,74,0.08);
-      border: 1px solid rgba(22,163,74,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      color: #166534;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .hero-note {
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .hero-note span { font-weight: 600; }
-
-    .hero-card {
+    .card {
       background: var(--card);
-      border-radius: 20px;
-      border: 1px solid var(--border-soft);
-      padding: 18px 18px 16px;
-      box-shadow: 0 14px 32px rgba(15,23,42,0.08);
+      padding: 26px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
     }
 
-    .hero-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      font-size: 13px;
-    }
-
-    .pill {
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #eef2ff;
-      border: 1px solid #c7d2fe;
-      color: #3730a3;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--primary);
-    }
-
-    .hero-screenshot-wrapper { margin-top: 4px; }
-
-    .hero-device-frame {
-      border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      background: #ffffff;
-      padding: 10px;
-    }
-
-    .hero-device-grid {
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(2,1fr);
+      gap: 24px;
     }
 
-    .hero-shot {
-      margin: 0;
-      background: #f9fafb;
-      border-radius: 10px;
-      border: 1px solid var(--border-soft);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-shot img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      background: #e5e7eb;
-    }
-
-    .hero-shot figcaption {
-      padding: 6px 8px;
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .hero-mini {
-      margin-top: 10px;
+    .grid-3 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      font-size: 13px;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
     }
 
-    .mini-card {
-      border-radius: 10px;
-      padding: 8px 9px;
-      background: #f3f4f6;
-      border: 1px solid var(--border-soft);
-      color: var(--text-soft);
-    }
-
-    .mini-card strong {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 3px;
-      color: var(--text-main);
-    }
-
-    /* BLOQUE RESUMEN SIMPLE */
-
-    .quick-summary {
-      margin-top: 26px;
-      padding: 16px 18px;
-      border-radius: 14px;
-      background: #e0f2fe;
-      border: 1px solid #bae6fd;
-    }
-
-    .quick-summary-title {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .quick-summary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      font-size: 14px;
-      color: #0f172a;
-    }
-
-    .quick-item {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .quick-icon {
-      font-size: 18px;
-      margin-top: 2px;
-    }
-
-    .quick-item strong {
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    /* SECCIONES GENERALES */
-
-    section { padding: 56px 0; }
-
-    section:nth-of-type(odd) { background: var(--bg-section); }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 20px;
-      margin-bottom: 26px;
-    }
-
-    .section-title {
-      font-size: 22px;
-      margin: 0 0 4px;
-    }
-
-    .section-kicker {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-soft);
-    }
-
-    .section-description {
-      font-size: 15px;
-      color: var(--text-soft);
-      max-width: 540px;
-    }
-
-    /* CÓMO FUNCIONA */
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .step {
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid var(--border-soft);
-      padding: 14px 13px 13px;
-    }
-
-    .step-number {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      border: 1px solid rgba(37,99,235,0.4);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    .step-icon { font-size: 22px; margin-bottom: 5px; }
-
-    .step h3 {
-      margin: 0 0 6px;
-      font-size: 15px;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .step-preview {
-      margin-top: 8px;
-      border-radius: 10px;
-      border: 1px dashed var(--border-soft);
-      background: #f9fafb;
-      overflow: hidden;
-    }
-
-    .step-preview img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-    }
-
-    /* VENTAJAS */
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .feature {
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid var(--border-soft);
-      padding: 14px 13px 12px;
-    }
-
-    .feature-icon {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      border: 1px solid rgba(37,99,235,0.4);
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-    }
-
-    .feature h3 {
-      margin: 0 0 6px;
-      font-size: 15px;
-    }
-
-    .feature p {
-      margin: 0 0 8px;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .feature-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .feature-tag {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      color: var(--text-soft);
-      background: #f9fafb;
-    }
-
-    /* PRECIOS */
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .pricing-card {
-      border-radius: 16px;
-      background: #ffffff;
-      border: 1px solid var(--border-soft);
-      padding: 16px 16px 14px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      box-shadow: 0 4px 12px rgba(15,23,42,0.04);
-    }
-
-    .pricing-card.secondary { box-shadow: none; }
-
-    .pricing-header { margin-bottom: 8px; }
-
-    .pricing-name {
-      font-size: 15px;
-      font-weight: 600;
-      margin: 0 0 3px;
-    }
-
-    .pricing-range {
-      font-size: 12px;
-      color: var(--text-soft);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .pricing-price {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-      margin-bottom: 6px;
-    }
-
-    .pricing-price strong { font-size: 26px; }
-    .pricing-price span { font-size: 14px; color: var(--text-soft); }
-
-    .pricing-hint {
-      font-size: 13px;
-      color: #166534;
-      margin-bottom: 8px;
-    }
-
-    .pricing-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 12px;
-      font-size: 14px;
-      color: var(--text-soft);
-      display: grid;
-      gap: 5px;
-    }
-
-    .pricing-list li {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .pricing-dot {
-      font-size: 14px;
-      color: var(--primary);
-      line-height: 1.4;
-    }
-
-    .pricing-footer {
-      margin-top: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .pricing-note {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .pricing-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #dcfce7;
-      border: 1px solid #86efac;
-      color: #166534;
-    }
-
-    /* FAQ */
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .faq-item {
-      border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      background: #ffffff;
-      padding: 13px 14px 12px;
-    }
-
-    .faq-item h3 {
-      margin: 0 0 6px;
-      font-size: 15px;
-    }
-
-    .faq-item p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--text-soft);
-    }
-
-    /* TESTIMONIOS */
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .testimonial {
-      border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      background: #ffffff;
-      padding: 13px 14px 12px;
-      box-shadow: 0 4px 12px rgba(15,23,42,0.03);
-    }
-
-    .testimonial-logo {
-      margin-bottom: 8px;
-      height: 28px;
-    }
-
-    .testimonial-logo img {
-      height: 100%;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .testimonial p {
-      margin: 0 0 8px;
-      font-size: 14px;
-      color: var(--text-soft);
-    }
-
-    .testimonial-footer {
-      font-size: 12px;
-      color: var(--text-main);
-    }
-
-    .testimonial-footer span {
-      display: block;
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    /* CTA FINAL */
-
-    .cta-final {
-      border-radius: 16px;
-      border: 1px solid var(--border-soft);
-      padding: 18px 18px 16px;
-      background: #ffffff;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
-    }
-
-    .cta-final h2 {
-      margin: 0 0 6px;
-      font-size: 20px;
-    }
-
-    .cta-final p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--text-soft);
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid var(--border-soft);
-      padding: 16px 0 18px;
-      font-size: 12px;
-      color: var(--text-soft);
-      background: #f7fafc;
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-underline-offset: 3px;
-    }
-
-    /* STICKY CTA */
-
-    .sticky-cta {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(249,250,251,0.96);
-      border-top: 1px solid var(--border-soft);
-      padding: 8px 0 10px;
-      z-index: 30;
-    }
-
-    .sticky-cta-inner {
-      display: flex;
-      justify-content: center;
-    }
-
-    .sticky-btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 960px) {
-      .hero-inner { grid-template-columns: minmax(0, 1fr); }
-      .hero-device-grid { grid-template-columns: minmax(0, 1fr); }
-      .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .faq-grid { grid-template-columns: minmax(0, 1fr); }
-      .quick-summary-grid { grid-template-columns: minmax(0, 1fr); }
-    }
-
-    @media (max-width: 720px) {
-      .nav-links { display: none; }
-      .steps-grid,
-      .features-grid,
-      .pricing-grid,
-      .testimonials-grid {
-        grid-template-columns: minmax(0, 1fr);
+    @media(max-width:840px){
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
       }
-      .hero { padding-top: 40px; }
-      .cta-final { align-items: flex-start; }
     }
+
+    /* ------------------------------ */
+    /* ANIMACIONES SUAVES             */
+    /* ------------------------------ */
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 0.7s ease forwards;
+    }
+
+    .fade-in-delayed {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeIn 0.9s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide-left {
+      opacity: 0;
+      transform: translateX(25px);
+      animation: slideLeft 0.7s ease forwards;
+    }
+
+    @keyframes slideLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-right {
+      opacity: 0;
+      transform: translateX(-25px);
+      animation: slideRight 0.7s ease forwards;
+    }
+
+    @keyframes slideRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* ------------------------------ */
+    /* NAVBAR                         */
+    /* ------------------------------ */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    @media(max-width:760px){
+      .nav-links { display: none; }
+    }
+
   </style>
 </head>
+
 <body>
-<header>
-  <div class="container">
-    <nav class="nav">
-      <div class="logo">
-        <img src="img/logo-sidgi.png" alt="SIDGI">
-        <div>
-          <div class="logo-text-main">SIDGI</div>
-          <div class="logo-text-sub">Control horario simple para PYMES</div>
+<!-- =============================== -->
+<!-- HERO PRINCIPAL (FUNCIONAL)     -->
+<!-- =============================== -->
+
+<section class="section hero fade-in" style="padding-top:40px;">
+  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+
+    <!-- TEXTO HERO -->
+    <div class="slide-right">
+      <div style="
+        display:inline-flex; 
+        gap:8px;
+        align-items:center; 
+        background:var(--accent-soft); 
+        padding:6px 12px; 
+        border-radius:999px; 
+        font-size:13px; 
+        border:1px solid #bbf7d0;
+        margin-bottom:16px;
+      ">
+        <span style="width:8px; height:8px; background:var(--accent-green); border-radius:999px;"></span>
+        Legal desde el primer día · Sin apps · Sin tarjetas
+      </div>
+
+      <h1 style="font-size:42px; font-weight:800; margin-bottom:14px; line-height:1.15;">
+        Control horario legal, <span style="color:var(--primary);">listo en 24h</span>.
+      </h1>
+
+      <p style="font-size:18px; color:var(--text-soft); margin-bottom:22px;">
+        Tus trabajadores fichan en una tablet o en un enlace seguro.  
+        Tú lo ves todo en tu Google Drive: registros, horas netas, pausas y resúmenes mensuales.  
+        Sin instalar software, sin dar de alta usuarios y sin complicaciones.
+      </p>
+
+      <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:18px;">
+        <a href="#demo" class="btn btn-primary">Probar demo limitada</a>
+        <a href="#como-funciona" class="btn btn-outline">Cómo funciona SIDGI</a>
+      </div>
+
+      <div style="font-size:14px; color:var(--text-soft);">
+        Datos siempre en tu propia cuenta de Google.  
+        <strong>Control total + cero dependencia de proveedores.</strong>
+      </div>
+    </div>
+
+    <!-- IMAGEN / TARJETA VISUAL -->
+    <div class="slide-left">
+      <div class="card" style="padding:18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div style="
+            font-size:13px;
+            background:#eef2ff;
+            padding:4px 10px;
+            border-radius:999px;
+            color:#3730a3;
+            border:1px solid #c7d2fe;
+          ">
+            Vista real del sistema
+          </div>
+          <span style="color:var(--text-soft); font-size:13px;">Demo empresa · 2 trabajadores</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <figure style="margin:0;">
+            <img src="img/fichaje-tablet.png" alt="Vista del fichaje en tablet (demo)">
+            <figcaption style="font-size:12px; color:var(--text-soft); margin-top:6px;">
+              Tablet fija con botones de entrada y salida.
+            </figcaption>
+          </figure>
+
+          <figure style="margin:0;">
+            <img src="img/hoja-fichajes.png" alt="Hoja resumen Google Sheets (demo)">
+            <figcaption style="font-size:12px; color:var(--text-soft); margin-top:6px;">
+              Hoja de control en tu Google Drive.
+            </figcaption>
+          </figure>
         </div>
       </div>
-      <div class="nav-links">
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#ventajas">Ventajas</a>
-        <a href="#precios">Precios</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div class="nav-cta">
-        <a href="#precios" class="btn btn-outline">Ver planes</a>
-        <a href="#contacto" class="btn btn-primary">Solicitar instalación</a>
-      </div>
-    </nav>
-  </div>
-</header>
+    </div>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-inner">
+  </div>
+</section>
+
+
+<!-- =============================== -->
+<!-- SIDGI EN 15 SEGUNDOS            -->
+<!-- =============================== -->
+
+<section class="section fade-in-delayed">
+  <h2 class="title">SIDGI en 15 segundos</h2>
+  <p class="subtitle">Un sistema pensado para talleres, almacenes y PYMES que solo quieren cumplir la normativa sin complicarse.</p>
+
+  <div class="grid-3">
+    <!-- Paso 1 -->
+    <div class="card fade-in" style="animation-delay:0.1s;">
+      <div style="font-size:30px; margin-bottom:10px;">👆</div>
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">1. Tus trabajadores pulsan un botón</h3>
+      <p style="color:var(--text-soft); font-size:15px;">
+        Fichan entrada y salida desde una tablet fija o desde un enlace que reciben por email.
+      </p>
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="card fade-in" style="animation-delay:0.25s;">
+      <div style="font-size:30px; margin-bottom:10px;">📄</div>
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">2. Todo queda guardado en tu Google Drive</h3>
+      <p style="color:var(--text-soft); font-size:15px;">
+        SIDGI no almacena nada. Los registros y firmas son tuyos, en tu propia cuenta de Google.
+      </p>
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="card fade-in" style="animation-delay:0.4s;">
+      <div style="font-size:30px; margin-bottom:10px;">⏱️</div>
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">3. Las horas y pausas se calculan solas</h3>
+      <p style="color:var(--text-soft); font-size:15px;">
+        El sistema genera resúmenes por trabajador y por mes, sin fórmulas ni configuraciones.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- ======================================= -->
+<!-- CÓMO FUNCIONA SIDGI (VERSIÓN HUMANA)   -->
+<!-- ======================================= -->
+
+<section id="como-funciona" class="section fade-in">
+  <h2 class="title">Cómo funciona SIDGI</h2>
+  <p class="subtitle">
+    Un sistema simple con un flujo claro: fichar → guardar → calcular.  
+    No hay aplicaciones, tarjetas, tornos ni configuraciones complicadas.
+  </p>
+
+  <div class="grid-2" style="margin-top:40px; align-items:center;">
+
+    <!-- TEXTO -->
+    <div class="slide-right">
+      <div style="margin-bottom:26px;">
+        <h3 style="font-size:22px; font-weight:700; margin-bottom:10px;">1. Tus trabajadores fichan en una tablet o enlace</h3>
+        <p style="color:var(--text-soft); font-size:16px;">
+          SIDGI funciona con un enlace seguro o con una tablet fija colocada en el taller/almacén.
+          Pulsan su nombre, eligen entrada o salida y, si está activada, firman en pantalla.
+        </p>
+      </div>
+
+      <div style="margin-bottom:26px;">
+        <h3 style="font-size:22px; font-weight:700; margin-bottom:10px;">2. Cada fichaje se guarda en tu Google Drive</h3>
+        <p style="color:var(--text-soft); font-size:16px;">
+          Todos los datos (hora, fecha, firma opcional) se registran automáticamente en tu hoja de Google.
+          No instalas nada. No dependes de un servidor externo.  
+          <strong>Los datos son tuyos y siempre están en tu Drive.</strong>
+        </p>
+      </div>
+
       <div>
-        <div class="badge">
-          <span class="badge-dot"></span>
-          Fichaje legal sin apps ni tarjetas
-        </div>
-        <h1 class="hero-title">
-          Control horario legal <span>en 24h</span>, sin apps ni tarjetas.
-        </h1>
-        <p class="hero-subtitle">
-          SIDGI guarda todos los fichajes con firma digital en Google Sheets y genera PDFs listos para Inspección de Trabajo. 
-          No hay tarjetas, ni apps, ni tornos. Solo una tablet o el móvil de tus trabajadores.
-        </p>
-        <ul class="hero-list">
-          <li><span class="check">✓</span> Cumple RD-ley 8/2019 y mantiene 4 años de histórico.</li>
-          <li><span class="check">✓</span> Fichaje por enlace seguro o kiosco en tablet, con firma opcional.</li>
-          <li><span class="check">✓</span> Resumen mensual y por trabajador sin tocar hojas de cálculo.</li>
-        </ul>
-        <div class="hero-ctas">
-          <a href="#contacto" class="btn btn-primary">Solicitar instalación</a>
-          <a href="#demo" class="btn btn-outline">Probar demo limitada</a>
-        </div>
-        <div class="hero-note">
-          Sin instalaciones raras, solo <span>Google Sheets + Drive</span>. Acceso desde cualquier ordenador o móvil.
-        </div>
-
-        <div class="quick-summary">
-          <div class="quick-summary-title">SIDGI en 15 segundos:</div>
-          <div class="quick-summary-grid">
-            <div class="quick-item">
-              <div class="quick-icon">👷‍♂️</div>
-              <div>
-                <strong>Tus trabajadores pulsan un botón</strong>
-                Fichan entrada y salida desde una tablet fija o desde un enlace que les llega por email.
-              </div>
-            </div>
-            <div class="quick-item">
-              <div class="quick-icon">📄</div>
-              <div>
-                <strong>Todo se guarda en tu Google</strong>
-                Cada fichaje se registra en una hoja de cálculo en tu cuenta de Google, con hora y firma.
-              </div>
-            </div>
-            <div class="quick-item">
-              <div class="quick-icon">📑</div>
-              <div>
-                <strong>Tienes un PDF legal cada mes</strong>
-                El sistema calcula horas y genera informes listos para enseñarlos a Inspección de Trabajo.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="hero-card" aria-label="Vista real del sistema SIDGI">
-        <div class="hero-card-header">
-          <span class="pill">
-            <span class="pill-dot"></span> Así fichan y así ves los datos
-          </span>
-          <span style="font-size:13px; color:var(--text-soft);">
-            Demo Empresa · 2 trabajadores
-          </span>
-        </div>
-
-        <div class="hero-screenshot-wrapper" id="demo">
-          <div class="hero-device-frame">
-            <div class="hero-device-grid">
-              <figure class="hero-shot">
-                <img src="img/fichaje-tablet.png" alt="Pantalla de fichaje en tablet con botones de entrada y salida">
-                <figcaption>
-                  Tablet fija en el taller con botones de Entrada/Salida y firma digital.
-                </figcaption>
-              </figure>
-              <figure class="hero-shot">
-                <img src="img/hoja-fichajes.png" alt="Hoja de Google con resumen de fichajes y horas trabajadas">
-                <figcaption>
-                  Hoja de Google con resumen de fichajes, horas, pausas y firmas por trabajador.
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-mini">
-          <div class="mini-card">
-            <strong>Todo queda en tu Drive</strong>
-            Fichajes y firmas se guardan en tu cuenta de Google, no en un sistema cerrado.
-          </div>
-          <div class="mini-card">
-            <strong>Listo para Inspección</strong>
-            PDF mensual por trabajador y resumen de horas sin tocar fórmulas.
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section id="como-funciona">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">Cómo funciona técnicamente</div>
-          <h2 class="section-title">De formulario a fichaje legal en 4 pasos.</h2>
-        </div>
-        <p class="section-description">
-          SIDGI se monta sobre Google Sheets y Drive con un flujo claro: alta del cliente, generación de hoja y web de fichaje, fichajes diarios y reportes automáticos.
+        <h3 style="font-size:22px; font-weight:700; margin-bottom:10px;">3. SIDGI calcula horas, pausas y totales</h3>
+        <p style="color:var(--text-soft); font-size:16px;">
+          Las horas netas diarias y los totales mensuales se calculan solos.
+          El sistema genera automáticamente una hoja por trabajador y un resumen mensual para inspección.
         </p>
       </div>
-
-      <div class="steps-grid">
-        <div class="step">
-          <div class="step-number">1</div>
-          <div class="step-icon">📄</div>
-          <h3>Rellenas un formulario</h3>
-          <p>
-            Indicas nombre de la empresa, CIF y lista de trabajadores. SIDGI genera tu hoja de fichajes y la carpeta en Drive con todo preparado.
-          </p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <div class="step-icon">☁️</div>
-          <h3>Recibes hoja + web de fichaje</h3>
-          <p>
-            Te llega una hoja de Google con el control horario y una página tipo “kiosco” para la tablet del taller, lista para usar.
-          </p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <div class="step-icon">🖐️</div>
-          <h3>Los trabajadores fichan</h3>
-          <p>
-            Pueden fichar desde el email diario (botones de entrada/salida) o pulsando en la tablet. Opcionalmente firman en pantalla.
-          </p>
-          <div class="step-preview">
-            <img src="img/fichaje-tablet.png" alt="Vista del fichaje en tablet con firma">
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-number">4</div>
-          <div class="step-icon">📊</div>
-          <h3>Informes listos para Inspección</h3>
-          <p>
-            SIDGI calcula horas, descuenta pausas según tus reglas y genera PDFs mensuales por centro y trabajador.
-          </p>
-          <div class="step-preview">
-            <img src="img/hoja-fichajes.png" alt="Vista de resumen de fichajes en hoja de Google">
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- VENTAJAS -->
-  <section id="ventajas">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">Ventajas para tu empresa</div>
-          <h2 class="section-title">Todo el control horario, sin complicar a nadie.</h2>
+    <!-- IMAGENES -->
+    <div class="slide-left">
+      <div class="card" style="padding:20px;">
+        <div style="font-size:13px; background:var(--primary-soft); border:1px solid var(--primary); padding:4px 10px; border-radius:999px; display:inline-block; margin-bottom:14px;">
+          Flujo real de funcionamiento
         </div>
-        <p class="section-description">
-          Pensado para talleres, almacenes y PYMES que quieren cumplir la ley sin meter otro software más en su día a día.
+
+        <img src="img/flujo-sidgi.png" alt="Flujo de funcionamiento SIDGI" style="margin-bottom:18px;">
+
+        <p style="font-size:14px; color:var(--text-soft);">
+          El proceso completo desde el fichaje hasta el resumen mensual ocurre sin que tengas que tocar nada.
         </p>
       </div>
-
-      <div class="features-grid">
-        <div class="feature">
-          <div class="feature-icon">✓</div>
-          <h3>Sin apps ni tarjetas</h3>
-          <p>
-            Nada de tarjetas que se pierden o apps que nadie instala. Un enlace seguro y una tablet fija en el centro de trabajo.
-          </p>
-          <div class="feature-tags">
-            <span class="feature-tag">Fichaje por enlace</span>
-            <span class="feature-tag">Tablet en recepción o taller</span>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">✍︎</div>
-          <h3>Firma digital incluida</h3>
-          <p>
-            Los trabajadores pueden firmar en la tablet para reforzar la trazabilidad. Las firmas se guardan en Drive junto al registro.
-          </p>
-          <div class="feature-tags">
-            <span class="feature-tag">PNG/JPG en Drive</span>
-            <span class="feature-tag">Válido para inspección</span>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">⚖︎</div>
-          <h3>Cumple RD-ley 8/2019</h3>
-          <p>
-            Guarda 4 años de histórico, permite exportar los registros y genera PDFs mensuales preparados para Inspección.
-          </p>
-          <div class="feature-tags">
-            <span class="feature-tag">Histórico 4 años</span>
-            <span class="feature-tag">Exportable a PDF y Excel</span>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">☁︎</div>
-          <h3>Basado en Google Sheets & Drive</h3>
-          <p>
-            No dependes de un software raro. Tus datos están en tu Google Drive y puedes descargarlos cuando quieras.
-          </p>
-          <div class="feature-tags">
-            <span class="feature-tag">Sin vendor lock-in</span>
-            <span class="feature-tag">Solo necesitas una cuenta Google</span>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">⚙︎</div>
-          <h3>Automatizado de verdad</h3>
-          <p>
-            SIDGI se encarga de los cálculos de horas, pausas, totales por trabajador y resúmenes por mes. Tú solo revisas.
-          </p>
-          <div class="feature-tags">
-            <span class="feature-tag">Horas netas diarias</span>
-            <span class="feature-tag">Resumen mensual por trabajador</span>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">⏱</div>
-          <h3>Instalación rápida</h3>
-          <p>
-            Desde que rellenas el formulario hasta que puedes fichar en la empresa suele pasar menos de 24 horas laborables.
-          </p>
-          <div class="feature-tags">
-            <span class="feature-tag">Sin técnicos en tu empresa</span>
-            <span class="feature-tag">Soporte remoto</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- PRECIOS -->
-  <section id="precios">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">Precios claros</div>
-          <h2 class="section-title">Elige el plan según el número de trabajadores.</h2>
-        </div>
-        <p class="section-description">
-          Solo pagas por el tramo de trabajadores de tu empresa. Todos los planes incluyen la misma funcionalidad de fichaje digital, informes y soporte básico.
-        </p>
-      </div>
-
-      <div class="pricing-grid">
-        <article class="pricing-card secondary">
-          <div class="pricing-header">
-            <div class="pricing-name">Plan Básico</div>
-            <div class="pricing-range">1 a 5 trabajadores</div>
-          </div>
-          <div class="pricing-price">
-            <strong>19€</strong><span>/ mes</span>
-          </div>
-          <div class="pricing-hint">
-            Ideal para pequeños talleres o comercios con plantilla reducida.
-          </div>
-          <ul class="pricing-list">
-            <li><span class="pricing-dot">•</span><span>Hasta 5 trabajadores con fichaje digital (email + tablet).</span></li>
-            <li><span class="pricing-dot">•</span><span>Hoja de Google de control horario preconfigurada.</span></li>
-            <li><span class="pricing-dot">•</span><span>PDF mensual de fichajes listo para descargar.</span></li>
-            <li><span class="pricing-dot">•</span><span>Soporte por email en horario laboral.</span></li>
-          </ul>
-          <div class="pricing-footer">
-            <a href="#contacto" class="btn btn-outline" style="width:100%; justify-content:center;">
-              Empezar con el Plan Básico
-            </a>
-            <div class="pricing-note">
-              Instalación inicial remota incluida si ya tienes cuenta de Google.
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-card" style="box-shadow:0 12px 30px rgba(37,99,235,0.25); border-color:rgba(37,99,235,0.7);">
-          <div class="pricing-badge">Más contratado</div>
-          <div class="pricing-header">
-            <div class="pricing-name">Plan Estándar</div>
-            <div class="pricing-range">6 a 10 trabajadores</div>
-          </div>
-          <div class="pricing-price">
-            <strong>29€</strong><span>/ mes</span>
-          </div>
-          <div class="pricing-hint">
-            Pensado para PYMES industriales con un taller o almacén principal.
-          </div>
-          <ul class="pricing-list">
-            <li><span class="pricing-dot">•</span><span>Hasta 10 trabajadores con fichaje digital y firma opcional.</span></li>
-            <li><span class="pricing-dot">•</span><span>Resumen mensual por trabajador y totales por centro.</span></li>
-            <li><span class="pricing-dot">•</span><span>Histórico de 4 años almacenado en tu Google Drive.</span></li>
-            <li><span class="pricing-dot">•</span><span>Ajuste de pausas y horario según normativa de la empresa.</span></li>
-          </ul>
-          <div class="pricing-footer">
-            <a href="#contacto" class="btn btn-primary" style="width:100%; justify-content:center;">
-              Contratar Plan Estándar
-            </a>
-            <div class="pricing-note">
-              Recomendado para la mayoría de PYMES. Sin permanencia.
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-card secondary">
-          <div class="pricing-header">
-            <div class="pricing-name">Plan Avanzado</div>
-            <div class="pricing-range">11 a 50 trabajadores</div>
-          </div>
-          <div class="pricing-price">
-            <strong>39€</strong><span>/ mes</span>
-          </div>
-          <div class="pricing-hint">
-            Para empresas con varios equipos o más carga de fichajes diarios.
-          </div>
-          <ul class="pricing-list">
-            <li><span class="pricing-dot">•</span><span>Hasta 50 trabajadores usando el mismo sistema de fichaje.</span></li>
-            <li><span class="pricing-dot">•</span><span>Informes mensuales avanzados (por trabajador y centro).</span></li>
-            <li><span class="pricing-dot">•</span><span>Apoyo en la preparación de informes para Inspección.</span></li>
-            <li><span class="pricing-dot">•</span><span>Posibilidad de reglas específicas por categoría o turno.</span></li>
-          </ul>
-          <div class="pricing-footer">
-            <a href="#contacto" class="btn btn-outline" style="width:100%; justify-content:center;">
-              Pedir Plan Avanzado
-            </a>
-            <div class="pricing-note">
-              Más de 50 trabajadores: solicita un presupuesto a medida.
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">Preguntas frecuentes</div>
-          <h2 class="section-title">Lo que suele preguntar Inspección y tus trabajadores.</h2>
-        </div>
-        <p class="section-description">
-          Respuestas directas a las dudas típicas antes de implantar un sistema de fichaje digital en una PYME.
-        </p>
-      </div>
-
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h3>¿La firma digital es válida?</h3>
-          <p>
-            La firma se realiza en la tablet sobre cada fichaje y se guarda como imagen asociada al registro. 
-            Para Inspección lo importante es la trazabilidad y un registro fiable. SIDGI facilita ese histórico con firmas ligadas a cada día.
-          </p>
-        </div>
-        <div class="faq-item">
-          <h3>¿Qué pasa si un trabajador no tiene móvil?</h3>
-          <p>
-            Puede fichar siempre desde la tablet de la empresa, que actúa como kiosco de fichaje. 
-            Solo necesita pulsar su nombre y seleccionar entrada o salida (y firmar si está activada la opción).
-          </p>
-        </div>
-        <div class="faq-item">
-          <h3>¿Cuánto se tarda en tenerlo funcionando?</h3>
-          <p>
-            Una vez nos envías los datos de la empresa y la lista de trabajadores, 
-            el sistema suele estar listo para fichar en menos de 24 horas laborables.
-          </p>
-        </div>
-        <div class="faq-item">
-          <h3>¿Qué necesito para usar SIDGI?</h3>
-          <p>
-            Una cuenta de Google para almacenar las hojas y los PDFs, 
-            una tablet o PC fijo en el centro de trabajo y conexión a internet estable.
-          </p>
-        </div>
-        <div class="faq-item">
-          <h3>¿Podéis adaptar las pausas a mi convenio?</h3>
-          <p>
-            Sí. Se pueden configurar reglas de pausa (almuerzo, comida, etc.) acordes al convenio 
-            y al funcionamiento real de tu empresa, para que el cálculo de horas netas tenga sentido.
-          </p>
-        </div>
-        <div class="faq-item">
-          <h3>¿Puedo descargar los datos si dejo de usar el servicio?</h3>
-          <p>
-            Tus fichajes están en tu Google Drive. Puedes descargar las hojas y los PDFs cuando quieras. 
-            No quedas “atado” a una plataforma cerrada.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section id="casos">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker">Casos reales</div>
-          <h2 class="section-title">Empresas que ya fichan con SIDGI.</h2>
-        </div>
-        <p class="section-description">
-          Talleres y PYMES que necesitaban cumplir la normativa sin complicarse con tarjetas, tornos o sistemas imposibles de usar.
-        </p>
-      </div>
-
-      <div class="testimonials-grid">
-        <article class="testimonial">
-          <div class="testimonial-logo">
-            <img src="img/logo-lloris-pons.png" alt="Puertas Lloris S.L.">
-          </div>
-          <p>
-            “Antes teníamos un Excel manual con fichas en papel. Ahora todos fichan en la tablet al entrar al taller 
-            y yo tengo el PDF mensual listo en dos clics.”
-          </p>
-          <div class="testimonial-footer">
-            Puertas Lloris S.L.
-            <span>Fabricación e instalación de puertas</span>
-          </div>
-        </article>
-        <article class="testimonial">
-          <div class="testimonial-logo">
-            <img src="img/logo-alumida.png" alt="Alumida S.L.">
-          </div>
-          <p>
-            “Nos preocupaba la Inspección porque no teníamos un sistema claro. 
-            Con SIDGI sabemos que cada fichaje queda guardado y podemos enseñar el histórico cuando haga falta.”
-          </p>
-          <div class="testimonial-footer">
-            Alumida S.L.
-            <span>Carpintería metálica y cerramientos</span>
-          </div>
-        </article>
-        <article class="testimonial">
-          <p>
-            “Lo mejor es que no he tenido que explicar una app nueva a nadie. 
-            Entran, pulsan su nombre, fichan, y ya está. Menos líos y más tiempo para trabajar.”
-          </p>
-          <div class="testimonial-footer">
-            Ferretería Martínez S.L.
-            <span>Ferretería industrial</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA FINAL / CONTACTO -->
-  <section id="contacto">
-    <div class="container">
-      <div class="cta-final">
-        <div>
-          <h2>¿Quieres tener el control horario resuelto esta semana?</h2>
-          <p>
-            Envía un email con el nombre de tu empresa, CIF y número de trabajadores y te responderemos 
-            con los pasos exactos para activar SIDGI en tu caso.
-          </p>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:8px; min-width:240px;">
-          <a href="mailto:sidgilanding@gmail.com?subject=Quiero%20implantar%20SIDGI%20en%20mi%20empresa"
-             class="btn btn-primary" style="justify-content:center;">
-            Escribir ahora a sidgilanding@gmail.com
-          </a>
-          <div style="font-size:12px; color:var(--text-soft);">
-            Indica también el sector de tu empresa (taller, almacén, comercio, oficina, etc.).
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<div class="sticky-cta">
-  <div class="container sticky-cta-inner">
-    <a href="#contacto" class="btn btn-primary sticky-btn">Solicitar instalación</a>
   </div>
-</div>
+</section>
 
-<footer>
-  <div class="container footer-inner">
-    <div>© <span id="year"></span> SIDGI · Control horario para PYMES.</div>
-    <div class="footer-links">
-      <a href="#privacidad">Política de privacidad</a>
-      <a href="#cookies">Política de cookies</a>
-      <a href="mailto:sidgilanding@gmail.com">Contacto</a>
+
+
+<!-- ======================================= -->
+<!-- VERSIÓN TÉCNICA (OPCIONAL)              -->
+<!-- ======================================= -->
+
+<section class="section fade-in-delayed" style="background:#f0f4ff;">
+  <h2 class="title" style="font-size:28px;">Cómo funciona técnicamente (si quieres el detalle)</h2>
+  <p class="subtitle">
+    Para quienes quieren saber qué ocurre detrás:  
+    Cómo se crea la hoja, dónde se guardan los datos y cómo se generan los resúmenes mensuales.
+  </p>
+
+  <div class="grid-2" style="margin-top:40px;">
+
+    <div class="card slide-right">
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:12px;">1. Alta del cliente (automática)</h3>
+      <p style="font-size:15px; color:var(--text-soft); margin-bottom:14px;">
+        Cuando rellenas el formulario inicial, SIDGI crea automáticamente:
+      </p>
+
+      <ul style="margin-left:0; color:var(--text-soft); font-size:15px; display:grid; gap:8px;">
+        <li>• Carpeta en tu Google Drive</li>
+        <li>• Hoja “Entradas” con estructura legal</li>
+        <li>• Hoja “Resumen Mensual”</li>
+        <li>• Hojas individuales para cada trabajador</li>
+        <li>• Página web de fichaje lista para tablet</li>
+      </ul>
     </div>
+
+    <div class="card slide-left">
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:12px;">2. Fichajes sin apps</h3>
+      <p style="font-size:15px; color:var(--text-soft); margin-bottom:14px;">
+        El trabajador accede desde:
+      </p>
+
+      <ul style="color:var(--text-soft); font-size:15px; display:grid; gap:8px;">
+        <li>• Tablet en modo kiosco</li>
+        <li>• Enlace personalizado enviado por email</li>
+      </ul>
+
+      <p style="font-size:15px; margin-top:14px;">
+        Cada fichaje se registra en la hoja y, si procede, se adjunta firma o foto.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="grid-2" style="margin-top:30px;">
+
+    <div class="card slide-right">
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:12px;">3. Cálculo automático de horas</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        SIDGI aplica la normativa de tu empresa:  
+        pausas, almuerzos, comidas, jornadas partidas o continuas.  
+        Se actualiza automáticamente cada día.
+      </p>
+    </div>
+
+    <div class="card slide-left">
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:12px;">4. Resumen mensual para inspección</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        El sistema ordena los fichajes por trabajador, calcula horas netas y genera un informe mensual.  
+        <strong>Esto ocurre sin que tengas que tocar una sola fórmula.</strong>
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- ======================================= -->
+<!-- PARA QUIÉN ES SIDGI                    -->
+<!-- ======================================= -->
+
+<section class="section fade-in" id="para-quien">
+  <h2 class="title">¿Para quién es SIDGI?</h2>
+  <p class="subtitle">
+    Para empresas que quieren cumplir la ley **sin instalar software**, sin tarjetas,  
+    sin apps y sin complicarse con hojas de cálculo infinitas.
+  </p>
+
+  <div class="grid-3" style="margin-top:40px;">
+
+    <!-- TALLERES -->
+    <div class="card slide-right">
+      <div style="font-size:28px; margin-bottom:10px;">🛠️</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Talleres y fábricas</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Para plantillas que entran y salen durante el día.  
+        Fichaje rápido en tablet sin detener el trabajo.
+      </p>
+      <ul style="font-size:14px; color:var(--text-soft); margin-top:12px; display:grid; gap:6px;">
+        <li>• Entrada/Salida con un toque</li>
+        <li>• Firma opcional</li>
+        <li>• Control de pausas automático</li>
+      </ul>
+    </div>
+
+    <!-- ALMACENES -->
+    <div class="card fade-in-delayed">
+      <div style="font-size:28px; margin-bottom:10px;">📦</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Almacenes y logística</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Ideal para equipos distribuidos o turnos partidos.  
+        No necesitan móvil; con la tablet es suficiente.
+      </p>
+      <ul style="font-size:14px; color:var(--text-soft); margin-top:12px; display:grid; gap:6px;">
+        <li>• Fichaje en zonas comunes</li>
+        <li>• Reportes mensuales por trabajador</li>
+        <li>• Histórico durante 4 años</li>
+      </ul>
+    </div>
+
+    <!-- PYMES GENERALES -->
+    <div class="card slide-left">
+      <div style="font-size:28px; margin-bottom:10px;">🏪</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Pequeñas empresas</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Comercios, ferreterías y oficinas que quieren cumplir la normativa  
+        sin meter otro software más en la empresa.
+      </p>
+      <ul style="font-size:14px; color:var(--text-soft); margin-top:12px; display:grid; gap:6px;">
+        <li>• Cálculo automático de horas</li>
+        <li>• Datos siempre en tu Drive</li>
+        <li>• Sin instalaciones</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ======================================= -->
+<!-- GALERÍA DE CASOS REALES (VISUAL)       -->
+<!-- ======================================= -->
+
+<section class="section fade-in" style="background:#f3f6ff;">
+  <h2 class="title">Cómo se ve SIDGI en empresas reales</h2>
+  <p class="subtitle">Así es como lo están usando a día de hoy talleres, almacenes y comercios.</p>
+
+  <div class="grid-3" style="margin-top:40px;">
+    <figure class="card slide-right">
+      <img src="img/caso-taller.png" alt="Tablet de fichaje en taller">
+      <figcaption style="font-size:14px; color:var(--text-soft); margin-top:8px;">
+        Tablet en la entrada del taller. Fichaje en 1 toque.
+      </figcaption>
+    </figure>
+
+    <figure class="card fade-in-delayed">
+      <img src="img/caso-almacen.png" alt="Hoja Google Drive real filtrada por trabajador">
+      <figcaption style="font-size:14px; color:var(--text-soft); margin-top:8px;">
+        Hoja de Google ordenada por trabajador y día.
+      </figcaption>
+    </figure>
+
+    <figure class="card slide-left">
+      <img src="img/caso-pyme.png" alt="Resumen mensual">
+      <figcaption style="font-size:14px; color:var(--text-soft); margin-top:8px;">
+        Resumen mensual con totales automáticos.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+
+
+<!-- ======================================= -->
+<!-- ANTES vs DESPUÉS                       -->
+<!-- ======================================= -->
+
+<section class="section fade-in">
+  <h2 class="title">El cambio real que nota una empresa</h2>
+  <p class="subtitle">Esto es lo que pasa cuando cambias de hojas manuales o fichas antiguas a SIDGI.</p>
+
+  <div class="grid-2" style="margin-top:40px; align-items:center;">
+
+    <!-- ANTES -->
+    <div class="card slide-right" style="border-left:6px solid #dc2626;">
+      <h3 style="font-size:20px; font-weight:800; margin-bottom:12px; color:#dc2626;">ANTES</h3>
+
+      <ul style="font-size:15px; color:var(--text-soft); display:grid; gap:10px; margin-top:6px;">
+        <li>• Hojas en papel o Excel desordenado</li>
+        <li>• Fichajes incompletos o sin firma</li>
+        <li>• Cálculo manual de horas</li>
+        <li>• Riesgo en una inspección</li>
+        <li>• Trabajadores olvidan fichar</li>
+        <li>• Tiempo perdido revisando todo</li>
+      </ul>
+    </div>
+
+    <!-- DESPUÉS -->
+    <div class="card slide-left" style="border-left:6px solid var(--accent-green);">
+      <h3 style="font-size:20px; font-weight:800; margin-bottom:12px; color:var(--accent-green);">DESPUÉS</h3>
+
+      <ul style="font-size:15px; color:var(--text-main); font-weight:500; display:grid; gap:10px; margin-top:6px;">
+        <li>• Fichaje en 1 toque (tablet o enlace)</li>
+        <li>• Firma opcional integrada</li>
+        <li>• Horas calculadas automáticamente</li>
+        <li>• Hoja por trabajador + resumen mensual</li>
+        <li>• Historial legal archivado 4 años</li>
+        <li>• Menos errores, menos estrés, menos tiempo perdido</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<!-- ======================================= -->
+<!-- POR QUÉ SIDGI                          -->
+<!-- ======================================= -->
+
+<section class="section fade-in" id="por-que-sidgi">
+  <h2 class="title">¿Por qué SIDGI y no otros sistemas?</h2>
+  <p class="subtitle">
+    Porque es el único que combina <strong>simplicidad real</strong> con <strong>cumplimiento legal</strong>  
+    sin instalaciones, sin tarjetas, sin apps y sin bloquearte en un software propietario.
+  </p>
+
+
+  <!-- DIFERENCIALES -->
+  <div class="grid-3" style="margin-top:40px;">
+
+    <div class="card slide-right">
+      <div style="font-size:28px; margin-bottom:10px;">⚡</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:10px;">Instalación en 24h</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Rellenas un formulario → tienes tu sistema listo.  
+        Sin técnicos en tu empresa, sin obras, sin equipos especiales.
+      </p>
+    </div>
+
+    <div class="card fade-in-delayed">
+      <div style="font-size:28px; margin-bottom:10px;">🧩</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:10px;">No cambia nada en tu empresa</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Tus trabajadores solo ven una tablet con su nombre.  
+        No tienen que instalar apps ni gestionar contraseñas.
+      </p>
+    </div>
+
+    <div class="card slide-left">
+      <div style="font-size:28px; margin-bottom:10px;">🔒</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:10px;">Tus datos son tuyos</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Todo se guarda en tu Google Drive.  
+        <strong>No dependes de un software externo ni de un servidor ajeno.</strong>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ======================================= -->
+<!-- COMPARATIVA DIRECTA                    -->
+<!-- ======================================= -->
+
+<section class="section fade-in" style="background:#f8fafc;">
+  <h2 class="title">Comparativa rápida</h2>
+  <p class="subtitle">
+    La mayoría de sistemas de fichaje o son demasiado complejos, o demasiado caros,  
+    o no cumplen bien la normativa. SIDGI está justo en el punto perfecto.
+  </p>
+
+  <div class="card" style="margin-top:40px; padding:0; overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; min-width:720px;">
+      <thead>
+        <tr style="background:#eef2ff; color:#1e3a8a; text-align:left;">
+          <th style="padding:14px;">Característica</th>
+          <th style="padding:14px;">SIDGI</th>
+          <th style="padding:14px;">Tarjetas / tornos</th>
+          <th style="padding:14px;">Apps móviles</th>
+          <th style="padding:14px;">Software tradicional</th>
+        </tr>
+      </thead>
+      <tbody style="font-size:15px; color:var(--text-soft);">
+
+        <tr style="border-top:1px solid var(--border);">
+          <td style="padding:12px;">Instalación</td>
+          <td style="padding:12px; color:var(--accent-green); font-weight:600;">En 24h</td>
+          <td style="padding:12px;">Técnicos + cableado</td>
+          <td style="padding:12px;">Cada empleado instala</td>
+          <td style="padding:12px;">Días de configuración</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border);">
+          <td style="padding:12px;">Requisitos</td>
+          <td style="padding:12px; color:var(--accent-green); font-weight:600;">Solo una tablet / PC</td>
+          <td style="padding:12px;">Hardware especial</td>
+          <td style="padding:12px;">Móvil personal</td>
+          <td style="padding:12px;">Software complejo</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border);">
+          <td style="padding:12px;">Firma digital</td>
+          <td style="padding:12px; color:var(--accent-green); font-weight:600;">Sí</td>
+          <td style="padding:12px;">No</td>
+          <td style="padding:12px;">No siempre</td>
+          <td style="padding:12px;">Depende del plan</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border);">
+          <td style="padding:12px;">Guardado de datos</td>
+          <td style="padding:12px; color:var(--accent-green); font-weight:600;">
+            Tu Google Drive (sin dependencia)
+          </td>
+          <td style="padding:12px;">Proveedor externo</td>
+          <td style="padding:12px;">Proveedor externo</td>
+          <td style="padding:12px;">Base de datos cerrada</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border);">
+          <td style="padding:12px;">Cumplimiento legal</td>
+          <td style="padding:12px; color:var(--accent-green); font-weight:600;">100% RD-ley 8/2019</td>
+          <td style="padding:12px;">Solo fichaje</td>
+          <td style="padding:12px;">Depende del uso</td>
+          <td style="padding:12px;">Sí, pero complejo</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border);">
+          <td style="padding:12px;">Coste mensual</td>
+          <td style="padding:12px; color:var(--accent-green); font-weight:600;">Muy bajo</td>
+          <td style="padding:12px;">Muy alto</td>
+          <td style="padding:12px;">Depende de usuarios</td>
+          <td style="padding:12px;">Alto o con permanencias</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+
+<!-- ======================================= -->
+<!-- DIFERENCIALES CLAVE DE SIDGI           -->
+<!-- ======================================= -->
+
+<section class="section fade-in">
+  <h2 class="title">Lo que hace único a SIDGI</h2>
+  <p class="subtitle">
+    No es solo un sistema de fichaje.  
+    Es una forma de evitar problemas, ahorrar tiempo y ganar tranquilidad.
+  </p>
+
+  <div class="grid-3" style="margin-top:40px;">
+
+    <!-- DIFERENCIAL 1 -->
+    <div class="card slide-right">
+      <div style="font-size:28px; margin-bottom:10px;">🧠</div>
+      <h3 style="font-size:20px; margin-bottom:10px;">Automatización real</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        SIDGI trabaja por ti: calcula horas, pausa, totales, resúmenes y avisos.  
+        <strong>No vuelves a tocar fórmulas.</strong>
+      </p>
+    </div>
+
+    <!-- DIFERENCIAL 2 -->
+    <div class="card fade-in-delayed">
+      <div style="font-size:28px; margin-bottom:10px;">📁</div>
+      <h3 style="font-size:20px; margin-bottom:10px;">Todo queda ordenado solo</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Cada mes la información aparece lista para revisar o enseñar en una inspección.
+        Todo organizado por trabajador, día y centro.
+      </p>
+    </div>
+
+    <!-- DIFERENCIAL 3 -->
+    <div class="card slide-left">
+      <div style="font-size:28px; margin-bottom:10px;">📨</div>
+      <h3 style="font-size:20px; margin-bottom:10px;">Fichaje por email y tablet</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Tus trabajadores no necesitan una app, ni recordar claves.  
+        Reciben un email diario con sus botones de fichaje.
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- ======================================= -->
+<!-- INSPECCIÓN DE TRABAJO: QUÉ MIRAN       -->
+<!-- ======================================= -->
+
+<section class="section fade-in" id="inspeccion">
+  <h2 class="title">Inspección de Trabajo: qué miran y cómo SIDGI te protege</h2>
+  <p class="subtitle">
+    Si mañana viene una inspección, necesitan tres cosas:  
+    <strong>registros fiables, ordenados y almacenados durante 4 años.</strong>  
+    SIDGI lo prepara todo automáticamente.
+  </p>
+
+
+  <div class="grid-3" style="margin-top:40px;">
+
+    <!-- PUNTO 1 -->
+    <div class="card slide-right">
+      <div style="font-size:28px; margin-bottom:10px;">📅</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:10px;">
+        1. Registros diarios completos
+      </h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Entrada y salida de cada trabajador, sin huecos ni errores.  
+        SIDGI controla que no falte ningún fichaje.
+      </p>
+    </div>
+
+    <!-- PUNTO 2 -->
+    <div class="card fade-in-delayed">
+      <div style="font-size:28px; margin-bottom:10px;">🕒</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:10px;">
+        2. Horas netas y pausas bien calculadas
+      </h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Nada de cálculos manuales.  
+        SIDGI descuenta pausas, almuerzos y comidas según tus reglas.
+      </p>
+    </div>
+
+    <!-- PUNTO 3 -->
+    <div class="card slide-left">
+      <div style="font-size:28px; margin-bottom:10px;">📂</div>
+      <h3 style="font-size:20px; font-weight:700; margin-bottom:10px;">
+        3. Histórico archivado 4 años en tu Drive
+      </h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        SIDGI guarda automáticamente todos los meses ordenados por trabajador.  
+        Si piden un mes concreto, lo tienes en 5 segundos.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ======================================= -->
+<!-- MENSAJE TRANQUILIZADOR                 -->
+<!-- ======================================= -->
+
+<section class="section fade-in-delayed" style="background:#f0fdf4;">
+  <div class="card" style="border-left:6px solid var(--accent-green); padding:30px;">
+    <h3 style="font-size:22px; font-weight:700; margin-bottom:10px;">
+      “Si mañana viene Inspección, ¿qué entrego?”
+    </h3>
+
+    <p style="font-size:16px; color:#14532d; margin-bottom:14px;">
+      Abres tu Google Drive → vas a la carpeta de SIDGI → eliges el mes →  
+      descargas la hoja por trabajador o el resumen mensual.  
+      <strong>Eso es exactamente lo que te van a pedir.</strong>
+    </p>
+
+    <p style="font-size:15px; color:#166534;">
+      No hay PDFs que generar ni datos que exportar.  
+      SIDGI deja todo preparado automáticamente.
+    </p>
+  </div>
+</section>
+
+
+
+
+<!-- ======================================= -->
+<!-- CASO REAL EXTENDIDO                    -->
+<!-- ======================================= -->
+
+<section class="section fade-in" id="caso-real">
+  <h2 class="title">Un caso real: cómo cambió la gestión en Puertas Lloris S.L.</h2>
+  <p class="subtitle">
+    Esta empresa tenía fichas en papel, Excel desordenados y riesgo en cada inspección.  
+    Con SIDGI, el control horario es automático y transparente.
+  </p>
+
+  <div class="grid-2" style="margin-top:40px; align-items:center;">
+
+    <!-- IMAGEN -->
+    <figure class="slide-right card" style="padding:0;">
+      <img src="img/caso-lloris.png" alt="Caso real de implementación en Puertas Lloris">
+      <figcaption style="padding:14px; font-size:14px; color:var(--text-soft);">
+        Zona de fichaje instalada en el taller: tablet fija con fichaje en un toque.
+      </figcaption>
+    </figure>
+
+    <!-- TEXTO -->
+    <div class="slide-left">
+      <h3 style="font-size:22px; font-weight:700; margin-bottom:16px;">
+        Antes de SIDGI
+      </h3>
+      <ul style="font-size:15px; color:var(--text-soft); line-height:1.6; margin-bottom:26px;">
+        <li>• Hojas de papel que se perdían</li>
+        <li>• Horas mal calculadas</li>
+        <li>• Trabajadores olvidando fichar</li>
+        <li>• Todo el trabajo recaía en administración</li>
+      </ul>
+
+      <h3 style="font-size:22px; font-weight:700; margin-bottom:16px;">
+        Después de SIDGI
+      </h3>
+      <ul style="font-size:15px; color:var(--text-main); line-height:1.6;">
+        <li>• Fichaje en 1 toque sobre la tablet</li>
+        <li>• Horas calculadas automáticamente</li>
+        <li>• Resumen mensual listo el día 1</li>
+        <li>• Histórico archivado sin esfuerzo</li>
+        <li>• Cero estrés si viene una inspección</li>
+      </ul>
+
+      <div style="margin-top:22px;">
+        <a href="#contacto" class="btn btn-primary">Quiero implantar SIDGI</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ======================================= -->
+<!-- PLANES Y PRECIOS                       -->
+<!-- ======================================= -->
+
+<section id="precios" class="section fade-in">
+  <h2 class="title">Planes sencillos sin permanencia</h2>
+  <p class="subtitle">
+    Solo eliges el tramo de trabajadores que tiene tu empresa.  
+    Todos los planes incluyen EXACTAMENTE la misma funcionalidad.
+  </p>
+
+  <div class="grid-3" style="margin-top:40px;">
+
+    <!-- ============================ -->
+    <!-- PLAN 1: BÁSICO (1–5)         -->
+    <!-- ============================ -->
+
+    <div class="card slide-right" style="position:relative;">
+      <h3 style="font-size:20px; margin-bottom:6px;">Plan Básico</h3>
+      <p style="font-size:14px; color:var(--text-soft); margin-bottom:16px;">1 a 5 trabajadores</p>
+
+      <div style="font-size:32px; font-weight:800; margin-bottom:4px;">19€</div>
+      <div style="font-size:14px; color:var(--text-soft); margin-bottom:18px;">/ mes</div>
+
+      <ul style="font-size:15px; color:var(--text-soft); display:grid; gap:6px; margin-bottom:20px;">
+        <li>• Hasta 5 trabajadores</li>
+        <li>• Fichaje por tablet + email</li>
+        <li>• Firma opcional</li>
+        <li>• Hoja por trabajador</li>
+        <li>• Resumen mensual automático</li>
+        <li>• Datos siempre en tu Google Drive</li>
+      </ul>
+
+      <a href="#contacto" class="btn btn-outline" style="width:100%; text-align:center;">
+        Empezar con el Plan Básico
+      </a>
+    </div>
+
+
+    <!-- ============================ -->
+    <!-- PLAN 2: ESTÁNDAR (6–10)      -->
+    <!-- ============================ -->
+
+    <div class="card fade-in-delayed" style="
+      position:relative;
+      border:2px solid var(--primary);
+      box-shadow:0 14px 40px rgba(37,99,235,0.22);
+    ">
+
+      <div style="
+        position:absolute;
+        top:-12px;
+        right:-12px;
+        background:var(--primary);
+        color:white;
+        padding:6px 12px;
+        border-radius:8px;
+        font-size:13px;
+        font-weight:600;
+      ">
+        Más contratado
+      </div>
+
+      <h3 style="font-size:20px; margin-bottom:6px;">Plan Estándar</h3>
+      <p style="font-size:14px; color:var(--text-soft); margin-bottom:16px;">6 a 10 trabajadores</p>
+
+      <div style="font-size:32px; font-weight:800; margin-bottom:4px;">29€</div>
+      <div style="font-size:14px; color:var(--text-soft); margin-bottom:18px;">/ mes</div>
+
+      <ul style="font-size:15px; color:var(--text-soft); display:grid; gap:6px; margin-bottom:20px;">
+        <li>• Hasta 10 trabajadores</li>
+        <li>• Fichaje por email + tablet</li>
+        <li>• Firma opcional</li>
+        <li>• Histórico 4 años</li>
+        <li>• Resumen mensual por trabajador</li>
+        <li>• Ajuste de pausas según el convenio</li>
+      </ul>
+
+      <a href="#contacto" class="btn btn-primary" style="width:100%; text-align:center;">
+        Contratar Plan Estándar
+      </a>
+    </div>
+
+
+    <!-- ============================ -->
+    <!-- PLAN 3: AVANZADO (11–50)     -->
+    <!-- ============================ -->
+
+    <div class="card slide-left">
+      <h3 style="font-size:20px; margin-bottom:6px;">Plan Avanzado</h3>
+      <p style="font-size:14px; color:var(--text-soft); margin-bottom:16px;">11 a 50 trabajadores</p>
+
+      <div style="font-size:32px; font-weight:800; margin-bottom:4px;">39€</div>
+      <div style="font-size:14px; color:var(--text-soft); margin-bottom:18px;">/ mes</div>
+
+      <ul style="font-size:15px; color:var(--text-soft); display:grid; gap:6px; margin-bottom:20px;">
+        <li>• Hasta 50 trabajadores</li>
+        <li>• Hojas individuales + resumen por centro</li>
+        <li>• Reglas personalizadas por turno o categoría</li>
+        <li>• Apoyo en inspecciones</li>
+        <li>• Archivado automático de meses</li>
+      </ul>
+
+      <a href="#contacto" class="btn btn-outline" style="width:100%; text-align:center;">
+        Pedir Plan Avanzado
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<!-- ======================================= -->
+<!-- COMPARATIVA ENTRE PLANES               -->
+<!-- ======================================= -->
+
+<section class="section fade-in" style="background:#f8fafc;">
+  <h2 class="title">Comparativa entre planes</h2>
+  <p class="subtitle">Todos los planes tienen exactamente lo mismo. Lo único que cambia es el número de trabajadores.</p>
+
+  <div class="card" style="margin-top:40px; padding:0; overflow-x:auto;">
+
+    <table style="width:100%; border-collapse:collapse; min-width:720px;">
+      <thead>
+        <tr style="background:#eef2ff; color:#1e3a8a;">
+          <th style="padding:14px; text-align:left;">Funcionalidad</th>
+          <th style="padding:14px; text-align:center;">Básico</th>
+          <th style="padding:14px; text-align:center;">Estándar</th>
+          <th style="padding:14px; text-align:center;">Avanzado</th>
+        </tr>
+      </thead>
+
+      <tbody style="font-size:15px; color:var(--text-soft);">
+
+        <tr style="border-top:1px solid var(--border); text-align:center;">
+          <td style="padding:14px; text-align:left;">Fichaje por email y tablet</td>
+          <td>✔️</td><td>✔️</td><td>✔️</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border); text-align:center;">
+          <td style="padding:14px; text-align:left;">Firma opcional</td>
+          <td>✔️</td><td>✔️</td><td>✔️</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border); text-align:center;">
+          <td style="padding:14px; text-align:left;">Hoja por trabajador</td>
+          <td>✔️</td><td>✔️</td><td>✔️</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border); text-align:center;">
+          <td style="padding:14px; text-align:left;">Resumen mensual automático</td>
+          <td>✔️</td><td>✔️</td><td>✔️</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border); text-align:center;">
+          <td style="padding:14px; text-align:left;">Histórico guardado 4 años</td>
+          <td>✔️</td><td>✔️</td><td>✔️</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border); text-align:center;">
+          <td style="padding:14px; text-align:left;">Ajuste de pausas según normativa</td>
+          <td>Opcional</td><td>✔️ Completo</td><td>✔️ Personalizable</td>
+        </tr>
+
+        <tr style="border-top:1px solid var(--border); text-align:center;">
+          <td style="padding:14px; text-align:left;">Equipos grandes o varios centros</td>
+          <td>—</td><td>—</td><td>✔️ Ideal</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</section>
+<!-- ======================================= -->
+<!-- TESTIMONIOS REALES                      -->
+<!-- ======================================= -->
+
+<section id="testimonios" class="section fade-in">
+  <h2 class="title">Lo que dicen las empresas que ya usan SIDGI</h2>
+  <p class="subtitle">Opiniones reales de talleres, almacenes y pequeñas empresas que buscaban simplicidad y cumplimiento legal.</p>
+
+  <div class="grid-3" style="margin-top:40px;">
+
+    <!-- Testimonio 1 -->
+    <div class="card slide-right">
+      <div style="height:28px; margin-bottom:14px;">
+        <img src="img/logo-lloris-pons.png" alt="Puertas Lloris S.L." style="height:100%; object-fit:contain;">
+      </div>
+      <p style="font-size:15px; color:var(--text-soft); margin-bottom:12px;">
+        “Antes teníamos hojas en papel y cada mes era un caos.  
+        Con la tablet todos fichan en un toque y el resumen mensual sale solo.”
+      </p>
+      <div style="font-size:14px; font-weight:600;">Puertas Lloris S.L.</div>
+      <div style="font-size:12px; color:var(--text-soft);">Fabricación e instalación de puertas</div>
+    </div>
+
+    <!-- Testimonio 2 -->
+    <div class="card fade-in-delayed">
+      <div style="height:28px; margin-bottom:14px;">
+        <img src="img/logo-alumida.png" alt="Alumida S.L." style="height:100%; object-fit:contain;">
+      </div>
+      <p style="font-size:15px; color:var(--text-soft); margin-bottom:12px;">
+        “Nos preocupaba la inspección porque no teníamos un sistema claro.  
+        Con SIDGI sabemos que todo queda archivado y listo para enseñar.”
+      </p>
+      <div style="font-size:14px; font-weight:600;">Alumida S.L.</div>
+      <div style="font-size:12px; color:var(--text-soft);">Carpintería metálica y cerramientos</div>
+    </div>
+
+    <!-- Testimonio 3 -->
+    <div class="card slide-left">
+      <p style="font-size:15px; color:var(--text-soft); margin-bottom:12px;">
+        “No quería que los trabajadores tuvieran que instalar apps ni crear cuentas.  
+        SIDGI es tan simple que no he tenido que explicar nada.”
+      </p>
+      <div style="font-size:14px; font-weight:600;">Ferretería Martínez S.L.</div>
+      <div style="font-size:12px; color:var(--text-soft);">Ferretería industrial</div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ======================================= -->
+<!-- LO QUE APRECIAN LAS EMPRESAS           -->
+<!-- ======================================= -->
+
+<section class="section fade-in" style="background:#f8fafc;">
+  <h2 class="title">Lo que más valoran las empresas</h2>
+  <p class="subtitle">
+    Estas son las cosas que más se repiten cuando una empresa nos cuenta por qué eligió SIDGI.
+  </p>
+
+  <div class="grid-3" style="margin-top:40px;">
+    
+    <div class="card slide-right">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">“Es muy simple”</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        El fichaje está a 1 toque.  
+        Los trabajadores no se lían y no necesitan formación.
+      </p>
+    </div>
+
+    <div class="card fade-in-delayed">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">“No dependemos de nadie”</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Los datos están en su Google Drive.  
+        No hay permanencia ni bloqueo en plataformas externas.
+      </p>
+    </div>
+
+    <div class="card slide-left">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">“Si viene inspección, no hay estrés”</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Cada mes queda archivado automáticamente.  
+        Entregan lo que piden en segundos.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ======================================= -->
+<!-- FAQ EXTENDIDA                           -->
+<!-- ======================================= -->
+
+<section id="faq" class="section fade-in">
+  <h2 class="title">Preguntas frecuentes</h2>
+  <p class="subtitle">Resolvemos las dudas que la mayoría de empresas tienen antes de empezar.</p>
+
+  <div class="grid-2" style="margin-top:40px;">
+
+    <!-- FAQ 1 -->
+    <div class="card slide-right">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿La firma digital es válida?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Sí. La firma se registra junto al fichaje, asociada al día y al trabajador.  
+        Lo que inspección exige es trazabilidad y registro fiable, y SIDGI lo garantiza.
+      </p>
+    </div>
+
+    <!-- FAQ 2 -->
+    <div class="card slide-left">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿Qué pasa si un trabajador no tiene móvil?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Nada. La tablet fija es suficiente.  
+        El móvil es solo un método extra para quien lo prefiera.
+      </p>
+    </div>
+
+    <!-- FAQ 3 -->
+    <div class="card slide-right">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿Cómo funciona el cálculo de horas?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        SIDGI aplica las reglas de tu empresa: pausas, almuerzo, comida y jornada.  
+        Cada día calcula automáticamente las horas netas y totales mensuales.
+      </p>
+    </div>
+
+    <!-- FAQ 4 -->
+    <div class="card slide-left">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿Quién ve mis datos?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Tú. Solo tú.  
+        Todo se guarda en tu Google Drive.  
+        Nosotros no almacenamos nada.
+      </p>
+    </div>
+
+    <!-- FAQ 5 -->
+    <div class="card slide-right">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿Necesito instalar algo?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        No. Ni apps, ni programas, ni usuarios.  
+        SIDGI funciona directamente sobre Google Sheets y Drive.
+      </p>
+    </div>
+
+    <!-- FAQ 6 -->
+    <div class="card slide-left">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿Cuánto se tarda en tenerlo listo?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Normalmente menos de 24h desde que recibimos tus datos.  
+        No hay técnicos que enviar ni configuraciones complejas.
+      </p>
+    </div>
+
+    <!-- FAQ 7 -->
+    <div class="card slide-right">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿Qué pasa si un trabajador ficha mal?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        La administración puede corregirlo en la hoja de Google.  
+        SIDGI recalcula las horas automáticamente.
+      </p>
+    </div>
+
+    <!-- FAQ 8 -->
+    <div class="card slide-left">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:10px;">¿Puedo exportar los datos?</h3>
+      <p style="font-size:15px; color:var(--text-soft);">
+        Claro. Todo está en tu Drive. Puedes descargar Excel, PDF o la hoja completa cuando quieras.
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- ======================================= -->
+<!-- CTA FINAL · CIERRE DE VENTA             -->
+<!-- ======================================= -->
+
+<section id="contacto" class="section fade-in" style="margin-top:40px;">
+  <div class="card" style="padding:40px; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.06);">
+    
+    <h2 style="font-size:30px; font-weight:800; margin-bottom:12px;">
+      ¿Quieres tener el control horario resuelto esta semana?
+    </h2>
+
+    <p style="font-size:17px; color:var(--text-soft); margin-bottom:26px;">
+      Envíanos el nombre de tu empresa, CIF y número de trabajadores.  
+      Te instalamos el sistema en menos de 24h sin molestar a nadie.
+    </p>
+
+    <a href="mailto:sidgilanding@gmail.com?subject=Quiero%20implantar%20SIDGI"
+       class="btn btn-primary"
+       style="padding:18px 32px; font-size:18px;">
+      Escribir a sidgilanding@gmail.com
+    </a>
+
+    <p style="font-size:14px; color:var(--text-soft); margin-top:20px;">
+      Respuesta garantizada de lunes a viernes en menos de 24h.
+    </p>
+  </div>
+</section>
+
+
+
+<!-- ======================================= -->
+<!-- FOOTER                                  -->
+<!-- ======================================= -->
+
+<footer style="
+  background:#f3f4f6;
+  border-top:1px solid var(--border);
+  padding:20px 0;
+  margin-top:60px;
+">
+  <div style="max-width:1100px; margin:0 auto; padding:0 20px; display:flex; justify-content:space-between; flex-wrap:wrap;">
+
+    <div style="font-size:14px; color:var(--text-soft); margin-bottom:8px;">
+      © <span id="year"></span> SIDGI · Control horario legal para PYMES
+    </div>
+
+    <div style="display:flex; gap:18px;">
+      <a href="#privacidad" style="font-size:14px; color:var(--text-soft); text-decoration:underline; text-decoration-style:dotted;">Política de privacidad</a>
+      <a href="#cookies" style="font-size:14px; color:var(--text-soft); text-decoration:underline; text-decoration-style:dotted;">Política de cookies</a>
+      <a href="mailto:sidgilanding@gmail.com" style="font-size:14px; color:var(--text-soft); text-decoration:underline; text-decoration-style:dotted;">Contacto</a>
+    </div>
+
   </div>
 </footer>
 
+
+
+<!-- ======================================= -->
+<!-- SCRIPTS DE ANIMACIÓN AL HACER SCROLL   -->
+<!-- ======================================= -->
+
 <script>
+  // Año dinámico
   document.getElementById("year").textContent = new Date().getFullYear();
+
+
+  // Animación al aparecer en pantalla · versión ligera
+  const revealOnScroll = () => {
+    const elements = document.querySelectorAll(".fade-in, .fade-in-delayed, .slide-right, .slide-left");
+
+    const triggerPoint = window.innerHeight * 0.88;
+
+    elements.forEach(el => {
+      const rect = el.getBoundingClientRect().top;
+      if (rect < triggerPoint) {
+        el.style.opacity = 1;
+        el.style.transform = "translateY(0) translateX(0)";
+      }
+    });
+  };
+
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("load", revealOnScroll);
 </script>
+
 </body>
 </html>
