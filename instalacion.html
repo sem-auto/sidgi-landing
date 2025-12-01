@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDGI — Instalación del sistema</title>
+
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --white: #ffffff;
+    --primary: #2563eb;
+    --primary-soft: rgba(37, 99, 235, .12);
+    --text: #1f2937;
+    --text-soft: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+  a { text-decoration:none; color:inherit; }
+
+  .container {
+    max-width:1100px;
+    margin:auto;
+    padding:0 20px;
+  }
+
+  /* HEADER */
+  header {
+    background:white;
+    border-bottom:1px solid var(--border);
+    box-shadow:var(--shadow);
+    position:sticky;
+    top:0;
+    z-index:20;
+  }
+
+  .nav {
+    height:65px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .nav-logo {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:18px;
+  }
+
+  .nav-logo img {
+    height:34px;
+  }
+
+  .nav-links {
+    display:flex;
+    gap:34px;
+    font-size:15px;
+    font-weight:500;
+    color:var(--text-soft);
+  }
+
+  .nav-links a:hover { color:var(--primary); }
+
+  @media(max-width:900px){
+    .nav-links { display:none; }
+  }
+
+  /* HERO */
+  .hero {
+    padding:70px 0;
+    text-align:center;
+    background:white;
+    border-bottom:1px solid var(--border);
+  }
+
+  .hero h1 {
+    font-size:36px;
+    margin-bottom:14px;
+  }
+
+  .hero p {
+    font-size:18px;
+    color:var(--text-soft);
+    max-width:700px;
+    margin:auto;
+  }
+
+  /* SECTION */
+  .section {
+    padding:70px 0;
+  }
+
+  .section h2 {
+    font-size:28px;
+    margin-bottom:10px;
+  }
+
+  .section p.sub {
+    font-size:17px;
+    color:var(--text-soft);
+    margin-bottom:30px;
+    max-width:600px;
+  }
+
+  /* PASOS */
+  .steps {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+  }
+
+  .step {
+    background:white;
+    padding:24px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+  }
+
+  .step h3 {
+    font-size:18px;
+    margin-bottom:6px;
+  }
+
+  .step-num {
+    font-weight:700;
+    font-size:30px;
+    color:var(--primary);
+    margin-bottom:12px;
+  }
+
+  /* CARDS */
+  .card {
+    background:white;
+    border-radius:14px;
+    border:1px solid var(--border);
+    padding:24px;
+    box-shadow:var(--shadow);
+  }
+
+  .card h3 {
+    margin-bottom:12px;
+    font-size:20px;
+  }
+
+  .list {
+    margin-left:20px;
+    list-style:disc;
+    color:var(--text-soft);
+    font-size:16px;
+  }
+
+  /* CTA FINAL */
+  .cta {
+    background:white;
+    padding:32px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+    max-width:700px;
+    margin:auto;
+    text-align:center;
+  }
+
+  .btn-primary {
+    background:var(--primary);
+    color:white!important;
+    padding:14px 20px;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:700;
+    display:inline-block;
+    margin-top:12px;
+  }
+
+  /* FOOTER */
+  footer {
+    background:white;
+    padding:20px 0;
+    border-top:1px solid var(--border);
+    margin-top:40px;
+  }
+
+  footer .inner {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    font-size:14px;
+    color:var(--text-soft);
+    gap:12px;
+  }
+
+  footer a {
+    text-decoration:underline;
+    text-underline-offset:3px;
+    color:var(--text-soft);
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <img src="img/logo-sidgi.png">
+        SIDGI
+      </div>
+      <div class="nav-links">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="demo.html">Demo</a>
+        <a href="instalacion.html">Instalación</a>
+        <a href="index.html#precios">Precios</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Instalar SIDGI es rápido y sencillo</h1>
+  <p>
+    Preparamos toda la estructura, carpeta, hoja de fichajes y enlaces.  
+    Tú solo nos das la información básica de la empresa.
+  </p>
+</section>
+
+
+<!-- PASO A PASO -->
+<section class="section">
+  <div class="container">
+    <h2>Paso a paso</h2>
+    <p class="sub">Así configuramos SIDGI para tu empresa.</p>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Recibimos tus datos</h3>
+        <p>Nos envías nombre de empresa, CIF y trabajadores. Nada más.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Preparamos tu carpeta en Drive</h3>
+        <p>Se crean hojas de fichaje, carpetas de registros y estructura inicial.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Configuramos el sistema</h3>
+        <p>Se genera la web de fichaje, los botones diarios y reglas de empresa.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Listo para usar</h3>
+        <p>En menos de 24h puedes empezar a fichar desde tablet o móvil.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- QUÉ INCLUYE -->
+<section class="section" style="background:white;">
+  <div class="container">
+    <div class="card">
+      <h3>¿Qué incluye la instalación?</h3>
+      <ul class="list">
+        <li>Creación de carpeta oficial en Google Drive</li>
+        <li>Hoja de fichajes por trabajador</li>
+        <li>Configuración de reglas de empresa (pausas, horas, etc.)</li>
+        <li>Web de fichaje (tablet) lista para usar</li>
+        <li>Botones de entrada/salida por email</li>
+        <li>Prueba y verificación técnica</li>
+        <li>Guía rápida para el responsable</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- REQUISITOS -->
+<section class="section">
+  <div class="container">
+    <div class="card">
+      <h3>¿Qué necesitas tú?</h3>
+      <ul class="list">
+        <li>Cuenta de Google activa (Drive + Sheets)</li>
+        <li>Una tablet con internet (Android o iPad)</li>
+        <li>Correo del responsable de la empresa</li>
+        <li>Lista de trabajadores y turnos</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- TIEMPO -->
+<section class="section" style="background:white;">
+  <div class="container">
+    <div class="card">
+      <h3>¿Cuánto se tarda?</h3>
+      <p style="font-size:16px;color:var(--text-soft);">
+        Normalmente, menos de <strong>24 horas laborales</strong>.  
+        En la mayoría de casos, queda instalado el mismo día.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container">
+    <h2>Preguntas frecuentes</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:24px;">
+
+      <div class="card">
+        <h3>¿Necesito un técnico en la empresa?</h3>
+        <p>No. Todo se hace de forma remota y verificada.</p>
+      </div>
+
+      <div class="card">
+        <h3>¿Se puede cambiar trabajadores?</h3>
+        <p>Sí, puedes añadir o eliminar cuando quieras.</p>
+      </div>
+
+      <div class="card">
+        <h3>¿Y si cambia el horario?</h3>
+        <p>Se actualizan las reglas de pausas o turnos sin coste adicional.</p>
+      </div>
+
+      <div class="card">
+        <h3>¿Puedo migrar datos antiguos?</h3>
+        <p>Sí, podemos ayudarte a integrarlos en Drive.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CTA FINAL -->
+<section class="section">
+  <div class="container">
+    <div class="cta">
+      <h2>¿Quieres instalar SIDGI en tu empresa?</h2>
+      <p style="font-size:17px;color:var(--text-soft);">
+        Envíanos tus datos y comenzamos la configuración hoy mismo.
+      </p>
+
+      <a class="btn-primary"
+         href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com&su=Instalación%20SIDGI">
+         Solicitar instalación por Gmail
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="inner">
+      <div>© <span id="year"></span> SIDGI — Control horario para PYMES.</div>
+      <div>
+        <a href="index.html#privacidad">Privacidad</a> ·
+        <a href="index.html#cookies">Cookies</a> ·
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com">Contacto</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
