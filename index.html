@@ -171,6 +171,13 @@
       color: var(--primary);
       font-weight: 800;
     }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav.desktop { display: none; }
+      .menu-btn { display: block; }
+    }
+
   </style>
 </head>
 
@@ -249,67 +256,85 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </div>
 </section>
 <!-- CÓMO FUNCIONA -->
-<section id="como" style="padding:40px 16px; background:#fff;">
+<section id="como" style="padding:50px 16px;background:#fff;">
   <div style="max-width:900px;margin:0 auto;">
+
     <h2 style="font-size:26px;margin-bottom:8px;">Cómo funciona SIDGI en tu empresa</h2>
     <p style="color:#666;margin-bottom:24px;max-width:650px;">
-      Pensado para talleres, almacenes y PYMES que quieren cumplir la normativa sin cambiar su forma de trabajar.
+      Pensado para talleres, almacenes y PYMES que quieren cumplir la normativa (RD-ley 8/2019)
+      sin instalar apps ni cambiar su forma de trabajar.
     </p>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;">
+    <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    ">
 
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;">
+      <!-- PASO 1 -->
+      <div style="background:#fff;border:1px solid #e5e7eb;padding:18px;border-radius:12px;">
         <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:4px;">PASO 1</div>
-        <h3 style="font-size:18px;margin-bottom:6px;">Nos envías los datos básicos</h3>
+        <h3 style="font-size:18px;margin-bottom:6px;">Envío de datos básicos</h3>
         <p style="color:#666;font-size:14px;">
-          Nombre de la empresa, CIF y lista de trabajadores. No necesitas configurar nada más.
+          Nombre de la empresa, CIF y lista de trabajadores. Nada más.
         </p>
       </div>
 
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;">
+      <!-- PASO 2 -->
+      <div style="background:#fff;border:1px solid #e5e7eb;padding:18px;border-radius:12px;">
         <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:4px;">PASO 2</div>
-        <h3 style="font-size:18px;margin-bottom:6px;">Creamos tu hoja y carpeta en Drive</h3>
+        <h3 style="font-size:18px;margin-bottom:6px;">Creamos tu hoja y carpeta</h3>
         <p style="color:#666;font-size:14px;">
-          Generamos automáticamente la hoja de fichajes en Google Sheets y la carpeta donde se guardará todo.
+          Generamos la hoja de fichajes en Google Sheets y la carpeta en Drive donde
+          se guardarán todos los registros.
         </p>
       </div>
 
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;">
+      <!-- PASO 3 -->
+      <div style="background:#fff;border:1px solid #e5e7eb;padding:18px;border-radius:12px;">
         <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:4px;">PASO 3</div>
-        <h3 style="font-size:18px;margin-bottom:6px;">Activamos la tablet y el enlace diario</h3>
+        <h3 style="font-size:18px;margin-bottom:6px;">Activamos tablet + enlaces</h3>
         <p style="color:#666;font-size:14px;">
-          Te damos la URL para la tablet de fichaje y, si quieres, el sistema de botones diarios por email.
+          Te damos la web para la tablet del taller y configuramos, si quieres,
+          los correos diarios con botones de entrada/salida.
         </p>
       </div>
 
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;">
+      <!-- PASO 4 -->
+      <div style="background:#fff;border:1px solid #e5e7eb;padding:18px;border-radius:12px;">
         <div style="font-size:13px;font-weight:700;color:#2563eb;margin-bottom:4px;">PASO 4</div>
-        <h3 style="font-size:18px;margin-bottom:6px;">Tus trabajadores fichan y todo queda guardado</h3>
+        <h3 style="font-size:18px;margin-bottom:6px;">Tus trabajadores fichan</h3>
         <p style="color:#666;font-size:14px;">
-          Entrada / salida con un solo toque. SIDGI calcula las horas y deja el mes listo para revisión o inspección.
+          SIDGI registra cada fichaje con hora exacta y calcula automáticamente las horas
+          del día y del mes. Sin tocar fórmulas.
         </p>
       </div>
 
     </div>
+
   </div>
 </section>
 <!-- COMPARATIVA -->
 <section id="comparativa" style="padding:50px 16px;background:#f7f9fc;">
   <div style="max-width:900px;margin:0 auto;">
 
-    <h2 style="font-size:26px;margin-bottom:8px;text-align:center;">SIDGI frente a otros sistemas</h2>
-    <p style="color:#666;text-align:center;max-width:650px;margin:0 auto 24px;">
-      Comparativa directa con los sistemas típicos de fichaje por tarjeta, apps móviles y software tradicional.
+    <h2 style="font-size:26px;margin-bottom:8px;text-align:center;">
+      SIDGI frente a otros sistemas de fichaje
+    </h2>
+
+    <p style="color:#666;text-align:center;max-width:650px;margin:0 auto 28px;">
+      Comparativa directa con apps móviles, terminales de tarjeta/huella y software tradicional.
     </p>
 
     <div style="overflow-x:auto;">
       <table style="width:100%;border-collapse:collapse;font-size:15px;background:#fff;border-radius:12px;overflow:hidden;">
+        
         <thead>
           <tr style="background:#2563eb;color:#fff;">
             <th style="padding:14px;text-align:left;">Funcionalidad</th>
             <th style="padding:14px;text-align:center;">SIDGI</th>
             <th style="padding:14px;text-align:center;">Apps móviles</th>
-            <th style="padding:14px;text-align:center;">Tarjetas / Huella</th>
+            <th style="padding:14px;text-align:center;">Tarjeta / Huella</th>
           </tr>
         </thead>
 
@@ -323,7 +348,7 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
           </tr>
 
           <tr>
-            <td style="padding:12px;border-bottom:1px solid #eee;">Funciona con tablet o móvil</td>
+            <td style="padding:12px;border-bottom:1px solid #eee;">Funciona en tablet y móvil</td>
             <td style="padding:12px;text-align:center;color:#16a34a;font-weight:700;">✔ Sí</td>
             <td style="padding:12px;text-align:center;">Solo móvil</td>
             <td style="padding:12px;text-align:center;">Solo terminal físico</td>
@@ -331,13 +356,13 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
 
           <tr>
             <td style="padding:12px;border-bottom:1px solid #eee;">Cálculo automático de horas</td>
-            <td style="padding:12px;text-align:center;color:#16a34a;font-weight:700;">✔ Sí</td>
+            <td style="padding:12px;text-align:center;color:#16a34a;font-weight:700;">✔ Completo</td>
             <td style="padding:12px;text-align:center;">Limitado</td>
             <td style="padding:12px;text-align:center;">✖ No</td>
           </tr>
 
           <tr>
-            <td style="padding:12px;border-bottom:1px solid #eee;">Configuración de pausas</td>
+            <td style="padding:12px;border-bottom:1px solid #eee;">Configurar pausas / convenios</td>
             <td style="padding:12px;text-align:center;color:#16a34a;font-weight:700;">✔ Sí</td>
             <td style="padding:12px;text-align:center;">Depende</td>
             <td style="padding:12px;text-align:center;">✖ No</td>
@@ -351,21 +376,21 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
           </tr>
 
           <tr>
-            <td style="padding:12px;border-bottom:1px solid #eee;">Sin tarjetas, sin hardware</td>
+            <td style="padding:12px;border-bottom:1px solid #eee;">Sin tarjetas ni hardware</td>
             <td style="padding:12px;text-align:center;color:#16a34a;font-weight:700;">✔ Sí</td>
             <td style="padding:12px;text-align:center;">✔ Sí</td>
             <td style="padding:12px;text-align:center;">✖ Requiere terminal</td>
           </tr>
 
           <tr>
-            <td style="padding:12px;border-bottom:1px solid #eee;">Ideal para talleres y almacenes</td>
+            <td style="padding:12px;border-bottom:1px solid #eee;">Ideal para talleres / almacenes</td>
             <td style="padding:12px;text-align:center;color:#16a34a;font-weight:700;">✔ Sí</td>
             <td style="padding:12px;text-align:center;">Parcial</td>
             <td style="padding:12px;text-align:center;">✔ Sí</td>
           </tr>
 
           <tr>
-            <td style="padding:12px;border-bottom:1px solid #eee;">Coste mensual</td>
+            <td style="padding:12px;">Coste mensual</td>
             <td style="padding:12px;text-align:center;color:#2563eb;font-weight:700;">Bajo</td>
             <td style="padding:12px;text-align:center;">Medio</td>
             <td style="padding:12px;text-align:center;">Alto</td>
@@ -381,18 +406,21 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
 <section id="opiniones" style="padding:50px 16px;background:#fff;">
   <div style="max-width:900px;margin:0 auto;">
 
-    <h2 style="font-size:26px;margin-bottom:8px;text-align:center;">Opiniones de empresas reales</h2>
-    <p style="color:#666;text-align:center;margin-bottom:28px;max-width:650px;margin-left:auto;margin-right:auto;">
-      Talleres y PYMES que han simplificado el fichaje sin instalar apps ni cambiar su forma de trabajar.
+    <h2 style="font-size:26px;margin-bottom:8px;text-align:center;">
+      Opiniones de empresas que ya usan SIDGI
+    </h2>
+
+    <p style="color:#666;text-align:center;max-width:650px;margin:0 auto 28px;">
+      Talleres y PYMES que han simplificado el fichaje sin apps, sin tarjetas y sin complicaciones.
     </p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
 
-      <!-- Lloris -->
-      <div style="background:#fff;border:1px solid #e5e7eb;padding:18px;border-radius:12px;">
-        <img src="img/logo-lloris-pons.png" style="height:34px;margin-bottom:10px;">
+      <!-- Puertas Lloris -->
+      <div style="background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:12px;">
+        <img src="img/logo-lloris-pons.png" style="height:34px;margin-bottom:12px;">
         <p style="color:#333;font-size:15px;margin-bottom:12px;">
-          “Antes llevábamos hojas en papel y un Excel que siempre se descuadraba.  
+          “Antes llevábamos hojas en papel y un Excel que siempre se descuadraba.
           Con SIDGI fichan todos en la tablet del taller y cada mes tenemos las horas claras sin hacer nada.”
         </p>
         <div style="font-weight:700;">Puertas Lloris S.L.</div>
@@ -400,22 +428,23 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
       </div>
 
       <!-- Alumida -->
-      <div style="background:#fff;border:1px solid #e5e7eb;padding:18px;border-radius:12px;">
-        <img src="img/logo-alumida.png" style="height:34px;margin-bottom:10px;">
+      <div style="background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:12px;">
+        <img src="img/logo-alumida.png" style="height:34px;margin-bottom:12px;">
         <p style="color:#333;font-size:15px;margin-bottom:12px;">
-          “No teníamos un sistema claro y siempre había dudas con los fichajes.  
+          “No teníamos un sistema claro y siempre había dudas con los fichajes.
           Ahora todo queda guardado en Google y si viene Inspección podemos enseñar el mes completo en segundos.”
         </p>
         <div style="font-weight:700;">Alumida S.L.</div>
         <div style="color:#666;font-size:13px;">Carpintería metálica</div>
       </div>
 
-      <!-- Ferretería -->
-      <div style="background:#fff;border:1px solid #e5e7eb;padding:18px;border-radius:12px;">
-        <div style="height:34px;margin-bottom:10px;font-weight:700;font-size:16px;">Ferretería Martínez S.L.</div>
+      <!-- Ferretería Martínez -->
+      <div style="background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:12px;">
+        <div style="height:34px;margin-bottom:12px;font-size:17px;font-weight:700;">
+          Ferretería Martínez S.L.
+        </div>
         <p style="color:#333;font-size:15px;margin-bottom:12px;">
-          “Lo mejor es que no hay apps ni tarjetas.  
-          Entran, pulsan su nombre, fichan y ya está.  
+          “Lo mejor es que no hay apps ni tarjetas. Entran, pulsan su nombre, fichan y ya está.
           No hemos tenido que explicar nada a nadie.”
         </p>
         <div style="color:#666;font-size:13px;">Ferretería industrial</div>
@@ -425,27 +454,32 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </div>
 </section>
 
-<!-- CONTACTO / CTA FINAL -->
+<!-- CTA FINAL / CONTACTO -->
 <section id="contacto" style="padding:50px 16px;background:#f7f9fc;">
-  <div style="max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:20px;text-align:center;">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
 
-    <h2 style="font-size:26px;margin-bottom:6px;">¿Listo para activar SIDGI en tu empresa?</h2>
-    <p style="color:#666;max-width:600px;margin:0 auto 20px;">
-      Envíanos el nombre de tu empresa, CIF y número de trabajadores.  
-      Te responderemos con los pasos exactos y lo tendrás funcionando en menos de 24h.
+    <h2 style="font-size:26px;margin-bottom:10px;">
+      ¿Quieres activar SIDGI en tu empresa?
+    </h2>
+
+    <p style="color:#666;max-width:650px;margin:0 auto 26px;">
+      Envíanos el nombre de tu empresa, CIF y número de trabajadores.<br>
+      Te responderemos con los pasos exactos para tenerlo activo en menos de 24h.
     </p>
 
     <a href="mailto:sidgilanding@gmail.com?subject=Solicitar%20instalación%20SIDGI"
        class="btn btn-primary"
-       style="display:inline-block;margin:auto;padding:14px 22px;font-size:16px;">
+       style="padding:14px 22px;font-size:16px;">
       Solicitar instalación por email
     </a>
 
-    <a href="https://n8n.srv897151.hstgr.cloud/tablet/empresa-demo-s-l.html"
-       class="btn btn-outline"
-       style="display:inline-block;margin:auto;padding:12px 20px;">
-      Probar demo real
-    </a>
+    <div style="margin-top:16px;">
+      <a href="https://n8n.srv897151.hstgr.cloud/tablet/empresa-demo-s-l.html"
+         class="btn btn-outline"
+         style="padding:12px 20px;">
+        Probar demo real
+      </a>
+    </div>
 
   </div>
 </section>
@@ -464,3 +498,6 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
 
   </div>
 </footer>
+
+</body>
+</html>
