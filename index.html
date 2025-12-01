@@ -28,7 +28,7 @@
       line-height: 1.6;
     }
 
-    /* ---------------- HEADER ---------------- */
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
@@ -70,7 +70,7 @@
       cursor: pointer;
     }
 
-    /* ---------------- MENÚ LATERAL ---------------- */
+    /* MENÚ LATERAL */
     .side-menu {
       position: fixed;
       top: 0;
@@ -94,7 +94,7 @@
       padding: 4px 0;
     }
 
-    /* ---------------- BOTONES ---------------- */
+    /* BOTONES */
     .btn {
       padding: 12px 22px;
       border-radius: 8px;
@@ -107,7 +107,7 @@
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-outline { border: 1px solid var(--primary); color: var(--primary); }
 
-    /* ---------------- HERO ---------------- */
+    /* HERO */
     .hero {
       padding: 60px 16px 42px;
       text-align: center;
@@ -133,7 +133,7 @@
       gap: 12px;
     }
 
-    /* ---------------- PRECIOS ---------------- */
+    /* PRECIOS */
     .pricing-top {
       padding: 50px 16px;
       max-width: 1000px;
@@ -169,7 +169,7 @@
       margin: 8px 0 14px;
     }
 
-    /* ---------------- CÓMO FUNCIONA ---------------- */
+    /* CÓMO FUNCIONA */
     #como {
       padding: 50px 16px;
       background: #fff;
@@ -196,11 +196,12 @@
       border: 1px solid var(--border);
       padding: 18px;
       border-radius: 12px;
+      font-size: 15px;
     }
 
     .step-card h3 { margin-bottom: 6px; font-size: 18px; }
 
-    /* ---------------- COMPARATIVA ---------------- */
+    /* COMPARATIVA */
     #comparativa {
       padding: 50px 16px;
       background: #f7f9fc;
@@ -215,9 +216,10 @@
     }
 
     th { background: var(--primary); color: #fff; }
+
     .cost-row { background: #eef3ff; font-weight: 700; }
 
-    /* ---------------- OPINIONES ---------------- */
+    /* OPINIONES */
     #opiniones {
       padding: 50px 16px;
       background: #fff;
@@ -237,7 +239,7 @@
       font-size: 16px;
     }
 
-    /* ---------------- CONTACTO ---------------- */
+    /* CONTACTO */
     #contacto {
       padding: 50px 16px;
       background: #f7f9fc;
@@ -246,7 +248,7 @@
 
     #contacto p { max-width: 600px; margin: 0 auto 22px; color: var(--soft); }
 
-    /* ---------------- FOOTER ---------------- */
+    /* FOOTER */
     footer {
       padding: 20px 16px;
       background: #fff;
@@ -254,10 +256,23 @@
       font-size: 14px;
     }
 
-    /* ---------------- RESPONSIVE ---------------- */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       nav.desktop { display: none !important; }
       .menu-btn { display: block !important; }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card {
+        padding: 28px;
+        font-size: 18px;
+      }
+
+      .pricing-card .price {
+        font-size: 38px;
+      }
     }
   </style>
 </head>
@@ -294,7 +309,7 @@ function openMenu(){ document.getElementById('sideMenu').style.right = "0"; }
 function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"; }
 </script>
 
-<!-- ========== HERO ========== -->
+<!-- HERO -->
 <section class="hero">
   <h1>Control horario legal sin apps ni tarjetas,<br>montado en menos de 24h.</h1>
   <p>
@@ -312,7 +327,7 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </div>
 </section>
 
-<!-- ========== PRECIOS ========== -->
+<!-- PRECIOS -->
 <section class="pricing-top" id="precios">
   <h2>Planes según trabajadores</h2>
 
@@ -337,7 +352,7 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </div>
 </section>
 
-<!-- ========== CÓMO FUNCIONA ========== -->
+<!-- CÓMO FUNCIONA -->
 <section id="como">
   <div style="max-width:900px;margin:0 auto;">
     <h2>Cómo funciona SIDGI en tu empresa</h2>
@@ -373,7 +388,7 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </div>
 </section>
 
-<!-- ========== COMPARATIVA SIMPLIFICADA ========== -->
+<!-- COMPARATIVA -->
 <section id="comparativa">
   <div style="max-width:900px;margin:0 auto;">
 
@@ -425,13 +440,13 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
           <tr class="cost-row">
             <td>Coste mensual</td>
             <td style="text-align:center;color:var(--primary);">
-              Coste fijo. Sabes lo que pagas.
+              Coste fijo, sabes lo que vas a pagar.
             </td>
             <td style="text-align:center;">
-              Coste por trabajador (sube rápido).
+              Coste por trabajador, termina siendo más caro.
             </td>
             <td style="text-align:center;">
-              Terminal + mantenimiento (alto).
+              Coste alto: terminal + instalación + mantenimiento.
             </td>
           </tr>
         </tbody>
@@ -441,7 +456,7 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </div>
 </section>
 
-<!-- ========== OPINIONES ========== -->
+<!-- OPINIONES -->
 <section id="opiniones">
   <div style="max-width:900px;margin:0 auto;">
     <h2 style="text-align:center;margin-bottom:10px;">Opiniones de empresas reales</h2>
@@ -450,14 +465,14 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
 
       <div class="op-card">
         <img src="img/logo-lloris-pons.png" style="height:34px;margin-bottom:12px;">
-        “Antes llevábamos hojas y un Excel que siempre se descuadraba.  
+        “Antes llevábamos hojas y un Excel que siempre se descuadraba.
          Ahora fichan todos en la tablet y cada mes tenemos las horas claras sin hacer nada.”
         <div style="font-weight:700;margin-top:10px;">Puertas Lloris S.L.</div>
       </div>
 
       <div class="op-card">
         <img src="img/logo-alumida.png" style="height:34px;margin-bottom:12px;">
-        “Siempre había dudas con los fichajes.  
+        “Siempre había dudas con los fichajes.
          Ahora queda todo guardado en Google y si viene Inspección está todo listo.”
         <div style="font-weight:700;margin-top:10px;">Alumida S.L.</div>
       </div>
@@ -465,7 +480,7 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
       <div class="op-card">
         <strong>Ferretería Martínez S.L.</strong>
         <br><br>
-        “Lo mejor es que no hay apps ni tarjetas. Entran, pulsan su nombre y listo.  
+        “Lo mejor es que no hay apps ni tarjetas. Entran, pulsan su nombre y listo.
          No hemos tenido que explicar nada.”
       </div>
 
@@ -473,12 +488,12 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </div>
 </section>
 
-<!-- ========== CONTACTO ========== -->
+<!-- CONTACTO -->
 <section id="contacto">
   <h2>¿Quieres activar SIDGI en tu empresa?</h2>
 
   <p>
-    Envíanos el nombre de tu empresa, CIF y número de trabajadores.  
+    Envíanos el nombre de tu empresa, CIF y número de trabajadores.
     Te responderemos con los pasos exactos y lo tendrás funcionando en menos de 24h.
   </p>
 
@@ -495,7 +510,7 @@ function closeMenu(){ document.getElementById('sideMenu').style.right = "-260px"
   </a>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer>
   <div style="max-width:900px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;">
     <div>© SIDGI · Control horario para PYMES</div>
