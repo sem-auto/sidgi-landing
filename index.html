@@ -35,7 +35,6 @@
     }
 
     img { max-width: 100%; display: block; }
-
     a { color: inherit; text-decoration: none; }
 
     .container {
@@ -208,14 +207,12 @@
     .hero {
       background: radial-gradient(circle at top left, #e0ecff 0, #f9fafb 46%, #f4f6fb 100%);
       border-bottom: 1px solid var(--border-soft);
-      padding: 44px 0 60px;
+      padding: 44px 0 52px;
     }
 
     .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 40px;
-      align-items: center;
+      max-width: 820px;
+      margin: 0 auto;
     }
 
     .badge {
@@ -251,7 +248,7 @@
     .hero-subtitle {
       color: var(--text-soft);
       font-size: 16px;
-      max-width: 560px;
+      max-width: 600px;
       margin-bottom: 18px;
     }
 
@@ -299,47 +296,9 @@
 
     .hero-note span { font-weight: 600; }
 
-    /* HERO MOCKUP */
-
-    .hero-media {
-      display: flex;
-      justify-content: center;
-    }
-
-    .device-frame {
-      width: 100%;
-      max-width: 430px;
-      aspect-ratio: 9 / 16;
-      border-radius: 32px;
-      padding: 14px;
-      background: linear-gradient(145deg,#f9fafb,#e5e7eb);
-      box-shadow:
-        0 22px 60px rgba(15,23,42,0.35),
-        0 0 0 1px rgba(148,163,184,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .device-screen {
-      width: 100%;
-      height: 100%;
-      border-radius: 24px;
-      overflow: hidden;
-      background: #e5e7eb;
-      box-shadow: inset 0 0 0 1px rgba(148,163,184,0.5);
-    }
-
-    .device-screen img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     /* SECCIONES GENERALES */
 
     section { padding: 56px 0; }
-
     section:nth-of-type(even) { background: var(--bg-section); }
 
     .section-header {
@@ -428,14 +387,8 @@
       margin-bottom: 6px;
     }
 
-    .pricing-price strong {
-      font-size: 30px;
-    }
-
-    .pricing-price span {
-      font-size: 14px;
-      color: var(--text-soft);
-    }
+    .pricing-price strong { font-size: 30px; }
+    .pricing-price span { font-size: 14px; color: var(--text-soft); }
 
     .pricing-hint {
       font-size: 13px;
@@ -554,7 +507,7 @@
 
     .compare-label {
       font-weight: 500;
-      width: 32%;
+      width: 34%;
     }
 
     .compare-ok {
@@ -676,12 +629,6 @@
     /* RESPONSIVE */
 
     @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: minmax(0,1fr);
-        gap: 26px;
-      }
-      .hero-media { order: 1; }
-      .hero-inner > div:first-child { order: 0; }
       .steps-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .pricing-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .testimonials-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
@@ -691,17 +638,18 @@
       .nav-links,
       .nav-actions { display: none; }
       .menu-toggle { display: block; }
-      .hero { padding-top: 32px; }
-      .device-frame { max-width: 340px; }
+
       .steps-grid,
       .pricing-grid,
       .testimonials-grid {
         grid-template-columns: minmax(0,1fr);
       }
+
       .section-header {
         flex-direction: column;
         align-items: flex-start;
       }
+
       .cta-final {
         align-items: flex-start;
       }
@@ -770,23 +718,24 @@
 <main>
   <!-- HERO -->
   <section class="hero" id="inicio">
-    <div class="container hero-inner">
-      <div>
+    <div class="container">
+      <div class="hero-inner">
         <div class="badge">
           <span class="badge-dot"></span>
           Fichaje legal sin apps ni tarjetas
         </div>
         <h1 class="hero-title">
-          Control horario legal, <span>montado en 24h</span> y sin cambiar nada en tu empresa.
+          Control horario legal, <span>montado en 24h</span> y sin instalaciones en tu empresa.
         </h1>
         <p class="hero-subtitle">
-          Los trabajadores fichan en una tablet fija o desde un enlace. SIDGI registra cada entrada y salida en Google Sheets,
-          calcula las horas y deja todo preparado para cuando llegue Inspección.
+          Los trabajadores fichan en una tablet fija o desde un enlace. SIDGI registra cada entrada y salida
+          en Google Sheets, calcula las horas y deja todo preparado para cuando llegue Inspección de Trabajo.
         </p>
         <ul class="hero-list">
-          <li><span class="check">✓</span> Cumple RD-ley 8/2019 con histórico guardado en tu propio Google Drive.</li>
-          <li><span class="check">✓</span> Nada de apps ni tarjetas: solo un enlace seguro y una tablet en el taller.</li>
-          <li><span class="check">✓</span> Resumen mensual y por trabajador sin tocar fórmulas ni hojas complicadas.</li>
+          <li><span class="check">✓</span> Sin instalación física ni tornos: todo se configura de forma remota.</li>
+          <li><span class="check">✓</span> Precio fijo por tramo de trabajadores: sabes siempre lo que vas a pagar.</li>
+          <li><span class="check">✓</span> Diseñado para cumplir RD-ley 8/2019 con histórico en tu Google Drive.</li>
+          <li><span class="check">✓</span> Resumen mensual claro y fácil de enseñar si viene Inspección.</li>
         </ul>
         <div class="hero-ctas">
           <a href="mailto:sidgilanding@gmail.com?subject=Quiero%20implantar%20SIDGI%20en%20mi%20empresa" class="btn btn-primary">
@@ -797,15 +746,7 @@
           </a>
         </div>
         <div class="hero-note">
-          Sin instalaciones raras, solo <span>Google Sheets + Drive</span>. Acceso desde cualquier ordenador o móvil.
-        </div>
-      </div>
-
-      <div class="hero-media" aria-label="Vista real del sistema SIDGI">
-        <div class="device-frame">
-          <div class="device-screen">
-            <img src="img/fichaje-tablet.png" alt="Pantalla de fichaje con botones de entrada y salida y zona de firma">
-          </div>
+          Sin técnicos en tu centro: solo <span>Google Sheets + Drive</span> y una tablet o PC que ya tengas.
         </div>
       </div>
     </div>
@@ -820,7 +761,7 @@
           <h2 class="section-title">Elige el tramo de trabajadores y listo.</h2>
         </div>
         <p class="section-description">
-          Todos los planes incluyen la misma funcionalidad de fichaje digital, hojas y cálculo de horas. Pagas solo por el tamaño de plantilla.
+          Todos los planes incluyen la misma funcionalidad de fichaje digital, hojas y cálculo de horas. Coste fijo mensual según tu plantilla, sin sorpresas.
         </p>
       </div>
 
@@ -831,10 +772,10 @@
           <div class="pricing-price">
             <strong>19€</strong><span>/ mes</span>
           </div>
-          <div class="pricing-hint">Ideal para pequeños talleres o comercios.</div>
+          <div class="pricing-hint">Para pequeños talleres o comercios.</div>
           <ul class="pricing-list">
             <li><span class="pricing-dot">•</span><span>Hasta 5 trabajadores fichando desde email y tablet.</span></li>
-            <li><span class="pricing-dot">•</span><span>Hoja de Google preconfigurada con cálculo de horas.</span></li>
+            <li><span class="pricing-dot">•</span><span>Hoja de Google preconfigurada con cálculo de horas y pausas.</span></li>
             <li><span class="pricing-dot">•</span><span>Fichaje con firma opcional en la tablet.</span></li>
           </ul>
           <div class="pricing-footer">
@@ -852,7 +793,7 @@
           <div class="pricing-price">
             <strong>29€</strong><span>/ mes</span>
           </div>
-          <div class="pricing-hint">Pensado para PYMES industriales con taller o almacén.</div>
+          <div class="pricing-hint">Pensado para PYMES industriales con taller o almacén principal.</div>
           <ul class="pricing-list">
             <li><span class="pricing-dot">•</span><span>Hasta 10 trabajadores usando el mismo sistema de fichaje.</span></li>
             <li><span class="pricing-dot">•</span><span>Resumen mensual por trabajador y totales por centro.</span></li>
@@ -872,7 +813,7 @@
           <div class="pricing-price">
             <strong>39€</strong><span>/ mes</span>
           </div>
-          <div class="pricing-hint">Para empresas con varios equipos o más carga de fichajes.</div>
+          <div class="pricing-hint">Para empresas con varios equipos o más carga de fichajes diarios.</div>
           <ul class="pricing-list">
             <li><span class="pricing-dot">•</span><span>Hasta 50 trabajadores con fichaje centralizado.</span></li>
             <li><span class="pricing-dot">•</span><span>Informes mensuales avanzados por trabajador y centro.</span></li>
@@ -933,10 +874,10 @@
       <div class="section-header">
         <div>
           <div class="section-kicker">Comparativa rápida</div>
-          <h2 class="section-title">SIDGI vs apps y terminales de fichaje.</h2>
+          <h2 class="section-title">Por qué SIDGI frente a otras opciones.</h2>
         </div>
         <p class="section-description">
-          Lo importante para decidir sin perderse en detalles: cómo fichan, dónde están los datos y cuánto pagarás cada mes.
+          Lo importante para decidir: si necesitas instalar algo, cuánto vas a pagar y cómo de fácil será enseñar los fichajes a Inspección.
         </p>
       </div>
 
@@ -952,34 +893,34 @@
           </thead>
           <tbody>
             <tr>
-              <td class="compare-label">Fichar sin instalar nada</td>
-              <td class="compare-ok">✔ Tablet + enlace</td>
-              <td class="compare-mid">Depende de cada trabajador</td>
-              <td class="compare-bad">✖ Solo en el terminal</td>
+              <td class="compare-label">Instalación en la empresa</td>
+              <td class="compare-ok">Sin instalación física. Todo remoto.</td>
+              <td class="compare-mid">Cada trabajador instala la app.</td>
+              <td class="compare-bad">Necesita terminal, cableado y técnico.</td>
             </tr>
             <tr>
-              <td class="compare-label">Funciona en tablet y móvil</td>
-              <td class="compare-ok">✔ Sí</td>
-              <td class="compare-mid">Solo móvil con app</td>
-              <td class="compare-bad">✖ Solo terminal físico</td>
+              <td class="compare-label">Precio al mes</td>
+              <td class="compare-ok">Coste fijo por tramo de plantilla.</td>
+              <td class="compare-mid">Suele ser “precio por usuario”.</td>
+              <td class="compare-bad">Cuota + amortizar la inversión inicial.</td>
             </tr>
             <tr>
-              <td class="compare-label">Cálculo automático de horas</td>
-              <td class="compare-ok">✔ Completo con pausas</td>
-              <td class="compare-mid">Limitado según plan</td>
-              <td class="compare-bad">✖ Exporto y calculo aparte</td>
+              <td class="compare-label">Cumplir RD-ley 8/2019</td>
+              <td class="compare-ok">Pensado para mantener histórico y horarios.</td>
+              <td class="compare-mid">Depende del plan y configuración.</td>
+              <td class="compare-mid">Depende del software que lo acompañe.</td>
             </tr>
             <tr>
-              <td class="compare-label">Datos en tu poder</td>
-              <td class="compare-ok">✔ En tu Google Drive</td>
-              <td class="compare-mid">En la nube del proveedor</td>
-              <td class="compare-mid">En el terminal / software propio</td>
+              <td class="compare-label">Enseñarlo en Inspección</td>
+              <td class="compare-ok">Resumen mensual claro en Google Sheets.</td>
+              <td class="compare-mid">Exportes y filtros desde la app.</td>
+              <td class="compare-bad">Informes menos intuitivos y más lentos.</td>
             </tr>
             <tr class="compare-cost">
-              <td class="compare-label">Coste mensual</td>
-              <td>Coste fijo, sabes lo que vas a pagar.</td>
-              <td>Coste por trabajador, termina siendo más caro.</td>
-              <td>Coste alto: terminal + instalación + mantenimiento.</td>
+              <td class="compare-label">Control de costes</td>
+              <td>Sabes lo que vas a pagar cada mes. Sin permanencia.</td>
+              <td>La factura sube con cada alta de trabajador.</td>
+              <td>Inversión alta al principio y mantenimiento anual.</td>
             </tr>
           </tbody>
         </table>
