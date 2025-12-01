@@ -55,8 +55,6 @@
       padding: 12px 0;
     }
 
-    .nav a { text-decoration: none; color: var(--text-main); }
-
     .nav-links { display: flex; gap: 20px; }
     @media(max-width:760px){ .nav-links { display:none; } }
 
@@ -77,8 +75,7 @@
       color: var(--primary);
     }
 
-    /* ---------------- HERO ---------------- */
-
+    /* HERO */
     .hero {
       padding: 60px 0 40px;
       background: #fafbfc;
@@ -134,21 +131,22 @@
       </div>
 
       <div class="nav-links">
+        <a href="#precios">Precios</a>
         <a href="#como-funciona">Cómo funciona</a>
         <a href="#comparativa">Comparativa</a>
-        <a href="#precios">Precios</a>
         <a href="#opiniones">Opiniones</a>
       </div>
 
-      <a href="mailto:sidgilanding@gmail.com?subject=Solicitar instalación SIDGI"
-         class="btn btn-outline">Solicitar instalación</a>
+      <a class="btn btn-outline"
+         href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com&su=Solicitar%20instalación%20SIDGI">
+         Solicitar instalación
+      </a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="container hero-grid">
-
     <div>
       <h1 class="hero-title">
         Control horario legal <span>sin apps ni tarjetas</span>.
@@ -160,9 +158,10 @@
       </p>
 
       <div class="hero-ctas">
-        <a class="btn" href="#precios">Ver planes</a>
+        <a class="btn" href="#precios">Ver precios</a>
+
         <a class="btn btn-outline"
-           href="mailto:sidgilanding@gmail.com?subject=Solicitar instalación SIDGI">
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com&su=Solicitar%20instalación%20SIDGI">
           Solicitar instalación
         </a>
       </div>
@@ -172,17 +171,86 @@
 
     <div>
       <div class="hero-card">
-        <img src="img/fichaje-tablet.png"
-             alt="Vista de fichaje en tablet (SIDGI)">
+        <img src="img/fichaje-tablet.png" alt="Vista de fichaje en tablet">
         <div class="mini">Así ficha un trabajador en la tablet.</div>
       </div>
     </div>
-
   </div>
 </section>
-<!-- =====================================================
-   SECCIÓN: CÓMO FUNCIONA
-===================================================== -->
+
+
+
+<!-- ====================== PRECIOS ARRIBA ====================== -->
+<section id="precios" style="padding:60px 0;">
+  <div class="container">
+
+    <h2 style="font-size:28px;margin-bottom:10px;">Planes simples, sin permanencia</h2>
+    <p style="color:var(--text-soft);max-width:600px;margin-bottom:30px;">
+      Precios según el tramo de trabajadores. <strong>La instalación se factura aparte.</strong>
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;">
+        <h3 style="margin:0 0 8px;font-size:18px;">1–5 trabajadores</h3>
+        <div style="font-size:30px;font-weight:700;margin-bottom:10px;">19€/mes</div>
+        <ul style="font-size:14px;color:var(--text-soft);margin-left:18px;margin-bottom:14px;">
+          <li>Fichaje por tablet o enlace</li>
+          <li>Resumen mensual automático</li>
+          <li>Firma opcional incluida</li>
+          <li>Datos en tu Google Drive</li>
+        </ul>
+        <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">Instalación aparte</p>
+
+        <a class="btn btn-outline"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com&su=Plan%20Básico%20SIDGI">
+           Contratar
+        </a>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--primary);padding:20px;border-radius:14px;box-shadow:0 0 20px rgba(37,99,235,0.2);">
+        <h3 style="margin:0 0 8px;font-size:18px;">6–10 trabajadores</h3>
+        <div style="font-size:30px;font-weight:700;margin-bottom:10px;">29€/mes</div>
+        <ul style="font-size:14px;color:var(--text-soft);margin-left:18px;margin-bottom:14px;">
+          <li>Fichaje por tablet y enlace</li>
+          <li>Resumen mensual por trabajador</li>
+          <li>Carpetas organizadas en Drive</li>
+          <li>Firma opcional incluida</li>
+          <li>Histórico 4 años</li>
+        </ul>
+        <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">Instalación aparte</p>
+
+        <a class="btn"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com&su=Plan%20Estándar%20SIDGI">
+           Contratar
+        </a>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;">
+        <h3 style="margin:0 0 8px;font-size:18px;">11–50 trabajadores</h3>
+        <div style="font-size:30px;font-weight:700;margin-bottom:10px;">39€/mes</div>
+        <ul style="font-size:14px;color:var(--text-soft);margin-left:18px;margin-bottom:14px;">
+          <li>Fichaje avanzado</li>
+          <li>Resumen mensual por trabajador</li>
+          <li>Plantillas separadas por equipos</li>
+          <li>Histórico 4 años</li>
+          <li>Firma opcional</li>
+        </ul>
+        <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">Instalación aparte</p>
+
+        <a class="btn btn-outline"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com&su=Plan%20Avanzado%20SIDGI">
+           Contactar
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ====================== COMO FUNCIONA ====================== -->
 <section id="como-funciona" style="padding:60px 0;">
   <div class="container">
 
@@ -194,30 +262,30 @@
 
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
       <div style="background:#fff;border:1px solid var(--border);padding:16px;border-radius:14px;">
-        <h3 style="margin:0 0 8px;font-size:17px;">1. Damos de alta tu empresa</h3>
+        <h3 style="margin:0 0 8px;font-size:17px;">1. Alta de empresa</h3>
         <p style="color:var(--text-soft);font-size:14px;">
-          Enviamos tu hoja preparada y la tablet queda lista para usar.
+          Te preparamos la hoja y la carpeta principal.
         </p>
       </div>
 
       <div style="background:#fff;border:1px solid var(--border);padding:16px;border-radius:14px;">
-        <h3 style="margin:0 0 8px;font-size:17px;">2. Tablet o enlace</h3>
+        <h3 style="margin:0 0 8px;font-size:17px;">2. Fichaje en tablet o enlace</h3>
         <p style="color:var(--text-soft);font-size:14px;">
-          Cada trabajador pulsa su nombre y marca entrada o salida.
+          Solo pulsar entrada o salida.
         </p>
       </div>
 
       <div style="background:#fff;border:1px solid var(--border);padding:16px;border-radius:14px;">
-        <h3 style="margin:0 0 8px;font-size:17px;">3. Todo va a tu Google Drive</h3>
+        <h3 style="margin:0 0 8px;font-size:17px;">3. Todo en tu Google Drive</h3>
         <p style="color:var(--text-soft);font-size:14px;">
-          Los datos y firmas se guardan automáticamente en tu cuenta.
+          Fichajes y firmas guardados automáticamente.
         </p>
       </div>
 
       <div style="background:#fff;border:1px solid var(--border);padding:16px;border-radius:14px;">
         <h3 style="margin:0 0 8px;font-size:17px;">4. Informe mensual</h3>
         <p style="color:var(--text-soft);font-size:14px;">
-          Cada mes tienes los registros ordenados, por trabajador y por día.
+          PDF listo para enseñar a Inspección.
         </p>
       </div>
     </div>
@@ -226,9 +294,8 @@
 </section>
 
 
-<!-- =====================================================
-   SECCIÓN: COMPARATIVA (TABLA)
-===================================================== -->
+
+<!-- ====================== COMPARATIVA ====================== -->
 <section id="comparativa" style="padding:60px 0;background:#ffffff;">
   <div class="container">
 
@@ -283,11 +350,11 @@
           </tr>
 
           <tr>
-            <td style="padding:10px;border-bottom:1px solid var(--border);">Cumplimiento legal</td>
-            <td style="padding:10px;border-bottom:1px solid var(--border);">Diseñado para RD-Ley 8/2019</td>
+            <td style="padding:10px;border-bottom:1px solid var(--border);">Legal</td>
+            <td style="padding:10px;border-bottom:1px solid var(--border);">Cumple RD-Ley 8/2019</td>
             <td style="padding:10px;border-bottom:1px solid var(--border);">Sólo fichaje bruto</td>
-            <td style="padding:10px;border-bottom:1px solid var(--border);">Depende del uso</td>
-            <td style="padding:10px;border-bottom:1px solid var(--border);">Sí, complejo</td>
+            <td style="padding:10px;border-bottom:1px solid var(--border);">Depende</td>
+            <td style="padding:10px;border-bottom:1px solid var(--border);">Complejo</td>
           </tr>
 
           <tr>
@@ -297,7 +364,6 @@
             <td style="padding:10px;">Por usuario</td>
             <td style="padding:10px;">Alto</td>
           </tr>
-
         </tbody>
       </table>
     </div>
@@ -307,9 +373,7 @@
 
 
 
-<!-- =====================================================
-   SECCIÓN: INSPECCIÓN DE TRABAJO
-===================================================== -->
+<!-- ====================== INSPECCIÓN ====================== -->
 <section id="inspeccion" style="padding:60px 0;background:#fafafa;">
   <div class="container">
 
@@ -354,83 +418,7 @@
 
 
 
-<!-- =====================================================
-   SECCIÓN: PRECIOS
-===================================================== -->
-<section id="precios" style="padding:60px 0;">
-  <div class="container">
-
-    <h2 style="font-size:28px;margin-bottom:10px;">Planes simples, sin permanencia</h2>
-    <p style="color:var(--text-soft);max-width:600px;margin-bottom:30px;">
-      Precios según el tramo de trabajadores. <strong>La instalación se factura aparte.</strong>
-    </p>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-
-      <!-- PLAN BÁSICO -->
-      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;">
-        <h3 style="margin:0 0 8px;font-size:18px;">1–5 trabajadores</h3>
-        <div style="font-size:30px;font-weight:700;margin-bottom:10px;">19€/mes</div>
-        <ul style="font-size:14px;color:var(--text-soft);margin-left:18px;margin-bottom:14px;">
-          <li>Fichaje por tablet o enlace</li>
-          <li>Resumen mensual automático</li>
-          <li>Firma opcional incluida</li>
-          <li>Datos en tu Google Drive</li>
-        </ul>
-        <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">Instalación aparte</p>
-
-        <a class="btn btn-outline"
-           href="mailto:sidgilanding@gmail.com?subject=Plan Básico SIDGI">
-           Contratar
-        </a>
-      </div>
-
-      <!-- PLAN ESTÁNDAR -->
-      <div style="background:#fff;border:1px solid var(--primary);padding:20px;border-radius:14px;
-                  box-shadow:0 0 20px rgba(37,99,235,0.2);">
-        <h3 style="margin:0 0 8px;font-size:18px;">6–10 trabajadores</h3>
-        <div style="font-size:30px;font-weight:700;margin-bottom:10px;">29€/mes</div>
-        <ul style="font-size:14px;color:var(--text-soft);margin-left:18px;margin-bottom:14px;">
-          <li>Fichaje por tablet y enlace</li>
-          <li>Resumen mensual por trabajador</li>
-          <li>Carpetas organizadas en Drive</li>
-          <li>Firma opcional incluida</li>
-          <li>Histórico 4 años</li>
-        </ul>
-        <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">Instalación aparte</p>
-
-        <a class="btn"
-           href="mailto:sidgilanding@gmail.com?subject=Plan Estándar SIDGI">
-           Contratar
-        </a>
-      </div>
-
-      <!-- PLAN AVANZADO -->
-      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;">
-        <h3 style="margin:0 0 8px;font-size:18px;">11–50 trabajadores</h3>
-        <div style="font-size:30px;font-weight:700;margin-bottom:10px;">39€/mes</div>
-        <ul style="font-size:14px;color:var(--text-soft);margin-left:18px;margin-bottom:14px;">
-          <li>Fichaje avanzado por tablet y enlace</li>
-          <li>Resumen mensual por trabajador</li>
-          <li>Plantillas separadas por equipos</li>
-          <li>Histórico 4 años</li>
-          <li>Firma opcional</li>
-        </ul>
-        <p style="font-size:13px;color:var(--text-soft);margin-bottom:10px;">Instalación aparte</p>
-
-        <a class="btn btn-outline"
-           href="mailto:sidgilanding@gmail.com?subject=Plan Avanzado SIDGI">
-           Contactar
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-<!-- =====================================================
-   SECCIÓN: OPINIONES
-===================================================== -->
+<!-- ====================== OPINIONES ====================== -->
 <section id="opiniones" style="padding:60px 0;background:#ffffff;">
   <div class="container">
 
@@ -441,51 +429,31 @@
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
       
-      <!-- PUERTAS LLORIS -->
-      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;
-                  box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
         <img src="img/logo-lloris-pons.png" alt="Puertas Lloris" style="height:34px;margin-bottom:10px;">
-
         <p style="font-size:15px;color:var(--text-main);line-height:1.55;">
           “Antes llevábamos hojas y Excel mezclados. Ahora todo está ordenado y cada
           trabajador ficha en la tablet sin líos.”
         </p>
-
-        <p style="font-size:13px;color:var(--text-soft);margin-top:10px;">
-          Puertas Lloris S.L. · Fabricación de puertas
-        </p>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:10px;">Puertas Lloris S.L.</p>
       </div>
 
-      <!-- ALUMIDA -->
-      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;
-                  box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
         <img src="img/logo-alumida.png" alt="Alumida" style="height:34px;margin-bottom:10px;">
-
         <p style="font-size:15px;color:var(--text-main);line-height:1.55;">
           “Lo mejor es que no hay apps ni usuarios. En una mañana lo teníamos funcionando
           y los informes salen solos.”
         </p>
-
-        <p style="font-size:13px;color:var(--text-soft);margin-top:10px;">
-          Alumida S.L. · Carpintería metálica
-        </p>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:10px;">Alumida S.L.</p>
       </div>
 
-      <!-- FERRETERÍA MARTÍNEZ -->
-      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;
-                  box-shadow:0 5px 15px rgba(0,0,0,0.05);">
-        <p style="font-weight:600;font-size:16px;margin-bottom:8px;">
-          Ferretería Martínez S.L.
-        </p>
-
+      <div style="background:#fff;border:1px solid var(--border);padding:20px;border-radius:14px;box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+        <p style="font-weight:600;font-size:16px;margin-bottom:8px;">Ferretería Martínez S.L.</p>
         <p style="font-size:15px;color:var(--text-main);line-height:1.55;">
           “Los trabajadores no fichaban igual cada día. Ahora es un botón y ya está.
           Mucho más controlado todo.”
         </p>
-
-        <p style="font-size:13px;color:var(--text-soft);margin-top:10px;">
-          Ferretería industrial
-        </p>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:10px;">Ferretería industrial</p>
       </div>
 
     </div>
@@ -495,9 +463,8 @@
 
 
 
-<!-- =====================================================
-   CTA FINAL
-===================================================== -->
+
+<!-- ====================== CTA FINAL ====================== -->
 <section id="contacto" style="padding:70px 0;background:#fafafa;">
   <div class="container" 
        style="background:#fff;border:1px solid var(--border);border-radius:16px;
@@ -511,28 +478,20 @@
 
       <p style="color:var(--text-soft);font-size:15px;margin:0 0 12px;">
         Envíanos el nombre de tu empresa, CIF y número de trabajadores.
-        Te respondemos con los pasos exactos para activar SIDGI.
       </p>
 
-      <a href="mailto:sidgilanding@gmail.com?subject=Estoy interesado en SIDGI"
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sidgilanding@gmail.com&su=Estoy%20interesado%20en%20SIDGI"
          class="btn" 
          style="margin:0 auto;display:inline-block;">
          Escribir ahora a sidgilanding@gmail.com
       </a>
-
-      <p style="font-size:13px;color:var(--text-soft);margin-top:8px;">
-        También indícanos el sector de tu empresa (taller, almacén, comercio…).
-      </p>
-
     </div>
   </div>
 </section>
 
 
 
-<!-- =====================================================
-   FOOTER
-===================================================== -->
+<!-- ====================== FOOTER ====================== -->
 <footer style="background:#ffffff;border-top:1px solid var(--border);padding:18px 0;">
   <div class="container" 
        style="display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:10px;">
