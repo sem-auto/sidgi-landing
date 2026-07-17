@@ -3,12 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Control de bonos, clientes y sesiones | SIDGI</title>
-<meta name="description" content="Consulta quién ha pagado, cuántas sesiones ha utilizado y cuántas le quedan cada cliente, sin libretas ni cuentas manuales.">
-<meta property="og:title" content="Control de bonos, clientes y sesiones | SIDGI">
-<meta property="og:description" content="Gestión de clientes, bonos y sesiones desde un único lugar.">
-<meta property="og:image" content="og-image.png">
+<title>Clientes, bonos, sesiones y reservas | SIDGI</title>
+<meta name="description" content="Aplicación adaptada a tu negocio para controlar clientes, bonos, sesiones e importes y, si lo necesitas, permitir reservar cita online.">
+<link rel="canonical" href="https://sidgi.es/bonos.html">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://sidgi.es/bonos.html">
+<meta property="og:title" content="Clientes, bonos, sesiones y reservas | SIDGI">
+<meta property="og:description" content="Aplicación adaptada a tu negocio para controlar clientes, bonos, sesiones e importes y, si lo necesitas, permitir reservar cita online.">
+<meta property="og:image" content="https://sidgi.es/og-image.png">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Clientes, bonos, sesiones y reservas | SIDGI">
+<meta name="twitter:description" content="Aplicación adaptada a tu negocio para controlar clientes, bonos, sesiones e importes y, si lo necesitas, permitir reservar cita online.">
+<meta name="twitter:image" content="https://sidgi.es/og-image.png">
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,15 +37,15 @@
         <button class="nav-dropdown-toggle" aria-expanded="false">Soluciones ▾</button>
         <div class="nav-dropdown-menu">
           <a href="fichajes.html">Control horario</a>
-          <a href="bonos.html" class="active">Bonos y clientes</a>
-          <a href="automatizaciones.html">Automatizaciones a medida</a>
+          <a href="bonos.html" class="active">Bonos y reservas</a>
+          <a href="automatizaciones.html">Soluciones a medida</a>
         </div>
       </div>
       <a href="demos.html">Demos</a>
       <a href="index.html#como-trabajamos">Cómo funciona</a>
       <a href="contacto.html">Contacto</a>
     </nav>
-    <a href="contacto.html" class="btn btn-cta nav-cta">Solicitar demo</a>
+    <a href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer" class="btn btn-cta nav-cta">Hablar por WhatsApp</a>
     <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -50,18 +57,18 @@
     <div class="container hero-grid">
       <div class="hero-inner">
         <span class="eyebrow">Bonos y clientes</span>
-        <h1>Controla bonos, clientes y sesiones desde un único lugar</h1>
-        <p>Consulta quién ha pagado, cuántas sesiones ha utilizado y cuántas le quedan, sin libretas ni cuentas manuales.</p>
+        <h1>Gestiona clientes, bonos, sesiones y reservas desde un único lugar</h1>
+        <p>Creamos una aplicación adaptada a tu negocio para controlar clientes, sesiones e importes y, cuando lo necesites, permitir que tus clientes reserven cita online.</p>
         <div class="btn-row">
-          <a href="demos.html#demo-bonos" class="btn btn-primary">Ver demo</a>
-          <a href="contacto.html" class="btn btn-cta">Solicitar información</a>
+          <a href="demos.html#demo-bonos" class="btn btn-primary">Ver demostración rápida</a>
+          <a href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer" class="btn btn-wa">Hablar por WhatsApp</a>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="mockup-window">
           <div class="mockup-bar">
             <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
-            <span class="mockup-url">bonos.sidgi.app</span>
+            <span class="mockup-label">Ejemplo visual</span>
           </div>
           <div class="mockup-body">
             <div class="demo-client-card" style="background:var(--bg-alt);border:none;">
@@ -73,7 +80,7 @@
             </div>
           </div>
         </div>
-        <p style="text-align:center;font-size:0.78rem;color:var(--ink-faint);margin-top:14px;">Interfaz ilustrativa de bonos y clientes</p>
+        <p style="text-align:center;font-size:0.78rem;color:var(--ink-faint);margin-top:14px;">Ejemplo visual de una instalación personalizada</p>
       </div>
     </div>
   </section>
@@ -95,8 +102,47 @@
     </div>
   </section>
 
-  <!-- FUNCIONAMIENTO -->
+
+  <!-- UNA SOLUCIÓN DIFERENTE PARA CADA NEGOCIO -->
   <section>
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Instalación a medida</span>
+        <h2>Una solución diferente para cada negocio</h2>
+        <p>No instalamos una aplicación estándar idéntica para todos. Elegimos únicamente las funciones que necesita el negocio.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Barbería</h3>
+          <p>Puede incluir:</p>
+          <ul>
+            <li>Clientes</li>
+            <li>Registro de visitas</li>
+            <li>Fidelización</li>
+            <li>Décimo servicio gratuito</li>
+            <li>Historial</li>
+            <li>Importes registrados</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Dietista o centro de consultas</h3>
+          <p>Puede incluir:</p>
+          <ul>
+            <li>Clientes y bonos</li>
+            <li>Sesiones utilizadas y restantes</li>
+            <li>Registro de pagos</li>
+            <li>Reserva online con selección de servicio, día y hora</li>
+            <li>Consulta o cancelación de citas</li>
+            <li>Acceso privado del negocio</li>
+          </ul>
+        </div>
+      </div>
+      <p class="price-note">La configuración se adapta a cada empresa: no todas las instalaciones incluyen todas las funciones.</p>
+    </div>
+  </section>
+
+  <!-- FUNCIONAMIENTO -->
+  <section class="section-alt">
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Funcionamiento</span>
@@ -113,11 +159,12 @@
   </section>
 
   <!-- FUNCIONES -->
-  <section class="section-alt">
+  <section>
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Funciones</span>
-        <h2>Qué incluye</h2>
+        <h2>Qué puede incluir tu instalación</h2>
+        <p>Según las necesidades del negocio.</p>
       </div>
       <div class="grid grid-4">
         <div class="card"><h3>Gestión de clientes</h3></div>
@@ -128,12 +175,14 @@
         <div class="card"><h3>Historial de visitas</h3></div>
         <div class="card"><h3>Bonos activos</h3></div>
         <div class="card"><h3>Búsqueda de clientes</h3></div>
+        <div class="card"><h3>Fidelización</h3></div>
+        <div class="card"><h3>Reserva online de citas</h3></div>
       </div>
     </div>
   </section>
 
   <!-- EJEMPLO -->
-  <section>
+  <section class="section-alt">
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Ejemplo con datos ficticios</span>
@@ -150,6 +199,18 @@
           <div class="row"><span>Sesiones restantes</span><span><strong>3</strong></span></div>
           <div class="row"><span>Estado</span><span class="pill">Activo</span></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EL NEGOCIO MANTIENE EL CONTROL -->
+  <section>
+    <div class="container">
+      <div class="section-head center" style="margin-bottom:0;">
+        <span class="eyebrow">Acceso privado</span>
+        <h2>El negocio mantiene el control</h2>
+        <p>El responsable gestiona clientes, bonos, sesiones, visitas y reservas desde su acceso privado, desde el móvil o el ordenador.</p>
       </div>
     </div>
   </section>
@@ -184,16 +245,17 @@
       <div class="price-grid">
         <div class="price-card">
           <div class="label">Instalación</div>
-          <div class="amount">Desde 100 €</div>
+          <div class="amount">Desde 200 €</div>
           <p>+ IVA</p>
         </div>
         <div class="price-card">
           <div class="label">Mantenimiento</div>
-          <div class="amount">Desde 20 €/mes</div>
+          <div class="amount">Desde 25 €/mes</div>
           <p>+ IVA</p>
         </div>
       </div>
-      <p class="price-note">El precio final puede variar según las funcionalidades y la personalización de cada negocio.</p>
+      <p class="price-note">El precio final depende de las funciones y de la adaptación necesaria para cada negocio.</p>
+      <p class="price-note" style="font-size:0.82rem;">SIDGI gestiona la parte administrativa de clientes, bonos, sesiones y reservas. No está diseñado para almacenar información clínica.</p>
     </div>
   </section>
 
@@ -204,8 +266,8 @@
         <h2>¿Quieres verlo funcionando?</h2>
         <p>Prueba la demostración con datos ficticios o pide más información.</p>
         <div class="btn-row">
-          <a href="demos.html#demo-bonos" class="btn btn-cta">Ver demo</a>
-          <a href="contacto.html" class="btn btn-ghost">Solicitar información</a>
+          <a href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer" class="btn btn-cta">Hablar por WhatsApp</a>
+          <a href="demos.html#demo-bonos" class="btn btn-ghost">Ver demostración rápida</a>
         </div>
       </div>
     </div>
@@ -215,20 +277,28 @@
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="footer-brand">SIDGI — Soluciones para pequeños negocios</div>
+    <div>
+      <div class="footer-brand">SIDGI — Soluciones para pequeños negocios</div>
+      <p style="font-size:0.86rem;color:var(--ink-faint);margin:6px 0 0;">Instalación presencial en Valencia y configuración remota para empresas de toda España.</p>
+    </div>
     <nav class="footer-nav">
-      <a href="fichajes.html">Fichajes</a>
-      <a href="bonos.html">Bonos y clientes</a>
-      <a href="automatizaciones.html">Automatizaciones</a>
+      <a href="fichajes.html">Control horario</a>
+      <a href="bonos.html">Bonos y reservas</a>
+      <a href="automatizaciones.html">Soluciones a medida</a>
       <a href="demos.html">Demos</a>
       <a href="contacto.html">Contacto</a>
+      <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Privacidad</a>
     </nav>
-    <div class="footer-contact"><a href="mailto:sidgifichajes@gmail.com">sidgifichajes@gmail.com</a></div>
-    <div class="footer-copy">© <span id="year"></span> SIDGI. Todos los derechos reservados.</div>
+    <div class="footer-contact">
+      <a href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer">WhatsApp: 623 62 79 23</a> · <a href="mailto:sidgifichajes@gmail.com">sidgifichajes@gmail.com</a>
+    </div>
+    <div class="footer-copy">© <span id="year"></span> SIDGI. SIDGI es un servicio de Salema Global Group S.L. Todos los derechos reservados.</div>
   </div>
 </footer>
 
+
+<a class="wa-float" href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5s0-.4 0-.5c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg></a>
 <script src="script.js"></script>
 </body>
 </html>

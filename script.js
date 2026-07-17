@@ -180,28 +180,81 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* =========================================================
-     Formulario de contacto — genera mailto con los datos
+     Formulario de contacto — WhatsApp o correo, sin backend
      ========================================================= */
   var contactForm = document.getElementById('contact-form');
   if (contactForm) {
+    var setError = function (id, message) {
+      var el = document.getElementById('err-' + id);
+      var field = document.getElementById(id);
+      if (!el) return;
+      if (message) {
+        el.textContent = message;
+        el.hidden = false;
+        el.setAttribute('role', 'alert');
+        if (field) field.setAttribute('aria-invalid', 'true');
+      } else {
+        el.textContent = '';
+        el.hidden = true;
+        el.removeAttribute('role');
+        if (field) field.removeAttribute('aria-invalid');
+      }
+    };
+
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var data = new FormData(contactForm);
-      var nombre = (data.get('nombre') || '').toString();
-      var empresa = (data.get('empresa') || '').toString();
-      var telefono = (data.get('telefono') || '').toString();
+      var nombre = (data.get('nombre') || '').toString().trim();
+      var empresa = (data.get('empresa') || '').toString().trim();
+      var telefono = (data.get('telefono') || '').toString().trim();
+      var correo = (data.get('correo') || '').toString().trim();
       var solucion = (data.get('solucion') || '').toString();
-      var mensaje = (data.get('mensaje') || '').toString();
+      var mensaje = (data.get('mensaje') || '').toString().trim();
+      var canal = (data.get('canal') || 'whatsapp').toString();
+      var privacidad = contactForm.querySelector('#privacidad').checked;
+
+      var valid = true;
+      var firstInvalid = null;
+      var mark = function (id, message) {
+        setError(id, message);
+        if (message) {
+          valid = false;
+          if (!firstInvalid) firstInvalid = document.getElementById(id);
+        }
+      };
+
+      mark('nombre', nombre ? '' : 'Escribe tu nombre.');
+      mark('mensaje', mensaje ? '' : 'Cuéntanos brevemente qué necesitas.');
+      mark('telefono', canal === 'whatsapp' && !telefono ? 'Para responderte por WhatsApp necesitamos tu teléfono.' : '');
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+      if (canal === 'correo' && !correo) {
+        mark('correo', 'Para responderte por correo necesitamos tu dirección.');
+      } else if (correo && !emailOk) {
+        mark('correo', 'Revisa el formato del correo.');
+      } else {
+        mark('correo', '');
+      }
+      mark('privacidad', privacidad ? '' : 'Debes aceptar el aviso de privacidad.');
+
+      if (!valid) {
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
 
       var body = 'Nombre: ' + nombre + '\n' +
-        'Empresa: ' + empresa + '\n' +
-        'Teléfono: ' + telefono + '\n' +
+        (empresa ? 'Empresa: ' + empresa + '\n' : '') +
+        (telefono ? 'Teléfono: ' + telefono + '\n' : '') +
+        (correo ? 'Correo: ' + correo + '\n' : '') +
         'Solución de interés: ' + solucion + '\n\n' +
         'Mensaje:\n' + mensaje;
 
-      var subject = 'Solicitud de información — ' + (empresa || nombre || 'SIDGI');
-      var mailto = 'mailto:sidgifichajes@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      window.location.href = mailto;
+      if (canal === 'whatsapp') {
+        var texto = 'Hola, he visto la web de SIDGI y me gustaría recibir información.\n\n' + body;
+        window.open('https://wa.me/34623627923?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+      } else {
+        var subject = 'Solicitud de información — ' + (empresa || nombre);
+        window.location.href = 'mailto:sidgifichajes@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      }
     });
   }
 });

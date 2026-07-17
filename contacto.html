@@ -5,10 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto | SIDGI</title>
 <meta name="description" content="Solicita información sobre las soluciones de SIDGI para tu negocio, por WhatsApp o por correo.">
-<meta property="og:title" content="Contacto | SIDGI">
-<meta property="og:description" content="Escríbenos por WhatsApp o por correo y te ayudamos a organizar tu negocio.">
-<meta property="og:image" content="og-image.png">
+<link rel="canonical" href="https://sidgi.es/contacto.html">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://sidgi.es/contacto.html">
+<meta property="og:title" content="Contacto | SIDGI">
+<meta property="og:description" content="Solicita información sobre las soluciones de SIDGI para tu negocio, por WhatsApp o por correo.">
+<meta property="og:image" content="https://sidgi.es/og-image.png">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contacto | SIDGI">
+<meta name="twitter:description" content="Solicita información sobre las soluciones de SIDGI para tu negocio, por WhatsApp o por correo.">
+<meta name="twitter:image" content="https://sidgi.es/og-image.png">
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,15 +37,15 @@
         <button class="nav-dropdown-toggle" aria-expanded="false">Soluciones ▾</button>
         <div class="nav-dropdown-menu">
           <a href="fichajes.html">Control horario</a>
-          <a href="bonos.html">Bonos y clientes</a>
-          <a href="automatizaciones.html">Automatizaciones a medida</a>
+          <a href="bonos.html">Bonos y reservas</a>
+          <a href="automatizaciones.html">Soluciones a medida</a>
         </div>
       </div>
       <a href="demos.html">Demos</a>
       <a href="index.html#como-trabajamos">Cómo funciona</a>
       <a href="contacto.html" class="active">Contacto</a>
     </nav>
-    <a href="contacto.html" class="btn btn-cta nav-cta">Solicitar demo</a>
+    <a href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer" class="btn btn-cta nav-cta">Hablar por WhatsApp</a>
     <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -58,8 +65,9 @@
 
       <form id="contact-form" novalidate>
         <div class="form-field">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required autocomplete="name">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="nombre" required autocomplete="name" aria-describedby="err-nombre">
+          <p class="field-error" id="err-nombre" hidden></p>
         </div>
         <div class="form-field">
           <label for="empresa">Empresa</label>
@@ -67,34 +75,52 @@
         </div>
         <div class="form-field">
           <label for="telefono">Teléfono</label>
-          <input type="tel" id="telefono" name="telefono" autocomplete="tel">
+          <input type="tel" id="telefono" name="telefono" autocomplete="tel" aria-describedby="err-telefono">
+          <p class="field-error" id="err-telefono" hidden></p>
         </div>
         <div class="form-field">
           <label for="correo">Correo</label>
-          <input type="email" id="correo" name="correo" required autocomplete="email">
+          <input type="email" id="correo" name="correo" autocomplete="email" aria-describedby="err-correo">
+          <p class="field-error" id="err-correo" hidden></p>
         </div>
         <div class="form-field">
           <label for="solucion">Solución de interés</label>
           <select id="solucion" name="solucion">
             <option value="Control horario">Control horario</option>
-            <option value="Bonos y clientes">Bonos y clientes</option>
-            <option value="Automatizaciones a medida">Automatizaciones a medida</option>
-            <option value="No lo tengo claro todavía">No lo tengo claro todavía</option>
+            <option value="Bonos, clientes y reservas">Bonos, clientes y reservas</option>
+            <option value="Automatizaciones o soluciones adaptadas">Automatizaciones o soluciones adaptadas</option>
+            <option value="Soporte o acceso">Soporte o acceso</option>
+            <option value="No lo tengo claro">No lo tengo claro</option>
           </select>
         </div>
         <div class="form-field">
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos brevemente cómo trabajas actualmente..."></textarea>
+          <label for="mensaje">Mensaje *</label>
+          <textarea id="mensaje" name="mensaje" required placeholder="Cuéntanos brevemente cómo trabajas actualmente..." aria-describedby="err-mensaje"></textarea>
+          <p class="field-error" id="err-mensaje" hidden></p>
         </div>
-        <button type="submit" class="btn btn-cta btn-block">Enviar por correo</button>
-        <p style="font-size:0.82rem;margin-top:10px;">Al enviar, se abrirá tu programa de correo con estos datos ya redactados hacia sidgifichajes@gmail.com.</p>
+        <fieldset class="form-field form-radios">
+          <legend>¿Cómo prefieres que sigamos la conversación?</legend>
+          <label class="radio-option"><input type="radio" name="canal" value="whatsapp" checked> WhatsApp</label>
+          <label class="radio-option"><input type="radio" name="canal" value="correo"> Correo</label>
+        </fieldset>
+        <div class="form-field form-check">
+          <label class="check-option">
+            <input type="checkbox" id="privacidad" name="privacidad" required aria-describedby="err-privacidad">
+            <span>He leído y acepto el <a href="privacidad.html">aviso de privacidad</a> *</span>
+          </label>
+          <p class="field-error" id="err-privacidad" hidden></p>
+        </div>
+        <button type="submit" class="btn btn-cta btn-block">Enviar solicitud</button>
+        <p style="font-size:0.82rem;margin-top:10px;">Según el canal que elijas, se abrirá tu WhatsApp o tu programa de correo con los datos ya redactados. Esta web no guarda tu información.</p>
+        <p style="font-size:0.82rem;">No incluyas contraseñas, datos médicos ni información confidencial.</p>
       </form>
 
       <div class="contact-side">
         <h3>Contacto directo</h3>
-        <a class="btn btn-primary" href="https://wa.me/34634333522?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn btn-wa" href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener">Escribir por WhatsApp</a>
         <a class="btn btn-ghost" href="mailto:sidgifichajes@gmail.com">Enviar correo</a>
         <p>Respondemos en horario laboral. Cuéntanos brevemente tu negocio y qué te gustaría mejorar.</p>
+        <p>Instalación presencial en Valencia y configuración remota para empresas de toda España.</p>
         <p style="margin-bottom:0;">Consulta nuestro <a href="privacidad.html" style="color:var(--color-primary);font-weight:600;">aviso de privacidad</a> antes de enviarnos tus datos.</p>
       </div>
 
@@ -105,20 +131,28 @@
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="footer-brand">SIDGI — Soluciones para pequeños negocios</div>
+    <div>
+      <div class="footer-brand">SIDGI — Soluciones para pequeños negocios</div>
+      <p style="font-size:0.86rem;color:var(--ink-faint);margin:6px 0 0;">Instalación presencial en Valencia y configuración remota para empresas de toda España.</p>
+    </div>
     <nav class="footer-nav">
-      <a href="fichajes.html">Fichajes</a>
-      <a href="bonos.html">Bonos y clientes</a>
-      <a href="automatizaciones.html">Automatizaciones</a>
+      <a href="fichajes.html">Control horario</a>
+      <a href="bonos.html">Bonos y reservas</a>
+      <a href="automatizaciones.html">Soluciones a medida</a>
       <a href="demos.html">Demos</a>
       <a href="contacto.html">Contacto</a>
+      <a href="aviso-legal.html">Aviso legal</a>
       <a href="privacidad.html">Privacidad</a>
     </nav>
-    <div class="footer-contact"><a href="mailto:sidgifichajes@gmail.com">sidgifichajes@gmail.com</a></div>
-    <div class="footer-copy">© <span id="year"></span> SIDGI. Todos los derechos reservados.</div>
+    <div class="footer-contact">
+      <a href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer">WhatsApp: 623 62 79 23</a> · <a href="mailto:sidgifichajes@gmail.com">sidgifichajes@gmail.com</a>
+    </div>
+    <div class="footer-copy">© <span id="year"></span> SIDGI. SIDGI es un servicio de Salema Global Group S.L. Todos los derechos reservados.</div>
   </div>
 </footer>
 
+
+<a class="wa-float" href="https://wa.me/34623627923?text=Hola%2C%20he%20visto%20la%20web%20de%20SIDGI%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20soluciones%20para%20peque%C3%B1os%20negocios." target="_blank" rel="noopener noreferrer" aria-label="Hablar por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5s0-.4 0-.5c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3a2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg></a>
 <script src="script.js"></script>
 </body>
 </html>

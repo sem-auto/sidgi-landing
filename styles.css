@@ -515,3 +515,213 @@ table.demo-table th { color: var(--ink-faint); font-weight: 600; font-family: va
 /* Skip link */
 .skip-link { position: absolute; left: -999px; top: 0; background: var(--primary); color: #fff; padding: 10px 16px; border-radius: 0 0 8px 0; z-index: 100; }
 .skip-link:focus { left: 0; }
+
+/* =========================================================
+   WhatsApp (canal principal de contacto)
+   ========================================================= */
+.btn-wa { background: #25d366; color: #fff; box-shadow: 0 10px 24px -8px rgba(37, 211, 102, 0.45); }
+.btn-wa:hover { background: #1ebe5b; transform: translateY(-2px); box-shadow: 0 16px 34px -8px rgba(37, 211, 102, 0.5); }
+.btn-wa svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+.wa-float {
+  position: fixed;
+  right: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.wa-float:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 14px 32px rgba(37, 211, 102, 0.5); }
+.wa-float svg { width: 30px; height: 30px; }
+
+/* =========================================================
+   Capturas reales del sistema
+   ========================================================= */
+.screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  background: var(--surface);
+}
+.hero-captures { display: grid; gap: 14px; width: 100%; max-width: 480px; }
+.hero-captures figure { margin: 0; }
+.hero-captures figcaption {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  margin: 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-captures figcaption::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gradient-brand); flex-shrink: 0; }
+.captures-note { text-align: center; font-size: 0.78rem; color: var(--ink-faint); margin-top: 14px; }
+
+.capture-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+@media (max-width: 760px) { .capture-grid { grid-template-columns: 1fr; } }
+.capture-grid figure { margin: 0; }
+.capture-grid figcaption { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-top: 10px; }
+.capture-grid figcaption span { display: block; font-weight: 400; font-size: 0.85rem; color: var(--ink-soft); }
+
+/* Empresas: tratamiento uniforme */
+.company-grid .company-card {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 96px;
+  gap: 0;
+}
+.company-grid .company-name-only {
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* Flujo de capturas del sistema real */
+.system-flow { display: flex; align-items: flex-start; gap: 8px; }
+.system-flow figure { margin: 0; flex: 1; min-width: 0; }
+.system-flow figcaption { font-size: 0.92rem; font-weight: 600; color: var(--ink); margin-top: 12px; text-align: center; }
+.flow-arrow { color: var(--primary); font-size: 1.5rem; font-weight: 700; align-self: center; flex-shrink: 0; padding-bottom: 34px; }
+@media (max-width: 760px) {
+  .system-flow { flex-direction: column; align-items: stretch; gap: 6px; }
+  .flow-arrow { transform: rotate(90deg); align-self: center; padding: 4px 0; }
+}
+.company-solution {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  margin-top: 6px;
+}
+
+/* Composición del hero con capturas reales */
+.hero-composition {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 34px 0 46px;
+}
+.hero-composition::before {
+  content: "";
+  position: absolute;
+  inset: 6% 4% 10% 4%;
+  background: radial-gradient(60% 60% at 60% 45%, rgba(36, 84, 232, 0.16), rgba(109, 91, 240, 0.08) 55%, transparent 75%);
+  filter: blur(6px);
+  z-index: 0;
+}
+
+/* Capa trasera: hoja del responsable (asoma, secundaria) */
+.hero-composition-back {
+  position: relative;
+  z-index: 1;
+  width: 66%;
+  margin-left: 2%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transform: rotate(-2deg);
+  opacity: 0.94;
+}
+.hero-composition-back .mini-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+.hero-composition-back .mini-bar .mockup-dot { width: 7px; height: 7px; }
+.hero-composition-back img { display: block; width: 100%; height: auto; }
+
+/* Capa frontal: la tablet, protagonista */
+.hero-composition-front {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 12px;
+  width: 82%;
+  background: #0b1526;
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 34px 70px -18px rgba(11, 21, 38, 0.45), 0 0 0 1px rgba(36, 84, 232, 0.10);
+  transform: rotate(1.4deg);
+  transition: transform 0.4s var(--ease);
+}
+.hero-composition-front:hover { transform: rotate(0deg) translateY(-5px); }
+.hero-composition-front img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Etiqueta integrada en el visual */
+.system-badge {
+  position: absolute;
+  z-index: 3;
+  left: 6%;
+  bottom: -8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 7px 14px;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+.system-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--status);
+  box-shadow: 0 0 0 3px var(--status-tint);
+  flex-shrink: 0;
+}
+.mockup-label {
+  font-family: var(--font-label);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  margin-left: 8px;
+}
+@media (max-width: 980px) {
+  .hero-composition { margin: 0 auto; max-width: 440px; }
+}
+
+/* Formulario: errores accesibles y opciones */
+.field-error { color: #c0392b; font-size: 0.84rem; margin: 6px 0 0; font-weight: 600; }
+.form-field input[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] { border-color: #c0392b; }
+.form-radios { border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 16px; margin: 0 0 18px; }
+.form-radios legend { font-size: 0.88rem; font-weight: 600; color: var(--ink); padding: 0 6px; }
+.radio-option { display: inline-flex; align-items: center; gap: 8px; margin-right: 22px; font-size: 0.94rem; color: var(--ink-soft); cursor: pointer; padding: 6px 0; }
+.radio-option input { width: 18px; height: 18px; accent-color: var(--primary); }
+.check-option { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--ink-soft); cursor: pointer; }
+.check-option input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--primary); }
+.check-option a { color: var(--primary); font-weight: 600; }
